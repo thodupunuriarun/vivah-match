@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Match My Jathakam | తెలుగు వివాహ పొంతన</title>
+  <meta name="description" content="Match My Jathakam గురించి — 36 గుణాల అష్టకూట పొంతన సాధనం. Informational only.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://matchmyjathakam.com/about.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="te_IN">
+  <meta property="og:site_name" content="Match My Jathakam">
+  <meta property="og:url" content="https://matchmyjathakam.com/about.html">
+  <meta property="og:title" content="About — Match My Jathakam | తెలుగు వివాహ పొంతన">
+  <meta property="og:description" content="Match My Jathakam గురించి — 36 గుణాల అష్టకూట పొంతన సాధనం. Informational only.">
+  <meta property="og:image" content="https://matchmyjathakam.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About — Match My Jathakam | తెలుగు వివాహ పొంతన">
+  <meta name="twitter:description" content="Match My Jathakam గురించి — 36 గుణాల అష్టకూట పొంతన సాధనం. Informational only.">
+  <meta name="twitter:image" content="https://matchmyjathakam.com/og-image.png">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Telugu:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* about premium overrides — warm ivory #fdf8ee */
+    .about-wrap{max-width:860px;margin:0 auto;padding:56px 20px 40px;position:relative;z-index:1}
+    .about-hero{
+      display:grid;grid-template-columns:1.05fr 0.95fr;gap:28px;align-items:center;
+      background:#ffffff;border:1px solid #e7e5e4;border-radius:28px;padding:32px;
+      box-shadow:0 1px 2px rgba(17,24,39,.04),0 14px 36px -14px rgba(17,24,39,.12),0 0 0 6px rgba(253,248,238,.6);
+      overflow:hidden;position:relative;
+    }
+    .about-hero::before{
+      content:"";position:absolute;inset:0;
+      background:radial-gradient(520px 300px at 18% 0%, rgba(225,29,72,.07), transparent 60%), radial-gradient(500px 320px at 92% 18%, rgba(217,119,6,.09), transparent 62%);
+      pointer-events:none;
+    }
+    .about-hero > *{position:relative;z-index:1}
+    .hero-copy .badge{margin-bottom:14px}
+    .telugu-badge{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+      color:#9f1239;background:#fff1f2;border:1px solid #fecdd3;border-radius:999px;padding:6px 12px;
+    }
+    .telugu-badge img{width:18px;height:18px;display:block}
+    .hero-copy h1{
+      font-size:clamp(2rem,5vw,2.9rem);font-weight:800;line-height:1.18;letter-spacing:-.02em;margin:10px 0 10px;
+    }
+    .hero-copy h1 .grad{
+      background:linear-gradient(92deg,#9f1239 8%,#e11d48 55%,#d97706);
+      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    }
+    .hero-copy .lead{color:#6b7280;font-size:1.02rem;line-height:1.75;font-weight:500;margin:8px 0 18px}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+    .hero-meta span{
+      font-size:.78rem;font-weight:600;color:#7c2d12;background:#fffbeb;border:1px solid #fde68a;border-radius:999px;padding:6px 11px;
+      display:inline-flex;align-items:center;gap:6px;
+    }
+    .hero-meta span img{width:16px;height:16px}
+    .hero-art{
+      display:grid;place-items:center;background:linear-gradient(180deg,#fdf8ee 0%,#fff 100%);
+      border:1px solid #f3e8d3;border-radius:22px;padding:18px 14px;position:relative;overflow:hidden;
+    }
+    .hero-art::after{
+      content:"";position:absolute;bottom:-1px;left:0;right:0;height:7px;
+      background:linear-gradient(90deg,#e11d48,#f59e0b 55%,#9f1239);opacity:.14;
+    }
+    .hero-art img.wedding{width:min(360px,100%);height:auto;display:block;filter:drop-shadow(0 14px 22px rgba(17,24,39,.08))}
+    .hero-art .art-caption{margin-top:10px;font-size:.74rem;color:#9ca3af;text-align:center;letter-spacing:.02em}
+    /* story 2-col */
+    .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+    .story-card{
+      background:#ffffff;border:1px solid #e5e7eb;border-radius:22px;padding:24px 22px;
+      box-shadow:0 1px 2px rgba(17,24,39,.04),0 10px 28px -14px rgba(17,24,39,.08);
+    }
+    .story-card h2{font-size:1.05rem;font-weight:800;color:#7f1020;margin-bottom:10px;display:flex;align-items:center;gap:9px}
+    .story-card h2 img{width:22px;height:22px}
+    .story-card p{color:#374151;font-size:.95rem;line-height:1.85}
+    .story-card .tiny{margin-top:12px;font-size:.82rem;color:#6b7280;line-height:1.7;background:#fdf8ee;border:1px dashed #f3e8d3;border-radius:12px;padding:10px 12px}
+    .story-card ul{margin:10px 0 0 18px;color:#374151;font-size:.93rem;line-height:1.8}
+    .story-card ul li::marker{color:#e11d48}
+    /* 3 feature cards */
+    .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+    .feature{
+      background:#ffffff;border:1px solid #e5e7eb;border-radius:20px;padding:20px 18px;
+      box-shadow:0 1px 2px rgba(17,24,39,.04),0 10px 24px -14px rgba(17,24,39,.08);
+      position:relative;overflow:hidden;
+    }
+    .feature::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#e11d48,#d97706);opacity:.9}
+    .feature-icon{
+      width:44px;height:44px;border-radius:12px;display:grid;place-items:center;
+      background:#fdf8ee;border:1px solid #fde68a;margin-bottom:12px;
+    }
+    .feature-icon img{width:24px;height:24px;display:block}
+    .feature h3{font-size:.98rem;font-weight:800;color:#111827;margin-bottom:6px}
+    .feature p{font-size:.88rem;color:#6b7280;line-height:1.7}
+    .feature .num{margin-top:10px;font-weight:800;font-size:1.15rem;letter-spacing:-.02em;color:#9f1239}
+    .feature .num small{font-weight:600;color:#6b7280;font-size:.78rem;margin-left:4px}
+    /* trust / contact strip */
+    .contact-strip{
+      margin-top:18px;background:linear-gradient(135deg,#7f1020 0%,#9f1239 55%,#be123c 100%);
+      color:#fff;border-radius:20px;padding:22px 22px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;
+      box-shadow:0 12px 28px -12px rgba(127,16,32,.45);
+    }
+    .contact-strip h3{font-size:1.02rem;font-weight:800}
+    .contact-strip p{font-size:.88rem;opacity:.92;line-height:1.6;margin-top:4px}
+    .contact-strip a{color:#fff;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+    .contact-strip .cta{flex:none;background:#fff;color:#9f1239;border-radius:999px;padding:10px 16px;font-weight:800;font-size:.92rem;text-decoration:none;box-shadow:0 6px 16px rgba(0,0,0,.12)}
+    .ornament{display:flex;align-items:center;justify-content:center;gap:10px;margin:22px 0 0;color:#d6a27a;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+    .ornament::before,.ornament::after{content:"";height:1px;flex:1;max-width:120px;background:linear-gradient(90deg,transparent,#f3d9b8,transparent)}
+    .back-link{text-align:center;margin-top:18px}
+    .back-link a{color:#9f1239;font-weight:700;text-decoration:none}
+    .back-link a:hover{text-decoration:underline}
+    @media(max-width:760px){
+      .about-hero{grid-template-columns:1fr;padding:24px}
+      .hero-art{order:-1}
+      .story-grid{grid-template-columns:1fr}
+      .feature-grid{grid-template-columns:1fr}
+      .contact-strip{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+<div class="blob blob-a"></div><div class="blob blob-b"></div>
+<main class="about-wrap">
+  <div class="steps" aria-hidden="true"><span class="on"></span><span class="on"></span></div>
+
+  <!-- HERO with couple illustration + Telugu badge -->
+  <section class="about-hero" aria-labelledby="about-title">
+    <div class="hero-copy">
+      <div class="telugu-badge"><img src="vendor/twemoji/om.svg" alt="" width="18" height="18"> తెలుగు వివాహ పొంతన • Telugu Jathakam Matching</div>
+      <h1 id="about-title">మా గురించి <span class="grad">About</span></h1>
+      <p class="lead">Match My Jathakam — తెలుగు కుటుంబాల కోసం 36 గుణాల <strong style="color:#7f1020">అష్టకూట పొంతన</strong>ను క్షణంలో చూపే ఉచిత సాధనం. సంప్రదాయాన్ని గౌరవిస్తూ, సాంకేతికతను సరళంగా అందిస్తున్నాము.</p>
+      <div class="hero-meta">
+        <span><img src="vendor/twemoji/sparkle.svg" alt=""> Informational only</span>
+        <span><img src="vendor/twemoji/marigold.svg" alt=""> 100% తెలుగు-first</span>
+        <span><img src="vendor/twemoji/hibiscus.svg" alt=""> No login required</span>
+      </div>
+      <p style="margin-top:14px;font-size:.86rem;color:#6b7280;line-height:1.7">మేము ప్రొఫెషనల్ జ్యోతిష్యులు కాదు — సమాచారం మాత్రమే ఇస్తాము. తుది నిర్ణయం మీ దగ్గరలోని అనుభవజ్ఞుడైన జ్యోతిష్యునితో జాతక చక్ర పరిశీలన తర్వాత తీసుకోండి.</p>
+    </div>
+    <div class="hero-art">
+      <img class="wedding" src="vendor/storyset/wedding-pana.svg" alt="Telugu wedding couple illustration" width="360" height="280" loading="eager" decoding="async">
+      <div class="art-caption">Illustration by <a href="https://storyset.com" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Storyset</a> • Warm ivory #fdf8ee theme</div>
+    </div>
+  </section>
+
+  <!-- 2-col story -->
+  <div class="story-grid">
+    <article class="story-card">
+      <h2><img src="vendor/twemoji/bride.svg" alt=""> మా కథ &amp; విధానం</h2>
+      <p><strong>Match My Jathakam</strong> ను తెలుగు వివాహ పొంతన తక్షణం చూడాలనే అవసరం నుండి రూపొందించాము. 27 నక్షత్రాలు × 12 రాశుల ఆధారంగా <strong>8 కూటములు</strong> (వర్ణ, వశ్య, తారా, యోని, గ్రహ మైత్రి, గణ, భకూట, నాడి) లో మార్కులు లెక్కించి, <code style="background:#fdf8ee;border:1px solid #f3e8d3;padding:1px 6px;border-radius:6px">nid = bride.groom</code> కీతో <code style="background:#fdf8ee;border:1px solid #f3e8d3;padding:1px 6px;border-radius:6px">8 కూటములు</code> మరియు <code style="background:#fdf8ee;border:1px solid #f3e8d3;padding:1px 6px;border-radius:6px">మొత్తం 36</code> చూపుతాము.</p>
+      <div class="tiny">ఉదా: మేషం-అశ్విని ↔ వృషభం-రోహిణి వంటి ఏ జంటకైనా స్కోరు వెంటనే — పేజీ రిఫ్రెష్ లేకుండా.</div>
+      <ul>
+        <li>8 కూటముల వివరణతో పాటు మొత్తం స్కోరు</li>
+        <li>తెలుగు + English లో స్పష్టమైన ఫలితం</li>
+        <li>షేర్ &amp; డౌన్‌లోడ్ సౌకర్యం</li>
+      </ul>
+    </article>
+    <article class="story-card">
+      <h2><img src="vendor/twemoji/groom.svg" alt=""> ఎందుకు నమ్మవచ్చు?</h2>
+      <p>మేము జాతకాన్ని ఊహించము — <strong>డేటాబేస్‌లోని లెక్కలను మాత్రమే</strong> చూపుతాము. ప్రతి ఫలితం కింద “Informational only” గమనిక తప్పనిసరిగా ఉంటుంది.</p>
+      <ul>
+        <li><strong>పారదర్శకత:</strong> ఏ కూటమికి ఎన్ని మార్కులు, ఎందుకు అనేది విడిగా</li>
+        <li><strong>గోప్యత:</strong> పేర్లు/జాతకం సర్వర్‌కు వెళ్లవు (కింద చూడండి)</li>
+        <li><strong>సరళత:</strong> రాశి-నక్షత్రం ఎంచుకుని ఒక క్లిక్ — అంతే</li>
+      </ul>
+      <div class="tiny" style="background:#fffbeb;border-color:#fde68a">భవిష్యత్తులో సైట్ నిర్వహణ కోసం Google AdSense ప్రకటనలు చూపవచ్చు — అప్పుడు కూడా మీ వ్యక్తిగత డేటా అమ్మము, ట్రాకింగ్ ఉండదు.</div>
+    </article>
+  </div>
+
+  <!-- 3 cards: 1296 combos / client-side / free -->
+  <section class="feature-grid" aria-label="Key highlights">
+    <div class="feature">
+      <div class="feature-icon"><img src="vendor/twemoji/om.svg" alt=""></div>
+      <h3>1296 కాంబినేషన్లు</h3>
+      <p>12 రాశులు × 27 నక్షత్రాల ప్రతి జతకు ముందే లెక్కించిన 8 కూటముల స్కోర్లు. ఏ వధువు-వరుడి జతకైనా తక్షణ ఫలితం.</p>
+      <div class="num">1296 <small>combos • 8 కూటములు mapped</small></div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon"><img src="vendor/twemoji/sparkle.svg" alt=""></div>
+      <h3>Client-side మాత్రమే</h3>
+      <p>లెక్క అంతా మీ బ్రౌజర్‌లోనే జరుగుతుంది. పేర్లు, రాశి-నక్షత్ర ఎంపికలు సర్వర్‌కు పంపబడవు, స్టోర్ చేయము.</p>
+      <div class="num">100% <small>on-device • No upload</small></div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon"><img src="vendor/twemoji/hibiscus.svg" alt=""></div>
+      <h3>ఉచితం — Always free</h3>
+      <p>తెలుగు కుటుంబాలకు తక్షణ పొంతన సులభంగా అందాలనే ఉద్దేశం. లాగిన్ లేదు, ఫీజు లేదు, పరిమితి లేదు.</p>
+      <div class="num">₹0 <small>free forever • No login</small></div>
+    </div>
+  </section>
+
+  <div class="ornament"><img src="vendor/twemoji/diya.svg" alt="" width="18" height="18" style="opacity:.9"> • శుభం • <img src="vendor/twemoji/marigold.svg" alt="" width="18" height="18" style="opacity:.9"></div>
+
+  <section class="contact-strip">
+    <div>
+      <h3>సంప్రదించండి — Contact</h3>
+      <p>సందేహాలు / సూచనలకు: <a href="mailto:hello@matchmyjathakam.com">hello@matchmyjathakam.com</a> &nbsp;·&nbsp; <a href="/contact.html">Contact page →</a></p>
+    </div>
+    <a class="cta" href="/">← హోమ్ కి వెళ్ళండి</a>
+  </section>
+
+  <p class="back-link"><a href="/">← హోమ్ కి తిరిగి వెళ్ళండి</a> &nbsp;·&nbsp; <a href="/privacy.html" style="color:#6b7280;font-weight:600">Privacy</a></p>
+
+  <footer><p><a href="/">Home</a> · <a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/disclaimer.html">Disclaimer</a> · <a href="/terms.html">Terms</a> · <a href="/contact.html">Contact</a><br>matchmyjathakam.com · Informational only · Illustration by <a href="https://storyset.com" style="color:inherit">Storyset</a></p></footer>
+</main>
+</body>
+</html>

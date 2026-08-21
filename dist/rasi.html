@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>12 Rasis in Telugu — మేషం నుండి మీనం | Match My Jathakam</title>
+  <meta name="description" content="12 rasis explained in Telugu — Mesham to Meenam for marriage matching.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://matchmyjathakam.com/rasi.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Telugu:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Rasi page — distinct warm ivory, not reuse nakshatra layout */
+    .wrap.rasi-wrap{max-width:1080px}
+    /* hero — centered chakra, no split grid */
+    .rasi-hero{
+      background:#ffffff;
+      border:1px solid #f3e8d3;
+      border-radius:24px;
+      padding:28px 22px 22px;
+      box-shadow:0 1px 2px rgba(17,24,39,.04),0 18px 44px -20px rgba(17,24,39,.12);
+      position:relative;
+      overflow:hidden;
+      text-align:center;
+    }
+    .rasi-hero::before{
+      content:"";
+      position:absolute;inset:0;
+      background:
+        radial-gradient(520px 420px at 50% -10%, rgba(217,119,6,.08), transparent 62%),
+        radial-gradient(480px 360px at 100% 100%, rgba(159,18,57,.06), transparent 55%);
+      pointer-events:none;
+    }
+    .rasi-hero::after{
+      content:"";
+      position:absolute;top:-26px;left:50%;transform:translateX(-50%);
+      width:420px;height:420px;
+      background:
+        radial-gradient(circle at 50% 50%, transparent 64px, rgba(217,119,6,.07) 65px, transparent 66px),
+        radial-gradient(circle at 50% 50%, transparent 92px, rgba(159,18,57,.05) 93px, transparent 94px),
+        radial-gradient(circle at 50% 50%, transparent 128px, rgba(217,119,6,.045) 129px, transparent 130px);
+      pointer-events:none;
+      opacity:.9;
+    }
+    .rasi-hero > *{position:relative;z-index:1}
+    .rasi-hero h1{
+      font-size:clamp(1.95rem,5vw,2.85rem);
+      line-height:1.18;font-weight:800;letter-spacing:-.02em;
+    }
+    .rasi-hero h1 .grad{background:linear-gradient(92deg,#9f1239 12%,#e11d48 52%,#d97706);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .rasi-hero .tag{margin:10px auto 0;max-width:640px;color:#6b7280;font-size:1.02rem;line-height:1.75}
+    .chakra-legend{
+      display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px
+    }
+    .chakra-legend span{
+      display:inline-flex;align-items:center;gap:7px;
+      padding:7px 12px;border-radius:999px;font-size:.80rem;font-weight:700;
+      border:1px solid #f3e8d3;background:#fdf8ee;color:#7c2d12
+    }
+    .chakra-legend .dot{width:9px;height:9px;border-radius:50%}
+    .chakra-legend .dot.agni{background:#dc2626}
+    .chakra-legend .dot.prithvi{background:#d97706}
+    .chakra-legend .dot.vayu{background:#2563eb}
+    .chakra-legend .dot.jala{background:#0e7490}
+    .mini-stats{
+      display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:14px
+    }
+    .mini-stats span{
+      display:inline-flex;align-items:center;gap:6px;
+      background:#fff;border:1px solid #e5e7eb;color:#374151;
+      padding:6px 10px;border-radius:999px;font-size:.78rem;font-weight:700
+    }
+    .mini-stats span b{color:#9f1239}
+    /* filter */
+    .tatva-bar{
+      display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+      margin:22px 0 8px;
+    }
+    .tatva-chip{
+      appearance:none;cursor:pointer;
+      border:1px solid #e5e7eb;background:#fff;color:#374151;
+      padding:8px 14px;border-radius:999px;
+      font:700 .82rem "Plus Jakarta Sans","Noto Sans Telugu",sans-serif;
+      transition:.15s;
+    }
+    .tatva-chip:hover{border-color:#d97706;color:#9f1239;transform:translateY(-1px)}
+    .tatva-chip.on{background:#9f1239;border-color:#9f1239;color:#fff;box-shadow:0 6px 16px -8px rgba(159,18,57,.45)}
+    .tatva-chip.on.agni{background:linear-gradient(135deg,#dc2626,#9f1239);border-color:#dc2626}
+    .tatva-chip.on.prithvi{background:linear-gradient(135deg,#d97706,#92400e);border-color:#d97706}
+    .tatva-chip.on.vayu{background:linear-gradient(135deg,#2563eb,#1e40af);border-color:#2563eb}
+    .tatva-chip.on.jala{background:linear-gradient(135deg,#0e7490,#155e75);border-color:#0e7490}
+    .filter-hint{ text-align:center;color:#6b7280;font-size:.78rem;font-weight:600;margin-bottom:12px }
+    /* grid 12 */
+    .rasi-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }
+    @media(max-width:980px){.rasi-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:580px){.rasi-grid{grid-template-columns:1fr}}
+    .rasi-card{
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius:20px;
+      padding:16px 16px 14px;
+      position:relative;
+      overflow:hidden;
+      display:flex;flex-direction:column;gap:10px;
+      transition:border-color .16s, transform .16s, box-shadow .16s, opacity .16s, filter .16s;
+      border-top-width:4px;
+    }
+    .rasi-card:hover{transform:translateY(-3px);box-shadow:0 14px 32px -18px rgba(17,24,39,.18);border-color:#f3c9b0}
+    .rasi-card.dim{opacity:.28;filter:grayscale(.2);transform:none}
+    .rasi-card.t-agni{border-top-color:#dc2626}
+    .rasi-card.t-prithvi{border-top-color:#d97706}
+    .rasi-card.t-vayu{border-top-color:#2563eb}
+    .rasi-card.t-jala{border-top-color:#0e7490}
+    .rasi-card::after{
+      content:"";position:absolute;right:-22px;top:-22px;width:86px;height:86px;
+      background:radial-gradient(circle at 30% 30%, rgba(217,119,6,.10), transparent 62%);
+      pointer-events:none;
+    }
+    .rasi-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .rasi-num{
+      width:34px;height:34px;border-radius:11px;display:grid;place-items:center;
+      background:#fdf8ee;border:1px solid #fde68a;color:#9f1239;font-weight:800;font-size:.84rem;flex:none
+    }
+    .rasi-lord{
+      display:inline-flex;align-items:center;gap:6px;
+      background:#fff1f2;border:1px solid #fecdd3;color:#9f1239;
+      padding:4px 9px;border-radius:999px;font-size:.70rem;font-weight:800;letter-spacing:.02em
+    }
+    .rasi-lord em{font-style:normal;color:#be123c}
+    .rasi-name{line-height:1.15}
+    .rasi-name .te{font-weight:800;font-size:1.10rem;color:#111827;letter-spacing:-.01em}
+    .rasi-name .en{font-weight:700;font-size:.74rem;color:#6b7280;letter-spacing:.07em;text-transform:uppercase;margin-top:2px}
+    .rasi-symbol{font-size:.82rem;color:#6b7280;font-weight:600;display:flex;align-items:center;gap:6px}
+    .rasi-symbol i{font-style:normal;font-size:.78rem}
+    .meta-row{display:flex;flex-wrap:wrap;gap:7px}
+    .pill{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:5px 9px;border-radius:999px;font-size:.72rem;font-weight:800;border:1px solid #e5e7eb;
+    }
+    .pill.tatva-agni{background:#fef2f2;border-color:#fecaca;color:#991b1b}
+    .pill.tatva-prithvi{background:#fffbeb;border-color:#fde68a;color:#92400e}
+    .pill.tatva-vayu{background:#eff6ff;border-color:#bfdbfe;color:#1e40af}
+    .pill.tatva-jala{background:#ecfeff;border-color:#a5f3fc;color:#155e75}
+    .pill.svabhava{background:#f9fafb;border-color:#e5e7eb;color:#374151}
+    .pill.svabhava b{color:#111827}
+    .nak-line{font-size:.77rem;color:#6b7280;line-height:1.6;background:#f9fafb;border:1px dashed #e5e7eb;border-radius:10px;padding:7px 9px}
+    .nak-line strong{color:#1f2937;font-weight:700}
+    .rasi-foot{
+      margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:8px;
+      padding-top:8px;border-top:1px solid #f3f4f6;font-size:.72rem;color:#9ca3af;font-weight:600
+    }
+    .rasi-foot span:last-child{color:#6b7280}
+    /* explain */
+    .explain-grid{
+      display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px
+    }
+    @media(max-width:760px){.explain-grid{grid-template-columns:1fr}}
+    .explain-box{
+      background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:18px;
+      line-height:1.85;color:#1f2937;font-size:.93rem
+    }
+    .explain-box h3{color:#7f1020;margin:0 0 8px;font-size:1rem;display:flex;align-items:center;gap:8px}
+    .explain-box h3 i{width:8px;height:8px;border-radius:50%;display:inline-block}
+    .explain-box code{background:#f3f4f6;padding:2px 6px;border-radius:6px;font-size:.86em}
+    .explain-box ul{margin:8px 0 0 18px}
+    .tile-note{margin-top:16px;text-align:center}
+    .tile-note a{color:#9f1239;font-weight:800;text-decoration:none}
+    .tile-note a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+<div class="blob blob-a"></div><div class="blob blob-b"></div>
+<main class="wrap rasi-wrap">
+  <div class="steps"><span class="on"></span><span class="on"></span></div>
+
+  <section class="rasi-hero">
+    <span class="badge">✦ 12 రాశులు — Zodiac Wheel</span>
+    <h1>12 రాశులు <span class="grad">మేషం → మీనం</span></h1>
+    <p class="tag">ప్రతి రాశికి ఒక అధిపతి (lord), ఒక తత్వం (tatva) — అగ్ని · పృథ్వి · వాయు · జల. కార్డుపై lord &amp; tatva చూడండి, తత్వం ప్రకారం ఫిల్టర్ చేయండి.</p>
+    <div class="mini-stats">
+      <span><b>12</b> రాశులు</span>
+      <span><b>7</b> గ్రహ అధిపతులు</span>
+      <span><b>4</b> తత్వాలు</span>
+      <span><b>3</b> స్వభావాలు — చర / స్థిర / ద్విస్వభావ</span>
+    </div>
+    <div class="chakra-legend" aria-hidden="true">
+      <span><i class="dot agni"></i> అగ్ని — Agni</span>
+      <span><i class="dot prithvi"></i> పృథ్వి — Prithvi</span>
+      <span><i class="dot vayu"></i> వాయు — Vayu</span>
+      <span><i class="dot jala"></i> జల — Jala</span>
+    </div>
+  </section>
+
+  <div class="tatva-bar" role="toolbar" aria-label="Filter by tatva">
+    <button class="tatva-chip on" data-tatva="all">అన్నీ — All 12</button>
+    <button class="tatva-chip agni" data-tatva="agni">అగ్ని · Agni (3)</button>
+    <button class="tatva-chip prithvi" data-tatva="prithvi">పృథ్వి · Prithvi (3)</button>
+    <button class="tatva-chip vayu" data-tatva="vayu">వాయు · Vayu (3)</button>
+    <button class="tatva-chip jala" data-tatva="jala">జల · Jala (3)</button>
+  </div>
+  <p class="filter-hint">తత్వం ఎంచుకుంటే అదే తత్వం గల రాశులు హైలైట్ అవుతాయి — పొంతనలో గ్రహ మైత్రి &amp; రాశి కూటముకు ఉపయోగం.</p>
+
+  <section class="rasi-grid" id="rasi-grid" aria-label="12 rasi cards">
+
+    <!-- 1 Mesha -->
+    <article class="rasi-card t-agni" data-tatva="agni" data-svabhava="chara">
+      <div class="rasi-top"><span class="rasi-num">01</span><span class="rasi-lord">అధిపతి <em>కుజుడు</em> · Mars</span></div>
+      <div class="rasi-name"><div class="te">మేషం</div><div class="en">Mesha · Aries</div></div>
+      <div class="rasi-symbol"><i>♈</i> మేషం · Ram · 0°–30°</div>
+      <div class="meta-row">
+        <span class="pill tatva-agni">🔥 అగ్ని · Agni</span>
+        <span class="pill svabhava">చర · <b>Chara</b></span>
+      </div>
+      <div class="nak-line"><strong>నక్షత్రాలు:</strong> అశ్విని 4p · భరణి 4p · కృత్తిక 1p</div>
+      <div class="rasi-foot"><span>#1 చర-అగ్ని</span><span>7½ గుణం — రాశి కూటము</span></div>
+    </article>
+
+    <!-- 2 Vrishabha -->
+    <article class="rasi-card t-prithvi" data-tatva="prithvi" data-svabhava="sthira">
+      <div class="rasi-top"><span class="rasi-num">02</span><span class="rasi-lord">అధిపతి <em>శుక్రుడు</em> · Venus</span></div>
+      <div class="rasi-name"><div class="te">వృషభం</div><div class="en">Vrishabha · Taurus</div></div>
+      <div class="rasi-symbol"><i>♉</i> వృషభం · Bull · 30°–60°</div>
+      <div class="meta-row">
+        <span class="pill tatva-prithvi">🌿 పృథ్వి · Prithvi</span>
+        <span class="pill svabhava">స్థిర · <b>Sthira</b></span>
+      </div>
+      <div class="nak-line"><strong>నక్షత్రాలు:</strong> కృత్తిక 3p · రోహిణి 4p · మృగశిర 2p</div>
+      <div class="rasi-foot"><span>#2 స్థిర-పృథ్వి</span><span>lord: Shukra</span></div>
+    </article>
+
+    <!-- 3 Mithuna -->
+    <article class="rasi-card t-vayu" data-tatva="vayu" data-svabhava="dvisva">
+      <div class="rasi-top"><span class="rasi-num">03</span><span class="rasi-lord">అధిపతి <em>బుధుడు</em> · Mercury</span></div>
+      <div class="rasi-name"><div class="te">మిథునం</div><div class="en">Mithuna · Gemini</div></div>
+      <div class="rasi-symbol"><i>♊</i> కవలలు · Twins · 60°–90°</div>
+      <div class="meta-row">
+        <span class="pill tatva-vayu">🌬️ వాయు · Vayu</span>
+        <span class="pill svabhava">ద్విస్వభావ · <b>Dvisva</b></span>
+      </div>
+      <div class="nak-line"><strong>నక్షత్రాలు:</strong> మృగశిర 2p · ఆరుద్ర 4p · పునర్వసు 3p</div>
+      <div class="rasi-foot"><span>#3 ద్విస్వభావ</span><span>air — mutable</span></div>
+    </article>
+
+    <!-- 4 Karkataka -->
+    <article class="rasi-card t-jala" data-tatva="jala" data-svabhava="chara">
+      <div class="rasi-top"><span class="rasi-num">04</span><span class="rasi-lord">అధిపతి <em>చంద్రుడు</em> · Moon</span></div>
+      <div class="rasi-name"><div class="te">కర్కాటకం</div><div class="en">Karkataka · Cancer</div></div>
+      <div class="rasi-symbol"><i>♋</i> కర్కాటకం · Crab · 90°–120°</div>
+      <div class="meta-row">
+        <span class="pill tatva-jala">💧 జల · Jala</span>
+        <span class="pill svabhava">చర · <b>Chara</b></span>
+      </div>
+      <div class="nak-line"><strong>నక్షత్రాలు:</strong> పునర్వసు 1p · పుష్యమి 4p · ఆశ్లేష 4p</div>
+      <div class="rasi-foot"><span>#4 చర-జల</span><span>lord: Chandra</span></div>
+    </article>
+
+    <!-- 5 Simha -->
+    <article class="rasi-card t-agni" data-tatva="agni" data-svabhava="sthira">
+      <div class="rasi-top"><span class="rasi-num">05</span><span class="rasi-lord">అధిపతి <em>రవి</em> · Sun</span></div>
+      <div class="rasi-name"><div class="te">సింహం</div><div class="en">Simha · Leo</div></div>
+      <div class="rasi-symbol"><i>♌</i> సింహం · Lion · 120°–150°</div>
+      <div class="meta-row">
+        <span class="pill tatva-agni">🔥 అగ్ని · Agni</span>
+        <span class="pill svabhava">స్థిర · <b>Sthira</b></span>
+      </div>
+      <div class="nak-line"><strong>నక్షత్రాలు:</strong> మఖ 4p · పుబ్బ 4p · ఉత్తర 1p</div>
+      <div class="rasi-foot"><span>#5 స్థిర-అగ్ని</span><span>fixed fire</span></div>
+    </article>
+
+    <!-- 6 Kanya -->
+    <article class="rasi-card t-prithvi" data-tatva="prithvi" data-svabhava="dvisva">
+      <div class="rasi-top"><span class="rasi-num">06</span><span class="rasi-lord">అధిపతి <em>బుధుడు</em> · Mercury</span></div>
+      <div class="rasi-name"><div class="te">కన్య</div><div class="en">Kanya · Virgo</div></div>
+      <div class="rasi-symbol"><i>♍</i> కన్య · Maiden · 150°–180°</div>
+      <div class="meta-row">
+        <span class="pill tatva-prithvi">🌿 పృథ్వి · Prithvi</span>
+        <span class="pill svabhava">ద్విస్వభావ · <b>Dvisva</b></span>
+      </div>
+      <div class="nak-line"><strong>నక్షత్రాలు:</strong> ఉత్తర 3p · హస్త 4p · చిత్త 2p</div>
+      <div class="rasi-foot"><span>#6 ద్విస్వభావ</span><span>earth — mutable</span></div>
+    </article>
+
+    <!-- 7 Tula -->
+    <article class="rasi-card t-vayu" data-tatva="vayu" data-svabhava="chara">
+      <div class="rasi-top"><span class="rasi-num">07</span><span class="rasi-lord">అధిపతి <em>శుక్రుడు</em> · Venus</span></div>
+      <div class="rasi-name"><div class="te">తుల</div><div class="en">Tula · Libra</div></div>
+      <div class="rasi-symbol"><i>♎</i> తుల · Scales · 180°–210°</div>
+      <div class="meta-row">
+        <span class="pill tatva-vayu">🌬️ వాయు · Vayu</span>
+        <span class="pill svabhava">చర · <b>Chara</b></span>
+      </div>
+      <div class="nak-line"><strong>నక్షత్రాలు:</strong> చిత్త 2p · స్వాతి 4p · విశాఖ 3p</div>
+      <div class="rasi-foot"><span>#7 చర-వాయు</span><span>lord: Shukra</span></div>
+    </article>
+
+    <!-- 8 Vrishchika -->
+    <article class="rasi-card t-jala" data-tatva="jala" data-svabhava="sthira">
+      <div class="rasi-top"><span class="rasi-num">08</span><span class="rasi-lord">అధిపతి <em>కుజుడు</em> · Mars</span></div>
+      <div class="rasi-name"><div class="te">వృశ్చికం</div><div class="en">Vrishchika · Scorpio</div></div>
+      <div class="rasi-symbol"><i>♏</i> వృశ్చికం · Scorpion · 210°–240°</div>
+      <div class="meta-row">
+        <span class="pill tatva-jala">💧 జల · Jala</span>
+        <span class="pill svabhava">స్థిర · <b>Sthira</b></span>
+      </div>
+      <div class="nak-line"><strong>నక్షత్రాలు:</strong> విశాఖ 1p · అనూరాధ 4p · జ్యేష్ఠ 4p</div>
+      <div class="rasi-foot"><span>#8 స్థిర-జల</span><span>fixed water</span></div>
+    </article>
+
+    <!-- 9 Dhanus -->
+    <article class="rasi-card t-agni" data-tatva="agni" data-svabhava="dvisva">
+      <div class="rasi-top"><span class="rasi-num">09</span><span class="rasi-lord">అధిపతి <em>గురుడు</em> · Jupiter</span></div>
+      <div class="rasi-name"><div class="te">ధనుస్సు</div><div class="en">Dhanus · Sagittarius</div></div>
+      <div class="rasi-symbol"><i>♐</i> ధనుస్సు · Archer · 240°–270°</div>
+      <div class="meta-row">
+        <span class="pill tatva-agni">🔥 అగ్ని · Agni</span>
+        <span class="pill svabhava">ద్విస్వభావ · <b>Dvisva</b></span>
+      </div>
+      <div class="nak-line"><strong>నక్షత్రాలు:</strong> మూల 4p · పూర్వాషాఢ 4p · ఉత్తరాషాఢ 1p</div>
+      <div class="rasi-foot"><span>#9 ద్విస్వభావ</span><span>lord: Guru</span></div>
+    </article>
+
+    <!-- 10 Makara -->
+    <article class="rasi-card t-prithvi" data-tatva="prithvi" data-svabhava="chara">
+      <div class="rasi-top"><span class="rasi-num">10</span><span class="rasi-lord">అధిపతి <em>శని</em> · Saturn</span></div>
+      <div class="rasi-name"><div class="te">మకరం</div><div class="en">Makara · Capricorn</div></div>
+      <div class="rasi-symbol"><i>♑</i> మకరం · Crocodile · 270°–300°</div>
+      <div class="meta-row">
+        <span class="pill tatva-prithvi">🌿 పృథ్వి · Prithvi</span>
+        <span class="pill svabhava">చర · <b>Chara</b></span>
+      </div>
+      <div class="nak-line"><strong>నక్షత్రాలు:</strong> ఉత్తరాషాఢ 3p · శ్రవణం 4p · ధనిష్ఠ 2p</div>
+      <div class="rasi-foot"><span>#10 చర-పృథ్వి</span><span>movable earth</span></div>
+    </article>
+
+    <!-- 11 Kumbha -->
+    <article class="rasi-card t-vayu" data-tatva="vayu" data-svabhava="sthira">
+      <div class="rasi-top"><span class="rasi-num">11</span><span class="rasi-lord">అధిపతి <em>శని</em> · Saturn</span></div>
+      <div class="rasi-name"><div class="te">కుంభం</div><div class="en">Kumbha · Aquarius</div></div>
+      <div class="rasi-symbol"><i>♒</i> కుంభం · Pot · 300°–330°</div>
+      <div class="meta-row">
+        <span class="pill tatva-vayu">🌬️ వాయు · Vayu</span>
+        <span class="pill svabhava">స్థిర · <b>Sthira</b></span>
+      </div>
+      <div class="nak-line"><strong>నక్షత్రాలు:</strong> ధనిష్ఠ 2p · శతభిషం 4p · పూర్వాభాద్ర 3p</div>
+      <div class="rasi-foot"><span>#11 స్థిర-వాయు</span><span>lord: Shani</span></div>
+    </article>
+
+    <!-- 12 Meena -->
+    <article class="rasi-card t-jala" data-tatva="jala" data-svabhava="dvisva">
+      <div class="rasi-top"><span class="rasi-num">12</span><span class="rasi-lord">అధిపతి <em>గురుడు</em> · Jupiter</span></div>
+      <div class="rasi-name"><div class="te">మీనం</div><div class="en">Meena · Pisces</div></div>
+      <div class="rasi-symbol"><i>♓</i> మీనం · Fish · 330°–360°</div>
+      <div class="meta-row">
+        <span class="pill tatva-jala">💧 జల · Jala</span>
+        <span class="pill svabhava">ద్విస్వభావ · <b>Dvisva</b></span>
+      </div>
+      <div class="nak-line"><strong>నక్షత్రాలు:</strong> పూర్వాభాద్ర 1p · ఉత్తరాభాద్ర 4p · రేవతి 4p</div>
+      <div class="rasi-foot"><span>#12 ద్విస్వభావ</span><span>mutable water</span></div>
+    </article>
+
+  </section>
+
+  <div class="explain-grid">
+    <article class="explain-box">
+      <h3><i style="background:#9f1239"></i> అధిపతి &amp; గ్రహ మైత్రి (5/5)</h3>
+      <p>ప్రతి రాశికి ఒక గ్రహం అధిపతి — మేషం-వృశ్చికం <code>కుజుడు</code>, వృషభం-తుల <code>శుక్రుడు</code>, మిథునం-కన్య <code>బుధుడు</code>, కర్కాటకం <code>చంద్రుడు</code>, సింహం <code>రవి</code>, ధనుస్సు-మీనం <code>గురుడు</code>, మకరం-కుంభం <code>శని</code>.</p>
+      <p style="margin-top:8px">వివాహ పొంతనలో <strong>p5 గ్రహ మైత్రి</strong> ఈ ఇద్దరి రాశ్యాధిపతులు మిత్రులా శత్రువులా అని చూస్తుంది. అదే తత్వం (ఉదా: మేషం &amp; సింహం — ఇద్దరూ అగ్ని) అయితే సాధారణంగా మైత్రి ఎక్కువ.</p>
+    </article>
+    <article class="explain-box">
+      <h3><i style="background:#d97706"></i> తత్వం &amp; స్వభావం — రాశి కూటము (7/7)</h3>
+      <p><strong>తత్వం:</strong> అగ్ని (మేష, సింహ, ధనుస్సు) · పృథ్వి (వృషభ, కన్య, మకర) · వాయు (మిథున, తుల, కుంభ) · జల (కర్కాటక, వృశ్చిక, మీన).</p>
+      <p><strong>స్వభావం:</strong> చర 1,4,7,10 · స్థిర 2,5,8,11 · ద్విస్వభావ 3,6,9,12.</p>
+      <p style="margin-top:8px"><strong>p7 రాశి</strong> కూటము ఈ స్వభావ అనుకూలతను కొలుస్తుంది. హోమ్‌లో <code>రాశి — నక్షత్రం</code> ఎంచుకుంటే ఈ 7 మార్కులు ఆటోమేటిక్‌గా లెక్కవుతాయి.</p>
+      <ul>
+        <li>ఒకే నక్షత్రం వేర్వేరు పాదాల్లో అయినా రాశి మారవచ్చు — ఉదా: కృత్తిక 1p మేషం, 2-4p వృషభం.</li>
+      </ul>
+    </article>
+  </div>
+
+  <p class="tile-note"><a href="/">← హోమ్ కి తిరిగి వెళ్ళండి</a> · <a href="/nakshatras.html">27 నక్షత్రాలు</a> · <a href="/kootas.html">8 కూటములు</a> · <a href="/gunalu.html">36 గుణాలు</a></p>
+  <footer><p><a href="/">Home</a> · <a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/disclaimer.html">Disclaimer</a> · <a href="/terms.html">Terms</a> · <a href="/contact.html">Contact</a><br>matchmyjathakam.com · Informational only · Illustration by <a href="https://storyset.com" style="color:inherit">Storyset</a></p></footer>
+</main>
+<script>
+  const chips=[...document.querySelectorAll('.tatva-chip')];
+  const cards=[...document.querySelectorAll('.rasi-card')];
+  chips.forEach(c=>{
+    c.addEventListener('click',()=>{
+      chips.forEach(x=>x.classList.remove('on'));
+      c.classList.add('on');
+      const t=c.dataset.tatva;
+      cards.forEach(card=>{
+        if(t==='all'){ card.classList.remove('dim'); return; }
+        card.classList.toggle('dim', card.dataset.tatva!==t);
+      });
+    });
+  });
+</script>
+</body>
+</html>

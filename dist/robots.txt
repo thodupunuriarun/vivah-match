@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /vendor/
+Allow: /vendor/sql-wasm.wasm
+Allow: /vendor/sql-wasm.js
+Sitemap: https://matchmyjathakam.com/sitemap.xml

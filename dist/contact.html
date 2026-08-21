@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Match My Jathakam</title>
+  <meta name="description" content="Contact Match My Jathakam — email hello@matchmyjathakam.com">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://matchmyjathakam.com/contact.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Telugu:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Legal — Contact: warm ivory #fdf8ee, brand #9f1239, gold #d97706 — form placeholder variant */
+    .legal-wrap{max-width:860px;margin:0 auto;padding:56px 20px 40px;position:relative;z-index:1}
+    .legal-header{text-align:center;margin-bottom:26px}
+    .legal-header h1{font-size:clamp(2.15rem,5.6vw,2.9rem);font-weight:800;line-height:1.2;letter-spacing:-.02em}
+    .legal-header h1 .grad{background:linear-gradient(92deg,#9f1239 10%,#e11d48 55%,#d97706);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .legal-header .tag{color:#6b7280;margin-top:11px;font-size:.98rem;font-weight:500;line-height:1.7;max-width:640px;margin-left:auto;margin-right:auto}
+    .doc-meta{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-top:16px}
+    .pill{display:inline-flex;align-items:center;gap:7px;font-size:.78rem;font-weight:700;padding:7px 13px;border-radius:999px;border:1px solid}
+    .pill-updated{background:#fdf8ee;border-color:#f3e8d3;color:#7c2d12}
+    .pill-info{background:#fff1f2;border-color:#fecdd3;color:#9f1239}
+    .pill .dot{width:7px;height:7px;border-radius:50%;background:#059669;flex:none}
+    .contact-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:18px;margin-top:4px}
+    @media(max-width:740px){.contact-grid{grid-template-columns:1fr}}
+    .legal-doc{background:#fff;border:1px solid #e5e7eb;border-radius:22px;padding:26px 22px;box-shadow:0 1px 2px rgba(17,24,39,.04),0 14px 36px -14px rgba(17,24,39,.10);position:relative;overflow:hidden}
+    .legal-doc::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#9f1239,#d97706);border-radius:22px 0 0 22px}
+    .info-card{background:linear-gradient(180deg,#fdf8ee 0%,#ffffff 100%);border:1px solid #f3e8d3;border-radius:18px;padding:20px 18px}
+    .info-card h3{font-size:1rem;font-weight:800;color:#7f1020;display:flex;align-items:center;gap:8px;margin-bottom:12px}
+    .info-row{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid #fdf2e0}
+    .info-row:last-child{border-bottom:none}
+    .info-icon{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;flex:none;font-size:16px;border:1px solid}
+    .info-row:nth-child(1) .info-icon{background:#fff1f2;border-color:#fecdd3;color:#9f1239}
+    .info-row:nth-child(2) .info-icon{background:#fffbeb;border-color:#fde68a;color:#92400e}
+    .info-row:nth-child(3) .info-icon{background:#f0fdf4;border-color:#bbf7d0;color:#059669}
+    .info-row strong{font-size:.88rem;color:#111827}
+    .info-row p{font-size:.84rem;color:#6b7280;line-height:1.6;margin-top:2px}
+    .info-row a{color:#9f1239;font-weight:700;text-decoration:underline;text-underline-offset:2px;word-break:break-all}
+    .privacy-mini{margin-top:14px;background:#fff;border:1px dashed #f3e8d3;border-radius:12px;padding:12px 14px;font-size:.82rem;color:#57534e;line-height:1.7}
+    .privacy-mini strong{color:#7f1020}
+    .form-card{background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:20px 18px;position:relative;overflow:hidden}
+    .form-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#9f1239,#d97706);opacity:.9}
+    .form-card h3{font-size:.98rem;font-weight:800;color:#111827;margin-bottom:4px}
+    .form-card .sub{font-size:.82rem;color:#6b7280;line-height:1.6;margin-bottom:14px}
+    .field{margin-bottom:12px}
+    .field label{display:block;font-size:.78rem;font-weight:700;color:#6b7280;margin-bottom:6px;letter-spacing:.01em}
+    .field input,.field textarea,.field select{width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:11px 13px;font:500 .92rem "Plus Jakarta Sans","Noto Sans Telugu",system-ui,sans-serif;color:#6b7280;background:#f9fafb}
+    .field textarea{resize:vertical;min-height:92px}
+    .field input:disabled,.field textarea:disabled{cursor:not-allowed;opacity:.9}
+    .form-note{background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:10px 12px;font-size:.78rem;color:#92400e;line-height:1.6;display:flex;gap:8px;align-items:flex-start;margin-bottom:14px}
+    .btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;height:48px;border:none;border-radius:14px;background:linear-gradient(135deg,#e11d48,#9f1239);color:#fff;font:700 .95rem "Plus Jakarta Sans","Noto Sans Telugu",sans-serif;cursor:pointer;box-shadow:0 8px 20px -8px rgba(159,18,57,.45);text-decoration:none;transition:transform .15s}
+    .btn-primary:hover{transform:translateY(-1px)}
+    .btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;height:44px;border:1.5px solid #e5e7eb;border-radius:14px;background:#fff;color:#111827;font:700 .88rem "Plus Jakarta Sans","Noto Sans Telugu",sans-serif;text-decoration:none;margin-top:10px}
+    .btn-secondary:hover{background:#f9fafb}
+    .ornament{display:flex;align-items:center;justify-content:center;gap:10px;margin:22px 0 0;color:#d6a27a;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+    .ornament::before,.ornament::after{content:"";height:1px;flex:1;max-width:120px;background:linear-gradient(90deg,transparent,#f3d9b8,transparent)}
+  </style>
+</head>
+<body>
+<div class="blob blob-a"></div><div class="blob blob-b"></div>
+<main class="legal-wrap">
+  <div class="steps" aria-hidden="true"><span class="on"></span><span class="on"></span></div>
+  <header class="legal-header">
+    <span class="badge">✦ మమ్మల్ని సంప్రదించండి • Contact</span>
+    <h1>Contact <span class="grad">సంప్రదించండి</span></h1>
+    <p class="tag">సలహాలు, తప్పులు, ఫీచర్ అభ్యర్థనలకు — 2–3 రోజుల్లో స్పందిస్తాము. Email ద్వారా మాత్రమే.</p>
+    <div class="doc-meta">
+      <span class="pill pill-updated"><span class="dot"></span> Response time: 2–3 days</span>
+      <span class="pill pill-info">✉ hello@matchmyjathakam.com</span>
+    </div>
+  </header>
+
+  <div class="contact-grid">
+    <!-- Left: info -->
+    <article class="legal-doc">
+      <div class="info-card">
+        <h3>◈ How to reach us</h3>
+        <div class="info-row">
+          <div class="info-icon">✉</div>
+          <div>
+            <strong>Email — preferred</strong>
+            <p><a href="mailto:hello@matchmyjathakam.com">hello@matchmyjathakam.com</a><br>For corrections, suggestions, feature requests. Telugu or English — both welcome.</p>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">◷</div>
+          <div>
+            <strong>Response time</strong>
+            <p>2–3 రోజులు — Usually within 2–3 days. We’re a small team, thank you for your patience.</p>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">⬢</div>
+          <div>
+            <strong>What to include</strong>
+            <p>Brief description + rasi/nakshatra pair if reporting a calculation. Screenshots help.</p>
+          </div>
+        </div>
+        <div class="privacy-mini">
+          <strong>Privacy note:</strong> మీరు పంపే పేర్లు / జాతకం సర్వర్‌లో సేవ్ చేయము. Screenshot / share చేస్తేనే మీరు ఇతరులకు పంపుతారు — మేము marketing కు వాడము, అమ్మము.
+        </div>
+      </div>
+      <a href="/" class="btn-secondary">పొంతన చూడండి →</a>
+    </article>
+
+    <!-- Right: form placeholder -->
+    <article class="form-card" aria-label="Contact form placeholder">
+      <h3>Send a message</h3>
+      <p class="sub">Form is a placeholder — clicking Send opens your email app with <strong style="color:#9f1239">hello@matchmyjathakam.com</strong>.</p>
+      <div class="form-note"><span>ⓘ</span><span>We don’t store form data on a server. Your message is sent only via your email client when you click Send.</span></div>
+      <div class="field">
+        <label for="c-name">Name</label>
+        <input id="c-name" type="text" placeholder="Your name" disabled>
+      </div>
+      <div class="field">
+        <label for="c-email">Email</label>
+        <input id="c-email" type="text" placeholder="you@example.com" disabled>
+      </div>
+      <div class="field">
+        <label for="c-topic">Topic</label>
+        <select id="c-topic" disabled><option>General question</option><option>Correction / bug</option><option>Feature request</option></select>
+      </div>
+      <div class="field">
+        <label for="c-msg">Message</label>
+        <textarea id="c-msg" placeholder="How can we help?" disabled></textarea>
+      </div>
+      <a class="btn-primary" href="mailto:hello@matchmyjathakam.com?subject=Match%20My%20Jathakam%20—%20Contact&body=Hi%20team%2C%0A%0A">Send via Email →</a>
+      <p style="text-align:center;margin-top:10px;font-size:.76rem;color:#9ca3af">or email directly: <a href="mailto:hello@matchmyjathakam.com" style="color:#9f1239;font-weight:700">hello@matchmyjathakam.com</a></p>
+    </article>
+  </div>
+
+  <div class="ornament">• శుభం •</div>
+  <p style="text-align:center;margin-top:18px"><a href="/" style="color:#9f1239;font-weight:700;text-decoration:none">← హోమ్ కి తిరిగి వెళ్ళండి</a></p>
+  <footer><p><a href="/">Home</a> · <a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/disclaimer.html">Disclaimer</a> · <a href="/terms.html">Terms</a> · <a href="/contact.html">Contact</a><br>matchmyjathakam.com · Informational only · Illustration by <a href="https://storyset.com" style="color:inherit">Storyset</a></p></footer>
+</main>
+</body>
+</html>

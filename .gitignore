@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.env
+
+# Wrangler / Cloudflare
+.wrangler/
+.dev.vars
+
+# Playwright / test
+.playwright-mcp/
+test-results/
+playwright-report/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp
+*.log
+tmp/

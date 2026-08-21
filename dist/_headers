@@ -1,0 +1,25 @@
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+/vendor/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.wasm
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: application/wasm
+
+/og-image.*
+  Cache-Control: public, max-age=86400
+  Content-Type: image/svg+xml
+
+/style.css
+  Cache-Control: public, max-age=86400
+
+/app.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+/decor.js
+  Cache-Control: public, max-age=0, must-revalidate
