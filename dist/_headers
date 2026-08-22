@@ -16,10 +16,13 @@
   Content-Type: image/svg+xml
 
 /style.css
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=31536000, immutable
 
 /app.js
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=31536000, immutable
 
 /decor.js
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=31536000, immutable
+
+/rashi.js
+  Cache-Control: public, max-age=31536000, immutable

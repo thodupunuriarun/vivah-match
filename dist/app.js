@@ -57,20 +57,25 @@ function ratioClass(points, max) {
 }
 
 function scoreColor(total, maxTotal) {
-  const pct = (total / maxTotal) * 100;
-  return pct >= 69 ? "#059669" : pct >= 50 ? "#d97706" : "#dc2626";
+  // 4-tier: bad <18 red, normal 18-23 yellow, favourable 24-32 light green, best 33-36 dark green
+  if (total >= 33) return "#047857"; // best - dark green
+  if (total >= 24) return "#22c55e"; // favourable - light green
+  if (total >= 18) return "#eab308"; // normal - yellow/amber
+  return "#dc2626"; // bad - red
 }
 
 async function init() {
   const SQL = await initSqlJs({ locateFile: (f) => `vendor/${f}` });
   const buf = await (await fetch("data/telungu_thirumanam.db")).arrayBuffer();
   db = new SQL.Database(new Uint8Array(buf));
+  window.db = db; // expose for rashi.js
 
   const res = db.exec("SELECT id, rasi, star FROM rasi_star ORDER BY id");
   const rows = res[0].values;
 
   ["girl", "boy"].forEach((p) => {
     const sel = $(`${p}-combo`);
+    sel.add(new Option("— రాశి-నక్షత్రం ఎంచుకోండి —", ""));
     rows.forEach(([id, rasi, star]) => {
       sel.add(new Option(`${rasi} - ${star.replace(/\u200d/g, "")}`, id));
     });
@@ -154,6 +159,38 @@ async function match(skipPush) {
   btn.textContent = "పొంతన…";
 
   try {
+    // helper for strict 12h picker
+    const getTime = (prefix)=>{
+      if(window.getTimeStr) return window.getTimeStr(prefix);
+      const h=document.getElementById(prefix+"-hour"), m=document.getElementById(prefix+"-min"), a=document.getElementById(prefix+"-ampm");
+      if(h&&m&&a) return (h.value && m.value) ? `${h.value}:${m.value} ${a.value}` : "";
+      const t=document.getElementById(prefix+"-time"); return t ? t.value.trim() : "";
+    };
+    // If dob filled but rasi not selected, auto calc first
+    for(const prefix of ["girl","boy"]){
+      const dateEl = document.getElementById(prefix+"-date");
+      const time = getTime(prefix);
+      const sel = document.getElementById(prefix+"-combo");
+      if(dateEl && dateEl.value && time && !sel.value){
+        // try auto calc
+        if(window.calcForPerson) await window.calcForPerson(prefix);
+      }
+    }
+    // Validation: at least one of date/time OR rasi per person, names optional (strict HH:MM AM/PM)
+    const girlOk = $("girl-combo").value || ($("girl-date").value && getTime("girl"));
+    const boyOk = $("boy-combo").value || ($("boy-date").value && getTime("boy"));
+    if(!girlOk){
+      alert("దయచేసి వధువుకు పుట్టిన తేదీ/సమయం లేదా రాశి-నక్షత్రం ఏదో ఒకటి ఇవ్వండి");
+      return;
+    }
+    if(!boyOk){
+      alert("దయచేసి వరుడికి పుట్టిన తేదీ/సమయం లేదా రాశి-నక్షత్రం ఏదో ఒకటి ఇవ్వండి");
+      return;
+    }
+    if(!$("girl-combo").value || !$("boy-combo").value){
+      alert("రాశి లెక్కించబడలేదు — దయచేసి 'రాశి కనుగొనండి' నొక్కండి లేదా రాశి-నక్షత్రం ఎంచుకోండి");
+      return;
+    }
     const data = computeMatch(
       +$("girl-combo").value,
       +$("boy-combo").value,
@@ -260,7 +297,7 @@ function render(d, skipPush) {
 
   showView("view-result", skipPush ? false : undefined);
   setTimeout(() => {
-    if (window.celebrate) window.celebrate(d.total >= 25);
+    if (d.total >= 24 && window.celebrate) window.celebrate(d.total >= 33);
   }, 400);
 }
 

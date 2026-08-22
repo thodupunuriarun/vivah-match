@@ -34,8 +34,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Telugu:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="fetch" href="data/telungu_thirumanam.db" crossorigin="anonymous">
+  <link rel="preload" as="fetch" href="vendor/sql-wasm.wasm" crossorigin="anonymous">
   <!-- AdSense minimal - replace ca-pub-4635618088208588 after approval; no auto ads/vignette/anchor -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4635618088208588" crossorigin="anonymous"></script>
+  <style>#app-loader{position:fixed;inset:0;z-index:9999;background:#fdf8ee;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;transition:opacity .35s ease,visibility .35s}
+  #app-loader.hide{opacity:0;visibility:hidden;pointer-events:none}
+  #app-loader .loader-om{width:44px;height:44px;border-radius:10px;background:#fff1f2;border:1px solid #fecdd3;display:grid;place-items:center;font-size:22px}
+  #app-loader .loader-bar{width:120px;height:4px;border-radius:99px;background:#f3f4f6;overflow:hidden}
+  #app-loader .loader-bar span{display:block;height:100%;width:45%;background:linear-gradient(90deg,#e11d48,#9f1239);border-radius:99px;animation:loaderSlide 1.1s ease-in-out infinite}
+  @keyframes loaderSlide{0%{transform:translateX(-100%)}100%{transform:translateX(260%)}}</style>
   <style>
   .quick-links{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:0 0 14px}
   .qbox{display:flex;align-items:center;gap:8px;padding:10px 10px;border-radius:12px;background:#fff;border:1px solid #e5e7eb;text-decoration:none;box-shadow:0 1px 2px rgba(17,24,39,.04);transition:transform .15s,box-shadow .15s,border-color .15s}
@@ -49,14 +57,32 @@
   .qbox strong{display:block;font-size:.82rem;font-weight:800;color:#111827;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .qbox span{font-size:.68rem;color:#6b7280;line-height:1.3;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .qico img{width:20px;height:20px;display:block;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);object-fit:contain}
+  .dob-row{display:grid;grid-template-columns:124px minmax(0,1fr);gap:6px;margin-top:8px}
+  .dob-row input{height:42px;font-size:.88rem;min-width:0;width:100%}
+  .time-picker{display:flex;align-items:center;gap:2px;height:42px;min-width:0;width:100%;max-width:100%}
+  .time-picker select{height:42px;border:1px solid #e5e7eb;border-radius:10px;padding:0 0 0 2px;font-size:.80rem;background:#fff;color:#111827;flex:1 1 0;min-width:0;cursor:pointer;text-align:center;text-align-last:center;overflow:hidden;text-overflow:ellipsis}
+  .time-picker select:focus{outline:none;border-color:#f59e0b;box-shadow:0 0 0 3px rgba(245,158,11,.15)}
+  .time-picker .tp-sep{font-weight:700;color:#6b7280;padding:0 1px;flex:none}
+  .time-picker select.tp-hour{flex-basis:48px} .time-picker select.tp-min{flex-basis:52px} .time-picker select.tp-ampm{flex-basis:54px;font-weight:700}
+  .calc-btn{margin-top:6px;width:100%;height:38px;border:1px solid #fde68a;background:#fffbeb;color:#92400e;font-weight:700;border-radius:10px;cursor:pointer;font-size:.82rem}
+  .calc-btn:hover{background:#fef3c7}
+  .calc-btn:disabled{opacity:.6;cursor:wait}
+  .or-divider{text-align:center;color:#9ca3af;font-size:.72rem;font-weight:700;letter-spacing:.08em;margin:10px 0 4px;position:relative}
+  .or-divider::before,.or-divider::after{content:"";position:absolute;top:50%;width:38%;height:1px;background:#f3f4f6}
+  .or-divider::before{left:0} .or-divider::after{right:0}
+  .place-input{height:42px}
+  .calc-status{font-size:.74rem;color:#059669;margin-top:4px;min-height:16px}
   .qarrow{color:#9ca3af;font-weight:700;font-size:.8rem}
   @media(max-width:980px){ .quick-links{grid-template-columns:repeat(3,1fr)} }
   @media(max-width:640px){ .quick-links{grid-template-columns:repeat(2,1fr)} }
   @media(max-width:400px){ .quick-links{grid-template-columns:1fr} }
   </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"></noscript>
 </head>
 <body>
+<div id="app-loader" aria-live="polite" aria-label="లోడ్ అవుతోంది"><div class="loader-om">🕉</div><div style="font:700 .82rem 'Noto Sans Telugu',sans-serif;color:#9f1239">Match My Jathakam</div><div style="font:500 .72rem sans-serif;color:#6b7280">36 గుణాల పొంతన</div><div class="loader-bar"><span></span></div></div>
+<script>addEventListener('DOMContentLoaded',function(){var l=document.getElementById('app-loader');var hide=function(){if(!l)return;l.classList.add('hide');setTimeout(function(){if(l&&l.parentNode)l.parentNode.removeChild(l)},400)};var t=setTimeout(hide,2800);var iv=setInterval(function(){if(window.db){clearInterval(iv);clearTimeout(t);setTimeout(hide,250)}},120);});</script>
 <div class="blob blob-a"></div>
 <div class="blob blob-b"></div>
 
@@ -98,11 +124,27 @@
     </a>
   </div>
   <section class="card form-card">
+    <p style="text-align:center;font-size:.84rem;color:#92400e;background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:8px 10px;margin-bottom:12px">✦ <strong>రాశి-నక్షత్రం</strong> లేదా <strong>పుట్టిన తేదీ/సమయం/ప్రదేశం</strong> — ఏదో ఒకటి ఇస్తే చాలు, ఫలితం వస్తుంది</p>
     <div class="grid">
       <div class="person bride">
         <h3><span class="dot"></span>వధువు <span class="en">BRIDE</span></h3>
         <label>పేరు</label>
         <input type="text" id="girl-name" placeholder="ఐచ్ఛికం" maxlength="40">
+        <label>పుట్టిన తేదీ / సమయం <span style="font-weight:400;color:#9ca3af">(తెలిస్తే)</span></label>
+        <div class="dob-row">
+          <input type="date" id="girl-date" aria-label="వధువు పుట్టిన తేదీ">
+          <div class="time-picker" id="girl-time-group" aria-label="వధువు పుట్టిన సమయం">
+            <select id="girl-hour" class="tp-hour" aria-label="గంట"><option value="" disabled selected>HH</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
+            <span class="tp-sep">:</span>
+            <select id="girl-min" class="tp-min" aria-label="నిమిషం"><option value="" disabled selected>MM</option><option value="00">00</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option></select>
+            <select id="girl-ampm" class="tp-ampm" aria-label="AM PM"><option value="AM">AM</option><option value="PM">PM</option></select>
+          </div>
+        </div>
+        <label>ప్రదేశం</label>
+        <input type="text" id="girl-place" class="place-input" placeholder="ఉదా: Akividu, Guntur" autocomplete="off">
+        <button type="button" class="calc-btn" data-for="girl">రాశి కనుగొనండి ✨</button>
+        <div id="girl-calc-status" class="calc-status"></div>
+        <div class="or-divider">OR</div>
         <label>రాశి - నక్షత్రము</label>
         <select id="girl-combo"></select>
       </div>
@@ -110,6 +152,21 @@
         <h3><span class="dot"></span>వరుడు <span class="en">GROOM</span></h3>
         <label>పేరు</label>
         <input type="text" id="boy-name" placeholder="ఐచ్ఛికం" maxlength="40">
+        <label>పుట్టిన తేదీ / సమయం <span style="font-weight:400;color:#9ca3af">(తెలిస్తే)</span></label>
+        <div class="dob-row">
+          <input type="date" id="boy-date" aria-label="వరుడు పుట్టిన తేదీ">
+          <div class="time-picker" id="boy-time-group" aria-label="వరుడు పుట్టిన సమయం">
+            <select id="boy-hour" class="tp-hour" aria-label="గంట"><option value="" disabled selected>HH</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
+            <span class="tp-sep">:</span>
+            <select id="boy-min" class="tp-min" aria-label="నిమిషం"><option value="" disabled selected>MM</option><option value="00">00</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option></select>
+            <select id="boy-ampm" class="tp-ampm" aria-label="AM PM"><option value="AM">AM</option><option value="PM">PM</option></select>
+          </div>
+        </div>
+        <label>ప్రదేశం</label>
+        <input type="text" id="boy-place" class="place-input" placeholder="ఉదా: Karimnagar, Siddipet" autocomplete="off">
+        <button type="button" class="calc-btn" data-for="boy">రాశి కనుగొనండి ✨</button>
+        <div id="boy-calc-status" class="calc-status"></div>
+        <div class="or-divider">OR</div>
         <label>రాశి - నక్షత్రము</label>
         <select id="boy-combo"></select>
       </div>
@@ -176,9 +233,10 @@
     </div>
   </footer>
 </main>
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-<script src="vendor/sql-wasm.js"></script>
-<script src="decor.js?v=5"></script>
-<script src="app.js?v=5"></script>
+<script async src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<script defer src="vendor/sql-wasm.js"></script>
+<script defer src="decor.js?v=5"></script>
+<script defer src="rashi.js"></script>
+<script defer src="app.js?v=5"></script>
 </body>
 </html>
