@@ -22,3 +22,6 @@ Thumbs.db
 # Temp
 *.log
 tmp/
+
+# Local dev - not deployed
+dev/
