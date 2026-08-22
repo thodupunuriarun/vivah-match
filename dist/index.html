@@ -71,6 +71,8 @@
   .or-divider::before,.or-divider::after{content:"";position:absolute;top:50%;width:38%;height:1px;background:#f3f4f6}
   .or-divider::before{left:0} .or-divider::after{right:0}
   .place-input{height:42px}
+  .place-input::placeholder,input::placeholder{color:#9ca3af;opacity:.55;font-weight:400}
+  label{color:#57534e}
   .calc-status{font-size:.74rem;color:#059669;margin-top:4px;min-height:16px}
   .qarrow{color:#9ca3af;font-weight:700;font-size:.8rem}
   @media(max-width:980px){ .quick-links{grid-template-columns:repeat(3,1fr)} }
@@ -141,7 +143,7 @@
           </div>
         </div>
         <label>ప్రదేశం</label>
-        <input type="text" id="girl-place" class="place-input" placeholder="ఉదా: Akividu, Guntur" autocomplete="off">
+        <input type="text" id="girl-place" class="place-input" placeholder="ఉదా: Guntur" autocomplete="off">
         <button type="button" class="calc-btn" data-for="girl">రాశి కనుగొనండి ✨</button>
         <div id="girl-calc-status" class="calc-status"></div>
         <div class="or-divider">OR</div>
@@ -163,7 +165,7 @@
           </div>
         </div>
         <label>ప్రదేశం</label>
-        <input type="text" id="boy-place" class="place-input" placeholder="ఉదా: Karimnagar, Siddipet" autocomplete="off">
+        <input type="text" id="boy-place" class="place-input" placeholder="ఉదా: Karimnagar" autocomplete="off">
         <button type="button" class="calc-btn" data-for="boy">రాశి కనుగొనండి ✨</button>
         <div id="boy-calc-status" class="calc-status"></div>
         <div class="or-divider">OR</div>
