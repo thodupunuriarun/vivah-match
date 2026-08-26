@@ -28,14 +28,6 @@ function cleanText(value) {
   return String(value).replace(/\u200d/g, "");
 }
 
-function queryMatch(nid) {
-  const statement = db.prepare("SELECT mark FROM matching_point WHERE nid = ?");
-  statement.bind([nid]);
-  const row = statement.step() ? statement.getAsObject() : null;
-  statement.free();
-  return row;
-}
-
 function parseScores(mark) {
   const parts = mark.split(",");
   return {
@@ -54,12 +46,28 @@ function updateSideCopy() {
 }
 
 function buildRankings(side, selectedId) {
+  const nids = combinations.map((candidate) => {
+    const girlId = side === "boy" ? candidate.id : selectedId;
+    const boyId = side === "boy" ? selectedId : candidate.id;
+    return `${girlId}.${boyId}`;
+  });
+  const placeholders = nids.map(() => "?").join(",");
+  const statement = db.prepare(`SELECT nid, mark FROM matching_point WHERE nid IN (${placeholders})`);
+  statement.bind(nids);
+  const marksByNid = new Map();
+  while (statement.step()) {
+    const row = statement.getAsObject();
+    marksByNid.set(row.nid, row.mark);
+  }
+  statement.free();
+
   const ranked = combinations.map((candidate) => {
     const girlId = side === "boy" ? candidate.id : selectedId;
     const boyId = side === "boy" ? selectedId : candidate.id;
-    const match = queryMatch(`${girlId}.${boyId}`);
-    if (!match) return null;
-    const scores = parseScores(match.mark);
+    const nid = `${girlId}.${boyId}`;
+    const mark = marksByNid.get(nid);
+    if (!mark) return null;
+    const scores = parseScores(mark);
     return { ...candidate, ...scores, girlId, boyId };
   }).filter((item) => item && item.total >= 18);
 
@@ -91,7 +99,12 @@ function createMatchCard(item) {
 
   const rank = document.createElement("span");
   rank.className = "match-rank";
-  rank.innerHTML = `<span>#<strong>${item.rank}</strong></span>`;
+  const rankWrap = document.createElement("span");
+  rankWrap.textContent = "#";
+  const rankStrong = document.createElement("strong");
+  rankStrong.textContent = String(item.rank);
+  rankWrap.append(rankStrong);
+  rank.append(rankWrap);
 
   const name = document.createElement("span");
   name.className = "match-name";
@@ -109,7 +122,9 @@ function createMatchCard(item) {
 
   const score = document.createElement("span");
   score.className = "match-score";
-  score.innerHTML = `<strong>${item.total}/36</strong>పూర్తి వివరాలు →`;
+  const scoreStrong = document.createElement("strong");
+  scoreStrong.textContent = `${item.total}/36`;
+  score.append(scoreStrong, document.createTextNode("పూర్తి వివరాలు →"));
   card.append(rank, name, score);
   return card;
 }
@@ -136,7 +151,22 @@ function renderRankings(ranked, side, selectedId) {
 
       const head = document.createElement("div");
       head.className = "tier-head";
-      head.innerHTML = `<span class="tier-icon" aria-hidden="true">${tier.icon}</span><div class="tier-copy"><h2 id="tier-${tier.key}">${tier.title}</h2><p>${tier.english}</p></div><span class="tier-count">${matchCountLabel(items.length)}</span>`;
+      const tierIcon = document.createElement("span");
+      tierIcon.className = "tier-icon";
+      tierIcon.setAttribute("aria-hidden", "true");
+      tierIcon.textContent = tier.icon;
+      const tierCopy = document.createElement("div");
+      tierCopy.className = "tier-copy";
+      const tierTitle = document.createElement("h2");
+      tierTitle.id = `tier-${tier.key}`;
+      tierTitle.textContent = tier.title;
+      const tierEnglish = document.createElement("p");
+      tierEnglish.textContent = tier.english;
+      tierCopy.append(tierTitle, tierEnglish);
+      const tierCountEl = document.createElement("span");
+      tierCountEl.className = "tier-count";
+      tierCountEl.textContent = matchCountLabel(items.length);
+      head.append(tierIcon, tierCopy, tierCountEl);
 
       const list = document.createElement("div");
       list.className = "match-list";
