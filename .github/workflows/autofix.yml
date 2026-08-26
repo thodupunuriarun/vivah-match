@@ -1,0 +1,39 @@
+name: Autofix generated files
+
+# Automatically regenerates sitemap.xml and _headers when pages/assets change.
+# Commit is skipped on PRs — CI will just fail and tell you to run the script locally.
+# On main, it auto-commits so sitemap never goes stale.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "dist/*.html"
+      - "dist/*.js"
+      - "dist/*.css"
+      - "scripts/generate-*.mjs"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  autofix:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Regenerate sitemap and _headers
+        run: |
+          node scripts/generate-sitemap.mjs
+          node scripts/generate-headers.mjs
+      - name: Commit if changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: auto-update sitemap and _headers [skip ci]"
+          file_pattern: dist/sitemap.xml dist/_headers
+          disable_globbing: false
