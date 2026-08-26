@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>మీ రాశికి ఉత్తమ జోడీలు | Match My Jathakam</title>
+  <meta name="description" content="మీ రాశి, నక్షత్రానికి సరిపోయే వధువు లేదా వరుడి రాశి-నక్షత్ర జోడీలను 36 గుణాల స్కోరు ఆధారంగా తెలుసుకోండి.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#7f1020">
+  <link rel="canonical" href="https://matchmyjathakam.com/best-matches.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="te_IN">
+  <meta property="og:site_name" content="Match My Jathakam">
+  <meta property="og:title" content="మీ రాశికి ఉత్తమ జోడీలు | Match My Jathakam">
+  <meta property="og:description" content="రాశి-నక్షత్రం ఎంచుకుని అత్యుత్తమ, చాలా మంచి, అనుకూల జోడీలను స్కోరు క్రమంలో చూడండి.">
+  <meta property="og:image" content="https://matchmyjathakam.com/og-image.png">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Telugu:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="fetch" href="data/telungu_thirumanam.db" crossorigin="anonymous">
+  <link rel="preload" as="fetch" href="vendor/sql-wasm.wasm" crossorigin="anonymous">
+  <style>
+    .matches-wrap{max-width:980px;margin:0 auto;padding:42px 20px 40px;position:relative;z-index:1}
+    .matches-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
+    .matches-nav a{color:#9f1239;font-size:.86rem;font-weight:700;text-decoration:none}
+    .matches-nav a:hover{text-decoration:underline}
+    .matches-brand{font-size:.72rem;color:#9ca3af;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+    .matches-hero{text-align:center;max-width:680px;margin:0 auto 24px}
+    .matches-hero .badge{margin-bottom:12px}
+    .matches-hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;line-height:1.4}
+    .matches-hero .grad{background:linear-gradient(92deg,#9f1239 8%,#e11d48 55%,#d97706);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .matches-hero p{max-width:580px;margin:10px auto 0;color:#6b7280;font-size:.96rem;line-height:1.8}
+    .match-finder{max-width:720px;margin:0 auto;padding:24px}
+    .finder-grid{display:grid;grid-template-columns:210px minmax(0,1fr);gap:18px;align-items:end}
+    .finder-field>span{display:block;margin-bottom:7px;color:#57534e;font-size:.78rem;font-weight:700;line-height:1.6}
+    .side-toggle{height:48px;padding:4px;display:grid;grid-template-columns:1fr 1fr;gap:4px;background:#f5f5f4;border:1px solid #e7e5e4;border-radius:13px}
+    .side-toggle input{position:absolute;opacity:0;pointer-events:none}
+    .side-toggle label{height:38px;margin:0;display:flex;align-items:center;justify-content:center;gap:6px;border-radius:9px;color:#6b7280;font-size:.84rem;font-weight:800;cursor:pointer;transition:background .15s,color .15s,box-shadow .15s}
+    .side-toggle input:checked+label{background:#fff;color:#9f1239;box-shadow:0 2px 8px rgba(17,24,39,.09)}
+    .side-toggle input:focus-visible+label{outline:3px solid rgba(225,29,72,.22);outline-offset:1px}
+    .finder-help{margin-top:12px;padding:9px 12px;border-radius:10px;background:#fffbeb;border:1px solid #fde68a;color:#92400e;font-size:.78rem;line-height:1.65}
+    .finder-status{min-height:22px;margin-top:10px;text-align:center;color:#6b7280;font-size:.8rem;line-height:1.6}
+    .finder-status.error{color:#b91c1c}
+    .results-shell{margin-top:34px}
+    .results-summary{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:22px;padding:0 3px}
+    .results-summary h2{font-size:1.22rem;color:#111827;line-height:1.55}
+    .results-summary p{margin-top:3px;color:#6b7280;font-size:.84rem;line-height:1.6}
+    .change-selection{border:0;background:transparent;color:#9f1239;font:700 .82rem "Plus Jakarta Sans","Noto Sans Telugu",sans-serif;cursor:pointer;white-space:nowrap}
+    .change-selection:hover{text-decoration:underline}
+    .match-tier{margin-top:24px;padding:20px;border:1px solid;border-radius:24px}
+    .match-tier.best{background:linear-gradient(180deg,#fffbeb,#fff 190px);border-color:#fde68a}
+    .match-tier.very-good{background:linear-gradient(180deg,#f0fdf4,#fff 190px);border-color:#bbf7d0}
+    .match-tier.compatible{background:linear-gradient(180deg,#f0f9ff,#fff 190px);border-color:#bae6fd}
+    .tier-head{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+    .tier-icon{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;font-size:1.1rem;background:#fff;border:1px solid currentColor;box-shadow:0 4px 14px -8px currentColor}
+    .best .tier-icon,.best .tier-copy{color:#92400e}.very-good .tier-icon,.very-good .tier-copy{color:#166534}.compatible .tier-icon,.compatible .tier-copy{color:#075985}
+    .tier-copy h2{font-size:1.06rem;line-height:1.5;color:inherit}
+    .tier-copy p{font-size:.72rem;font-weight:700;opacity:.72;letter-spacing:.04em}
+    .tier-count{margin-left:auto;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.8);color:#57534e;font-size:.72rem;font-weight:800;border:1px solid rgba(120,113,108,.16)}
+    .match-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+    .match-card{position:relative;min-width:0;padding:15px;display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center;background:#fff;border:1px solid #e7e5e4;border-radius:16px;color:#111827;text-decoration:none;box-shadow:0 4px 16px -12px rgba(17,24,39,.3);transition:transform .16s,border-color .16s,box-shadow .16s}
+    .match-card:hover{transform:translateY(-2px);border-color:#d6d3d1;box-shadow:0 10px 24px -14px rgba(17,24,39,.34)}
+    .match-card:focus-visible{outline:3px solid rgba(225,29,72,.24);outline-offset:2px}
+    .match-rank{width:44px;height:44px;display:grid;place-items:center;border-radius:13px;background:#fdf8ee;color:#9f1239;font-size:.77rem;font-weight:800}
+    .match-rank strong{font-size:1rem}
+    .match-name{min-width:0}
+    .match-name strong{display:block;font-size:.94rem;line-height:1.55}
+    .match-name span{display:block;margin-top:1px;color:#6b7280;font-size:.76rem;line-height:1.55;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .nadi-chip{display:inline-flex!important;width:max-content;margin-top:6px!important;padding:3px 7px;border:1px solid #fecaca;border-radius:999px;background:#fef2f2;color:#b91c1c!important;font-size:.65rem!important;font-weight:800}
+    .match-score{text-align:right;color:#9f1239;font-size:.72rem;font-weight:700;white-space:nowrap}
+    .match-score strong{display:block;font-size:1.08rem;font-variant-numeric:tabular-nums;line-height:1.3}
+    .empty-state{padding:32px 22px;text-align:center;background:#fff;border:1px solid #e7e5e4;border-radius:22px;color:#6b7280;line-height:1.8}
+    .matches-note{max-width:720px;margin:24px auto 0;padding:13px 16px;border-radius:14px;background:#fff;border:1px solid #e7e5e4;color:#6b7280;font-size:.78rem;line-height:1.75;text-align:center}
+    @media(max-width:700px){.matches-wrap{padding-top:28px}.finder-grid{grid-template-columns:1fr}.match-list{grid-template-columns:1fr}.results-summary{align-items:flex-start;flex-direction:column}.match-tier{padding:15px}.matches-nav{margin-bottom:22px}}
+    @media(max-width:420px){.match-card{grid-template-columns:38px minmax(0,1fr) auto;padding:12px;gap:9px}.match-rank{width:38px;height:38px}.match-finder{padding:19px 16px}.matches-hero h1{font-size:1.85rem}}
+  </style>
+</head>
+<body>
+  <div class="blob blob-a"></div>
+  <div class="blob blob-b"></div>
+  <main class="matches-wrap">
+    <nav class="matches-nav" aria-label="Page navigation">
+      <a href="/">← హోమ్‌కు తిరిగి వెళ్ళండి</a>
+      <span class="matches-brand">Match My Jathakam</span>
+    </nav>
+
+    <header class="matches-hero">
+      <span class="badge">✦ 36 గుణాల స్కోరు ఆధారంగా</span>
+      <h1>మీ రాశికి <span class="grad">ఉత్తమ జోడీలు</span></h1>
+      <p>మీరు వరుడా లేదా వధువా ఎంచుకుని, రాశి-నక్షత్రం ఇవ్వండి. మీకు అనుకూలమైన జోడీలను ఉత్తమ స్కోరు నుండి క్రమంగా చూపిస్తాము.</p>
+    </header>
+
+    <section class="card match-finder" aria-labelledby="finder-title">
+      <h2 id="finder-title" style="font-size:1.05rem;color:#7f1020;margin-bottom:16px">మీ వివరాలు ఎంచుకోండి</h2>
+      <div class="finder-grid">
+        <div class="finder-field">
+          <span>మీరు ఎవరు?</span>
+          <div class="side-toggle">
+            <input type="radio" name="side" id="side-boy" value="boy" checked>
+            <label for="side-boy">వరుడు <small>BOY</small></label>
+            <input type="radio" name="side" id="side-girl" value="girl">
+            <label for="side-girl">వధువు <small>GIRL</small></label>
+          </div>
+        </div>
+        <label class="finder-field" for="person-combo">
+          <span id="combo-label">వరుడి రాశి - నక్షత్రము</span>
+          <select id="person-combo" disabled>
+            <option value="">డేటా లోడ్ అవుతోంది...</option>
+          </select>
+        </label>
+      </div>
+      <p class="finder-help" id="finder-help">మీ వివరాలు ఎంచుకుంటే సరిపోయే వధువు రాశి-నక్షత్ర జోడీలు కనిపిస్తాయి.</p>
+      <button type="button" class="primary" id="find-matches" disabled>జోడీలు చూడండి →</button>
+      <p class="finder-status" id="finder-status" role="status" aria-live="polite">రాశి-నక్షత్రాల డేటా లోడ్ అవుతోంది...</p>
+    </section>
+
+    <section class="results-shell hidden" id="results" aria-live="polite">
+      <div class="results-summary">
+        <div>
+          <h2 id="results-title">అనుకూల జోడీలు</h2>
+          <p id="results-subtitle"></p>
+        </div>
+        <button type="button" class="change-selection" id="change-selection">ఎంపిక మార్చండి ↑</button>
+      </div>
+      <div id="tier-results"></div>
+    </section>
+
+    <p class="matches-note">గమనిక: 18 కంటే తక్కువ స్కోరు ఉన్న జోడీలు ఇక్కడ చూపబడవు. నాడి దోషం ఉన్న జోడీలకు ప్రత్యేక హెచ్చరిక కనిపిస్తుంది. పూర్తి జాతక పరిశీలన కోసం జ్యోతిష్యుని సంప్రదించండి.</p>
+
+    <footer>
+      <p><a href="/">వివాహ మ్యాచింగ్</a> · <a href="/how-to-match.html">How to</a> · <a href="/gunalu.html">36 గుణాలు</a> · <a href="/nadi-dosha.html">నాడి దోషం</a></p>
+      <p style="margin-top:7px">matchmyjathakam.com · Informational only</p>
+    </footer>
+  </main>
+  <script defer src="vendor/sql-wasm.js"></script>
+  <script defer src="best-matches.js?v=1"></script>
+</body>
+</html>

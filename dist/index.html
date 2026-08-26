@@ -75,8 +75,17 @@
   label{color:#57534e}
   .calc-status{font-size:.74rem;color:#059669;margin-top:4px;min-height:16px}
   .qarrow{color:#9ca3af;font-weight:700;font-size:.8rem}
+  .best-match-entry{margin-top:16px;padding:18px 20px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:15px;border-radius:20px;background:linear-gradient(135deg,#7f1020 0%,#9f1239 58%,#b45309 140%);color:#fff;text-decoration:none;box-shadow:0 12px 28px -12px rgba(127,16,32,.48);transition:transform .18s,box-shadow .18s}
+  .best-match-entry:hover{transform:translateY(-2px);box-shadow:0 16px 34px -12px rgba(127,16,32,.55)}
+  .best-match-entry-icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.24)}
+  .best-match-entry-icon img{width:25px;height:25px}
+  .best-match-entry-copy strong{display:block;font-size:1rem;line-height:1.6}
+  .best-match-entry-copy span{display:block;margin-top:2px;color:#ffe4e6;font-size:.78rem;line-height:1.6}
+  .best-match-entry-action{padding:9px 12px;border-radius:11px;background:#fff;color:#881337;font-size:.76rem;font-weight:800;white-space:nowrap}
+  .best-match-entry-action b{margin-left:3px}
   @media(max-width:980px){ .quick-links{grid-template-columns:repeat(3,1fr)} }
   @media(max-width:640px){ .quick-links{grid-template-columns:repeat(2,1fr)} }
+  @media(max-width:560px){.best-match-entry{grid-template-columns:auto 1fr;padding:16px}.best-match-entry-action{grid-column:1/-1;text-align:center;width:100%}}
   @media(max-width:400px){ .quick-links{grid-template-columns:1fr} }
   </style>
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -176,6 +185,15 @@
 
     <button id="match-btn" class="primary">పొంతన చూడండి →</button>
   </section>
+
+  <a href="/best-matches.html" class="best-match-entry" aria-label="మీ రాశికి ఉత్తమ జోడీలు చూడండి">
+    <span class="best-match-entry-icon" aria-hidden="true"><img src="vendor/twemoji/sparkle.svg" alt=""></span>
+    <span class="best-match-entry-copy">
+      <strong>మీ రాశికి ఉత్తమ జోడీలు</strong>
+      <span>మీ రాశి, నక్షత్రానికి అనుకూలమైన జోడీలను స్కోరు ఆధారంగా చూడండి</span>
+    </span>
+    <span class="best-match-entry-action">ఉత్తమ జోడీలు చూడండి <b aria-hidden="true">→</b></span>
+  </a>
   </div>
 
   <div id="view-result" class="view hidden">
