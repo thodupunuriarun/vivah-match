@@ -588,6 +588,15 @@ async function makeImage(d) {
   const cv = document.createElement("canvas");
   cv.width = W; cv.height = H;
   const ctx = cv.getContext("2d");
+  // Some phone browsers ignore textAlign for Telugu (complex-script) text and draw it left-aligned,
+  // so align by hand from measureText and always draw left-aligned.
+  const nativeFill = ctx.fillText.bind(ctx);
+  ctx.fillText = (t, x, y) => {
+    const a = ctx.textAlign, w = ctx.measureText(t).width;
+    ctx.textAlign = "left";
+    nativeFill(t, a === "center" ? x - w / 2 : a === "right" || a === "end" ? x - w : x, y);
+    ctx.textAlign = a;
+  };
   ctx.fillStyle = "#FBF4E6";
   ctx.fillRect(0, 0, W, H);
 
