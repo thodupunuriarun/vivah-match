@@ -1,56 +1,74 @@
+/* no dark theme yet: keep native pickers/selects light */
 :root {
-  --bg: #fdf8ee;
-  --card: #ffffff;
-  --ink: #111827;
-  --muted: #6b7280;
-  --line: #e5e7eb;
-  --line-soft: #f3f4f6;
-  --brand: #9f1239;
-  --brand-2: #e11d48;
-  --brand-soft: #fff1f2;
-  --gold: #d97706;
-  --gold-soft: #fffbeb;
-  --good: #059669;
-  --neutral: #d97706;
-  --bad: #dc2626;
+  color-scheme: light;
+  /* warm Telugu palette (was home-only; now site-wide) */
+  --h-cream: #FBF4E6;
+  --h-card: #FFFDF8;
+  --h-line: #EADFC8;
+  --h-field: #DCCFB6;
+  --h-soft: #F6EEDC;
+  --h-rule: #F1E8D6;
+  --h-ink: #2A1A12;
+  --h-muted: #5E4B3C;   /* 7.5:1 on cream, 6.9:1 on #F6EEDC */
+  --h-kumkum: #8E1330;
+  --h-kumkum-2: #6B0F24;
+  --h-turmeric: #C77A0A;
+  --h-turmeric-bg: #FCEBC4;
+  --h-turmeric-ink: #6B3A00;
+  --h-zari: #D9B25F;
+  --h-hair: #C9A24A;
+  --h-leaf: #4D6B1F;
+  --h-leaf-2: #3F6212;
+
+  --bg: var(--h-cream);
+  --card: var(--h-card);
+  --ink: var(--h-ink);
+  --muted: var(--h-muted);
+  --line: var(--h-line);
+  --line-soft: var(--h-soft);
+  --brand: var(--h-kumkum);
+  --brand-2: var(--h-kumkum);
+  --brand-soft: var(--h-soft);
+  --gold: var(--h-turmeric);
   --radius: 24px;
+  --maroon: var(--h-kumkum-2);
+  --muted-brown: var(--h-muted);
+  --focus-ring: 0 0 0 2px #FFFDF8, 0 0 0 5px #8E1330;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+h1, h2, h3, h4, h5, h6 { line-height: 1.4; }
+
 body {
   font-family: "Plus Jakarta Sans", "Noto Sans Telugu", system-ui, sans-serif;
-  background-color: var(--bg);
-  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="260" height="260" viewBox="0 0 260 260"%3E%3Cg fill="none" stroke="%23d97706" stroke-opacity="0.07" stroke-width="1.5"%3E%3Ccircle cx="130" cy="130" r="36"/%3E%3Ccircle cx="130" cy="130" r="24"/%3E%3Ccircle cx="130" cy="130" r="7"/%3E%3Cellipse cx="130" cy="94" rx="10" ry="19"/%3E%3Cellipse cx="130" cy="166" rx="10" ry="19"/%3E%3Cellipse cx="94" cy="130" rx="19" ry="10"/%3E%3Cellipse cx="166" cy="130" rx="19" ry="10"/%3E%3Cellipse cx="105" cy="105" rx="8" ry="15" transform="rotate(-45 105 105)"/%3E%3Cellipse cx="155" cy="155" rx="8" ry="15" transform="rotate(-45 155 155)"/%3E%3Cellipse cx="155" cy="105" rx="8" ry="15" transform="rotate(45 155 105)"/%3E%3Cellipse cx="105" cy="155" rx="8" ry="15" transform="rotate(45 105 155)"/%3E%3Cpath d="M0 44 Q22 22 44 0"/%3E%3Cpath d="M216 260 Q238 238 260 216"/%3E%3Cpath d="M260 44 Q238 22 216 0"/%3E%3Cpath d="M44 260 Q22 238 0 216"/%3E%3Ccircle cx="26" cy="26" r="6"/%3E%3Ccircle cx="234" cy="26" r="6"/%3E%3Ccircle cx="26" cy="234" r="6"/%3E%3Ccircle cx="234" cy="234" r="6"/%3E%3Cpath d="M60 130 Q70 118 80 130 Q70 142 60 130 Z"/%3E%3Cpath d="M180 130 Q190 118 200 130 Q190 142 180 130 Z"/%3E%3C/g%3E%3C/svg%3E');
-  background-size: 260px 260px;
+  background-color: var(--h-cream);
   color: var(--ink);
+  line-height: 1.6;
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
 }
 
-.blob {
-  position: fixed;
-  border-radius: 50%;
-  filter: blur(90px);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.blob-a {
-  width: 520px;
-  height: 520px;
-  top: -180px;
-  left: -120px;
-  background: radial-gradient(circle, rgba(225, 29, 72, 0.10), transparent 65%);
-}
-
-.blob-b {
-  width: 560px;
+/* chukkala muggu watermark: ONE faint dot-rangoli centred behind the hero/heading at the
+   top of the page, masked out before the content cards. The box is exactly body-wide
+   (no horizontal overflow); z-index -1 keeps it under every in-flow element. */
+body::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -34px;
+  left: 0;
+  right: 0;
   height: 560px;
-  top: -140px;
-  right: -160px;
-  background: radial-gradient(circle, rgba(217, 119, 6, 0.10), transparent 65%);
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4.98 -4.98 9.96 9.96'%3E%3Cpath d='M-.35 -2.47C-.25 -2.24 -.25 -2 -.35 -1.77C-.46 -1.54 -.46 -1.29 -.35 -1.06C-.25 -.83 -.25 -.58 -.35 -.35C-.46 -.12 -.46 .12 -.35 .35C-.25 .58 -.25 .83 -.35 1.06C-.46 1.29 -.46 1.54 -.35 1.77C-.25 2 -.25 2.24 -.35 2.47C-.51 2.8 -.79 3.1 -.53 3.36C-.22 3.67 .22 3.67 .53 3.36C.79 3.1 .51 2.8 .35 2.47C.25 2.24 .25 2 .35 1.77C.46 1.54 .46 1.29 .35 1.06C.25 .83 .25 .58 .35 .35C.46 .12 .46 -.12 .35 -.35C.25 -.58 .25 -.83 .35 -1.06C.46 -1.29 .46 -1.54 .35 -1.77C.25 -2 .25 -2.24 .35 -2.47C.51 -2.8 .79 -3.1 .53 -3.36C.22 -3.67 -.22 -3.67 -.53 -3.36C-.79 -3.1 -.51 -2.8 -.35 -2.47M-.35 -2.47C-.12 -2.37 .12 -2.37 .35 -2.47M.35 -2.47C.68 -2.63 .98 -2.91 1.24 -2.65C1.49 -2.4 1.21 -2.1 1.06 -1.77M1.06 -1.77C.95 -1.54 .95 -1.29 1.06 -1.06C1.17 -.83 1.17 -.58 1.06 -.35C.95 -.12 .95 .12 1.06 .35C1.17 .58 1.17 .83 1.06 1.06C.95 1.29 .95 1.54 1.06 1.77C1.21 2.1 1.49 2.4 1.24 2.65C.98 2.91 .68 2.63 .35 2.47C.12 2.37 -.12 2.37 -.35 2.47C-.68 2.63 -.98 2.91 -1.24 2.65C-1.49 2.4 -1.21 2.1 -1.06 1.77C-.95 1.54 -.95 1.29 -1.06 1.06C-1.17 .83 -1.17 .58 -1.06 .35C-.95 .12 -.95 -.12 -1.06 -.35C-1.17 -.58 -1.17 -.83 -1.06 -1.06C-.95 -1.29 -.95 -1.54 -1.06 -1.77M-1.06 -1.77C-1.21 -2.1 -1.49 -2.4 -1.24 -2.65C-.98 -2.91 -.68 -2.63 -.35 -2.47M-1.06 -1.77C-.83 -1.66 -.58 -1.66 -.35 -1.77C-.12 -1.87 .12 -1.87 .35 -1.77C.58 -1.66 .83 -1.66 1.06 -1.77M1.06 -1.77C1.39 -1.92 1.69 -2.2 1.94 -1.94C2.2 -1.69 1.92 -1.39 1.77 -1.06M1.77 -1.06C1.66 -.83 1.66 -.58 1.77 -.35C1.87 -.12 1.87 .12 1.77 .35C1.66 .58 1.66 .83 1.77 1.06C1.92 1.39 2.2 1.69 1.94 1.94C1.69 2.2 1.39 1.92 1.06 1.77C.83 1.66 .58 1.66 .35 1.77C.12 1.87 -.12 1.87 -.35 1.77C-.58 1.66 -.83 1.66 -1.06 1.77C-1.39 1.92 -1.69 2.2 -1.94 1.94C-2.2 1.69 -1.92 1.39 -1.77 1.06C-1.66 .83 -1.66 .58 -1.77 .35C-1.87 .12 -1.87 -.12 -1.77 -.35C-1.66 -.58 -1.66 -.83 -1.77 -1.06M-1.77 -1.06C-1.92 -1.39 -2.2 -1.69 -1.94 -1.94C-1.69 -2.2 -1.39 -1.92 -1.06 -1.77M-1.77 -1.06C-1.54 -.95 -1.29 -.95 -1.06 -1.06C-.83 -1.17 -.58 -1.17 -.35 -1.06C-.12 -.95 .12 -.95 .35 -1.06C.58 -1.17 .83 -1.17 1.06 -1.06C1.29 -.95 1.54 -.95 1.77 -1.06M1.77 -1.06C2.1 -1.21 2.4 -1.49 2.65 -1.24C2.91 -.98 2.63 -.68 2.47 -.35M2.47 -.35C2.37 -.12 2.37 .12 2.47 .35C2.63 .68 2.91 .98 2.65 1.24C2.4 1.49 2.1 1.21 1.77 1.06C1.54 .95 1.29 .95 1.06 1.06C.83 1.17 .58 1.17 .35 1.06C.12 .95 -.12 .95 -.35 1.06C-.58 1.17 -.83 1.17 -1.06 1.06C-1.29 .95 -1.54 .95 -1.77 1.06C-2.1 1.21 -2.4 1.49 -2.65 1.24C-2.91 .98 -2.63 .68 -2.47 .35C-2.37 .12 -2.37 -.12 -2.47 -.35M-2.47 -.35C-2.63 -.68 -2.91 -.98 -2.65 -1.24C-2.4 -1.49 -2.1 -1.21 -1.77 -1.06M-2.47 -.35C-2.24 -.25 -2 -.25 -1.77 -.35C-1.54 -.46 -1.29 -.46 -1.06 -.35C-.83 -.25 -.58 -.25 -.35 -.35C-.12 -.46 .12 -.46 .35 -.35C.58 -.25 .83 -.25 1.06 -.35C1.29 -.46 1.54 -.46 1.77 -.35C2 -.25 2.24 -.25 2.47 -.35M2.47 -.35C2.8 -.51 3.1 -.79 3.36 -.53C3.67 -.22 3.67 .22 3.36 .53C3.1 .79 2.8 .51 2.47 .35C2.24 .25 2 .25 1.77 .35C1.54 .46 1.29 .46 1.06 .35C.83 .25 .58 .25 .35 .35C.12 .46 -.12 .46 -.35 .35C-.58 .25 -.83 .25 -1.06 .35C-1.29 .46 -1.54 .46 -1.77 .35C-2 .25 -2.24 .25 -2.47 .35C-2.8 .51 -3.1 .79 -3.36 .53C-3.67 .22 -3.67 -.22 -3.36 -.53C-3.1 -.79 -2.8 -.51 -2.47 -.35M3.55 0C3.85 -.36 4.5 -.24 4.6 0C4.5 .24 3.85 .36 3.55 0ZM3.57 -.14Q3.53 -.66 4.05 -.78Q4.17 -.42 3.57 -.14ZM3.57 .14Q3.53 .66 4.05 .78Q4.17 .42 3.57 .14ZM0 3.55C.36 3.85 .24 4.5 0 4.6C-.24 4.5 -.36 3.85 0 3.55ZM.14 3.57Q.66 3.53 .78 4.05Q.42 4.17 .14 3.57ZM-.14 3.57Q-.66 3.53 -.78 4.05Q-.42 4.17 -.14 3.57ZM-3.55 0C-3.85 .36 -4.5 .24 -4.6 0C-4.5 -.24 -3.85 -.36 -3.55 0ZM-3.57 .14Q-3.53 .66 -4.05 .78Q-4.17 .42 -3.57 .14ZM-3.57 -.14Q-3.53 -.66 -4.05 -.78Q-4.17 -.42 -3.57 -.14ZM0 -3.55C-.36 -3.85 -.24 -4.5 0 -4.6C.24 -4.5 .36 -3.85 0 -3.55ZM-.14 -3.57Q-.66 -3.53 -.78 -4.05Q-.42 -4.17 -.14 -3.57ZM.14 -3.57Q.66 -3.53 .78 -4.05Q.42 -4.17 .14 -3.57Z' fill='none' stroke='%238E1330' stroke-opacity='.075' stroke-width='0.05' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cg fill='%23C77A0A' fill-opacity='.15'%3E%3Ccircle cx='0' cy='-2.83' r='.1'/%3E%3Ccircle cx='-.71' cy='-2.12' r='.1'/%3E%3Ccircle cx='-1.41' cy='-1.41' r='.1'/%3E%3Ccircle cx='-2.12' cy='-.71' r='.1'/%3E%3Ccircle cx='-2.83' cy='0' r='.1'/%3E%3Ccircle cx='.71' cy='-2.12' r='.1'/%3E%3Ccircle cx='0' cy='-1.41' r='.1'/%3E%3Ccircle cx='-.71' cy='-.71' r='.1'/%3E%3Ccircle cx='-1.41' cy='0' r='.1'/%3E%3Ccircle cx='-2.12' cy='.71' r='.1'/%3E%3Ccircle cx='1.41' cy='-1.41' r='.1'/%3E%3Ccircle cx='.71' cy='-.71' r='.1'/%3E%3Ccircle cx='0' cy='0' r='.1'/%3E%3Ccircle cx='-.71' cy='.71' r='.1'/%3E%3Ccircle cx='-1.41' cy='1.41' r='.1'/%3E%3Ccircle cx='2.12' cy='-.71' r='.1'/%3E%3Ccircle cx='1.41' cy='0' r='.1'/%3E%3Ccircle cx='.71' cy='.71' r='.1'/%3E%3Ccircle cx='0' cy='1.41' r='.1'/%3E%3Ccircle cx='-.71' cy='2.12' r='.1'/%3E%3Ccircle cx='2.83' cy='0' r='.1'/%3E%3Ccircle cx='2.12' cy='.71' r='.1'/%3E%3Ccircle cx='1.41' cy='1.41' r='.1'/%3E%3Ccircle cx='.71' cy='2.12' r='.1'/%3E%3Ccircle cx='0' cy='2.83' r='.1'/%3E%3Ccircle cx='4.05' cy='0' r='.1'/%3E%3Ccircle cx='0' cy='4.05' r='.1'/%3E%3Ccircle cx='-4.05' cy='0' r='.1'/%3E%3Ccircle cx='0' cy='-4.05' r='.1'/%3E%3C/g%3E%3C/svg%3E") center top / 560px 560px no-repeat;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 58%, transparent 86%);
+  mask-image: linear-gradient(to bottom, #000 0, #000 58%, transparent 86%);
+}
+
+@media (max-width: 640px) {
+  body::before { top: 80px; height: 340px; background-size: 340px 340px; }
 }
 
 .wrap {
@@ -64,6 +82,88 @@ body {
 /* ---------- header ---------- */
 header { text-align: center; margin-bottom: 36px; }
 
+/* ---------- shared site header (brand + CTA) ----------
+   Direct child of <body> on every page (contract R2.1). Same box everywhere:
+   1040px max, 16px gutter each side, fixed top spacing. */
+.site-header,
+.site-footer {
+  width: min(1040px, calc(100% - 32px));
+  max-width: none;
+  margin-inline: auto;
+  box-sizing: border-box;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--h-line);
+  text-align: left;
+  position: relative;
+  z-index: 2;
+}
+
+/* the page wrapper that follows the header: one consistent gap (~24px) between
+   the header rule and the first content (eyebrow pill / H1) on every page */
+.site-header ~ main,
+.site-header ~ .wrap,
+.site-header ~ [class*="-wrap"] { padding-top: 24px; }
+
+.site-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 44px;
+  color: var(--maroon);
+  text-decoration: none;
+  font: 800 1.05rem/1.2 "Plus Jakarta Sans", system-ui, sans-serif;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.site-brand:visited { color: var(--maroon); }
+.site-brand img { flex: none; width: 28px; height: 28px; display: block; }
+.site-brand span { overflow: hidden; text-overflow: ellipsis; }
+.site-brand:hover span { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+.site-brand:focus-visible { outline: 2px solid transparent; box-shadow: var(--focus-ring); border-radius: 10px; }
+
+.site-header .btn { flex: none; }
+
+/* every page: mango-leaf thoranam as the header's first visual row. Drawn by the header's
+   ::before (full viewport width) so <header> stays the first element child of <body> and
+   its top/left edges are identical on every page (R2.1); only its top padding grows. */
+.site-header { padding-top: 52px; }
+.site-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  height: 40px;
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='40' viewBox='0 0 30 40'%3E%3Crect x='0' y='6' width='30' height='1.5' fill='%238A5A1E'/%3E%3Cpath d='M15 7 C 22 12, 21 25, 15 35 C 9 25, 8 12, 15 7 Z' fill='%234D6B1F'/%3E%3Cpath d='M15 10 L15 31' stroke='%238AAE48' stroke-width='1'/%3E%3Ccircle cx='0' cy='8' r='5' fill='%23E8860C'/%3E%3Ccircle cx='30' cy='8' r='5' fill='%23E8860C'/%3E%3Ccircle cx='0' cy='8' r='2.2' fill='%23F7C04A'/%3E%3Ccircle cx='30' cy='8' r='2.2' fill='%23F7C04A'/%3E%3C/svg%3E") center top / 30px 40px repeat-x;
+}
+.site-brand,
+.site-brand:visited { color: #6B0F24; }
+
+.site-header .btn { min-height: 44px; border-radius: 10px; font-family: "Noto Sans Telugu", "Plus Jakarta Sans", sans-serif; font-weight: 600; }
+
+@media (max-width: 400px) {
+  .site-header { gap: 8px; }
+  .site-brand { gap: 6px; font-size: 0.92rem; }
+  .site-brand img { width: 24px; height: 24px; }
+  .site-header .btn-sm { padding: 6px 12px; }
+}
+
+@media (max-width: 340px) {
+  .site-brand { font-size: 0.84rem; }
+}
+
 .badge {
   display: inline-flex;
   align-items: center;
@@ -71,9 +171,9 @@ header { text-align: center; margin-bottom: 36px; }
   padding: 7px 16px;
   border-radius: 999px;
   background: var(--brand-soft);
-  border: 1px solid #fecdd3;
+  border: 1px solid #E6D2A8;
   color: var(--brand);
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   font-weight: 600;
   line-height: 1.6;
   letter-spacing: 0;
@@ -90,7 +190,7 @@ header h1 {
 header h1 .grad {
   display: inline-block;
   padding: 0.08em 0.06em;
-  background: linear-gradient(92deg, var(--brand) 10%, var(--brand-2) 55%, var(--gold));
+  background: linear-gradient(92deg, var(--h-kumkum), var(--h-kumkum)); /* solid kumkum: the turmeric end was 3.1:1 on cream */
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -115,35 +215,22 @@ header h1 .grad {
   to { opacity: 1; transform: none; }
 }
 
-.steps {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  margin-bottom: 22px;
-}
-
-.steps span {
-  width: 34px;
-  height: 5px;
-  border-radius: 99px;
-  background: #eadfce;
-  transition: background 0.3s;
-}
-
-.steps span.on { background: linear-gradient(90deg, #e11d48, #9f1239); }
-
 .back-btn {
   align-self: flex-start;
   background: none;
   border: none;
-  color: #9f1239;
-  font: 600 0.9rem "Plus Jakarta Sans", "Noto Sans Telugu", sans-serif;
+  color: var(--h-kumkum);
+  font: 600 0.95rem/1.5 "Plus Jakarta Sans", "Noto Sans Telugu", sans-serif;
   cursor: pointer;
+  min-height: 44px;
   padding: 6px 4px;
   margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
 }
 
-.back-btn:hover { text-decoration: underline; }
+.back-btn:hover { text-decoration: underline; text-underline-offset: 3px; }
+.back-btn:focus-visible { outline: 2px solid transparent; box-shadow: var(--focus-ring); border-radius: 8px; }
 
 /* ---------- card ---------- */
 .card {
@@ -152,58 +239,18 @@ header h1 .grad {
   border-radius: var(--radius);
   padding: 28px;
   box-shadow:
-    0 1px 2px rgba(17, 24, 39, 0.04),
-    0 12px 32px -12px rgba(17, 24, 39, 0.10);
+    0 1px 2px rgba(60, 30, 10, 0.06),
+    0 12px 32px -12px rgba(60, 30, 10, 0.10);
 }
 
 .hidden { display: none; }
 
 /* ---------- form ---------- */
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-
-@media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
-
-.person {
-  border-radius: 18px;
-  padding: 18px;
-  border: 1px solid var(--line);
-  transition: border-color 0.15s;
-}
-
-.person:hover { border-color: #d4d4d8; }
-
-.person.bride { background: var(--brand-soft); }
-.person.groom { background: var(--gold-soft); }
-
-.person h3 {
-  font-size: 0.95rem;
-  font-weight: 700;
-  line-height: 1.6;
-  letter-spacing: 0;
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.person h3 .en {
-  font-weight: 600;
-  font-size: 0.68rem;
-  color: var(--muted);
-  letter-spacing: 0.1em;
-}
-
 .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
-.bride .dot { background: var(--brand-2); }
-.groom .dot { background: var(--gold); }
 
 label {
   display: block;
-  font-size: 0.78rem;
+  font-size: 0.875rem;
   font-weight: 600;
   line-height: 1.6;
   letter-spacing: 0;
@@ -225,7 +272,7 @@ input[type="text"], select {
 
 select {
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%235E4B3C' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
   cursor: pointer;
@@ -234,121 +281,169 @@ select {
 input:focus, select:focus {
   outline: none;
   border-color: var(--brand-2);
-  box-shadow: 0 0 0 4px rgba(225, 29, 72, 0.12);
+  box-shadow: 0 0 0 4px rgba(142, 19, 48, 0.18);
 }
 
-.primary {
-  width: 100%;
-  margin-top: 20px;
-  height: 54px;
-  border: none;
-  border-radius: 16px;
-  background: linear-gradient(135deg, var(--brand-2), var(--brand));
-  color: #fff;
-  font: 700 1.02rem "Plus Jakarta Sans", "Noto Sans Telugu", sans-serif;
-  line-height: 1.6;
+/* ---------- button system (contract §3) ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 22px;
+  border: 1.5px solid transparent;
+  border-radius: 14px;
+  font: 700 1rem/1.4 "Plus Jakarta Sans", "Noto Sans Telugu", sans-serif;
   letter-spacing: 0;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
   cursor: pointer;
-  box-shadow: 0 8px 20px -6px rgba(225, 29, 72, 0.45);
-  transition: all 0.18s;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.18s, box-shadow 0.18s, background-color 0.18s, border-color 0.18s, color 0.18s;
 }
 
-.primary:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -6px rgba(225, 29, 72, 0.5); }
-.primary:active { transform: translateY(0); }
-.primary:disabled { opacity: 0.65; cursor: wait; transform: none; }
+.btn svg, .btn img { flex: none; }
 
-/* ---------- result ---------- */
-.result { margin-top: 22px; animation: rise 0.45s ease; }
-
-@keyframes rise {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: none; }
+/* primary = option A "పట్టు అంచు": kumkum fill, thin zari (gold) line inside the edge,
+   4px maroon pedestal. The 1.5px border is painted kumkum, so the inset rings sit at
+   3–4.5px from the outer edge (same geometry as the home CTA). */
+.btn.btn-primary,
+.btn.btn-primary:visited {
+  background: #8E1330;
+  border-color: #8E1330;
+  color: #FFF6E5;
+  text-decoration: none;
+  box-shadow:
+    inset 0 0 0 1.5px #8E1330,
+    inset 0 0 0 3px #D9B25F,
+    0 4px 0 #5A0B1E,
+    0 10px 22px -8px rgba(142, 19, 48, 0.4);
 }
 
-.score-row {
+.btn.btn-primary:hover {
+  background: #9C1737;
+  border-color: #9C1737;
+  color: #FFF6E5;
+  text-decoration: none;
+  transform: none;
+  box-shadow:
+    inset 0 0 0 1.5px #9C1737,
+    inset 0 0 0 3px #D9B25F,
+    0 4px 0 #5A0B1E,
+    0 12px 26px -8px rgba(142, 19, 48, 0.45);
+}
+
+/* secondary = cream + kumkum outline (was home-only; now site-wide) */
+.btn.btn-secondary,
+.btn.btn-secondary:visited {
+  background: #FFFDF8;
+  border-color: #8E1330;
+  color: #8E1330;
+  text-decoration: none;
+  box-shadow: 0 1px 2px rgba(107, 15, 36, 0.06);
+}
+
+.btn.btn-secondary:hover {
+  background: #FBEDEA;
+  border-color: #6B0F24;
+  color: #6B0F24;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px -6px rgba(107, 15, 36, 0.22);
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+.btn.btn-sm {
+  min-height: 44px;
+  padding: 6px 14px;
+  border-radius: 11px;
+  font-size: 0.875rem;
+  gap: 6px;
+}
+
+.btn.btn-block { display: flex; width: 100%; }
+
+/* state rules last so they win over variant/hover rules */
+.btn.btn:active { transform: translateY(0) scale(0.99); }
+
+.btn.btn:focus-visible {
+  outline: 2px solid transparent;
+  box-shadow: var(--focus-ring);
+}
+
+/* primary states (after the generic state rules so they win) */
+.btn.btn.btn-primary:active {
+  background: #7A0F29;
+  border-color: #7A0F29;
+  transform: translateY(3px);
+  box-shadow:
+    inset 0 0 0 1.5px #7A0F29,
+    inset 0 0 0 3px #D9B25F,
+    0 1px 0 #5A0B1E;
+}
+
+/* cream gap + dark ring: visible on cream, white and maroon backgrounds alike */
+.btn.btn.btn-primary:focus-visible {
+  outline: 2px solid transparent;
+  box-shadow:
+    inset 0 0 0 1.5px #8E1330,
+    inset 0 0 0 3px #D9B25F,
+    0 0 0 3px #FFFDF8,
+    0 0 0 6px #2A1A12;
+}
+
+.btn.btn-primary[aria-busy="true"] {
+  opacity: 1;
+  cursor: progress;
+  box-shadow:
+    inset 0 0 0 1.5px #8E1330,
+    inset 0 0 0 3px #D9B25F,
+    0 4px 0 #5A0B1E;
+}
+
+.btn.btn-primary:disabled:not([aria-busy="true"]),
+.btn.btn-primary[aria-disabled="true"] {
+  background: #E6DCCB;
+  border-color: #E6DCCB;
+  color: #5E4B3C;
+  opacity: 1;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* home finder "రాశి-నక్షత్రం కనుగొనండి" — secondary option A (పసుపు / turmeric).
+   Keeps the .calc-btn JS hook; other pages' .btn-secondary stay maroon-outline. */
+.btn.btn-secondary.calc-btn,
+.btn.btn-secondary.calc-btn:visited {
   display: flex;
   align-items: center;
-  gap: 26px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--line-soft);
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 50px;
+  margin: 0;
+  padding: 8px 14px;
+  border: 1.5px solid #C77A0A;
+  border-radius: 12px;
+  background: #FCEBC4;
+  color: #6B3A00;
+  font: 700 1rem/1.4 "Noto Sans Telugu", "Plus Jakarta Sans", sans-serif;
+  box-shadow: none;
 }
-
-@media (max-width: 480px) { .score-row { flex-direction: column; text-align: center; } }
-
-.ring {
-  flex: none;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: conic-gradient(var(--line-soft) 0deg, var(--line-soft) 360deg);
-}
-
-.ring-inner {
-  width: 116px;
-  height: 116px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: inset 0 0 0 1px var(--line-soft);
-  display: grid;
-  place-items: center;
-}
-
-.ring strong { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; }
-
-.verdict { min-width: 0; }
-
-.verdict-label {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--brand-2);
-  margin-bottom: 5px;
-}
-
-.verdict h2 {
-  font-size: 1.4rem;
-  line-height: 1.65;
-  letter-spacing: 0;
-}
-
-.verdict h2.pop { animation: pop 0.5s ease; }
-
-@keyframes pop {
-  0% { opacity: 0; transform: scale(0.95); }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-.muted { color: var(--muted); font-size: 0.88rem; margin-top: 7px; line-height: 1.7; letter-spacing: 0; }
-
-/* ---------- koota rows ---------- */
-.kootas { margin-top: 6px; }
-
-.koota { padding: 15px 2px 13px; border-bottom: 1px solid var(--line-soft); }
-.koota:last-child { border-bottom: none; }
-
-.k-top { display: flex; align-items: baseline; gap: 12px; }
-
-.k-name {
-  font-weight: 700;
-  font-size: 0.96rem;
-  line-height: 1.6;
-  letter-spacing: 0;
-}
-
-.k-vals {
-  flex: 1;
-  text-align: right;
-  color: var(--muted);
-  font-size: 0.8rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.k-pts { font-weight: 800; font-size: 0.92rem; min-width: 38px; text-align: right; font-variant-numeric: tabular-nums; }
+.btn.btn-secondary.calc-btn:hover { background: #F9E1AC; border-color: #A86508; color: #5A3000; transform: none; box-shadow: 0 4px 12px -6px rgba(199, 122, 10, 0.45); }
+.btn.btn.btn-secondary.calc-btn:active { transform: translateY(1px); box-shadow: none; }
+.btn.btn-secondary.calc-btn:disabled { opacity: 1; color: #6B3A00; background: #FBF0D6; cursor: progress; }
 
 .k-bar {
   height: 7px;
@@ -358,68 +453,10 @@ input:focus, select:focus {
   overflow: hidden;
 }
 
-.k-fill {
-  height: 100%;
-  border-radius: 99px;
-  width: 0;
-  transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.k-fill.good { background: linear-gradient(90deg, #34d399, var(--good)); }
-.k-fill.neutral { background: linear-gradient(90deg, #fbbf24, var(--neutral)); }
-.k-fill.bad { background: linear-gradient(90deg, #f87171, var(--bad)); }
-
-.k-pts.good { color: var(--good); }
-.k-pts.neutral { color: var(--neutral); }
-.k-pts.bad { color: var(--bad); }
-
-.total-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 12px;
-  padding: 16px 18px;
-  background: var(--line-soft);
-  border-radius: 14px;
-  font-weight: 800;
-  font-size: 1rem;
-  line-height: 1.6;
-  letter-spacing: 0;
-}
-
-.total-row span:last-child { color: var(--brand); font-variant-numeric: tabular-nums; }
-
-/* ---------- share ---------- */
-.share-row { display: flex; gap: 12px; margin-top: 18px; }
-
-.secondary {
-  flex: 1;
-  height: 48px;
-  border: 1.5px solid var(--line);
-  border-radius: 14px;
-  background: #fff;
-  color: var(--ink);
-  font: 700 0.93rem "Plus Jakarta Sans", "Noto Sans Telugu", sans-serif;
-  line-height: 1.6;
-  letter-spacing: 0;
-  cursor: pointer;
-  transition: all 0.15s;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.secondary:hover { border-color: #d4d4d8; background: var(--line-soft); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(17,24,39,0.08); }
-
-.secondary svg { flex: none; opacity: 0.85; }
-.secondary:active { transform: scale(0.99); }
-.secondary:disabled { opacity: 0.6; cursor: wait; }
-
 .note {
   margin-top: 18px;
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   line-height: 1.7;
   letter-spacing: 0;
   background: var(--line-soft);
@@ -428,103 +465,113 @@ input:focus, select:focus {
 }
 
 footer { text-align: center; margin-top: 30px; }
-footer p { font-size: 0.78rem; color: #9ca3af; line-height: 1.7; letter-spacing: 0; }
+footer p { font-size: 0.8125rem; color: var(--muted); line-height: 1.7; letter-spacing: 0; }
 
+/* generic: never browser-default blue/purple links in any footer */
+footer a { color: var(--brand); text-decoration: none; text-underline-offset: 3px; }
+footer a:hover { text-decoration: underline; }
+footer a:focus-visible { outline: 2px solid transparent; box-shadow: var(--focus-ring); border-radius: 6px; }
 
-
-/* ---------- decorations: falling flowers ---------- */
-.petal-layer {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 3;
+/* ---------- shared site footer ---------- */
+.site-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 60px;
+  margin-bottom: 0;
+  padding: 22px 0 28px;
+  padding-bottom: max(28px, env(safe-area-inset-bottom));
+  text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
-.falling-flower {
+/* gadapa muggu: threshold border directly above the footer on every page — dots inside
+   two interlaced kumkum / turmeric loops between fine zari rules. Pure decoration, drawn
+   by ::before so no markup changes; it sits in the footer's top margin (same width). */
+.site-footer::before {
+  content: "";
   position: absolute;
-  top: -40px;
-  opacity: 0.55;
-  animation: petalFall linear infinite;
-}
-
-@keyframes petalFall {
-  0% { transform: translateY(0) rotate(0deg); }
-  100% { transform: translateY(110vh) rotate(360deg); }
-}
-
-/* ---------- decorations: diyas ---------- */
-.diya-row {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  margin-bottom: 18px;
-}
-
-.diya-emoji {
-  display: inline-block;
-  animation: glow 2.2s ease-in-out infinite alternate;
-}
-
-.diya-emoji img {
-  width: 34px;
-  height: 34px;
-  display: block;
-}
-
-.diya-emoji:nth-child(2) { animation-delay: 0.5s; }
-.diya-emoji:nth-child(3) { animation-delay: 1s; }
-
-@keyframes glow {
-  from { transform: scale(1); filter: drop-shadow(0 0 0 rgba(245, 158, 11, 0)); }
-  to { transform: scale(1.12); filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.65)); }
-}
-
-/* ---------- decorations: floating motifs ---------- */
-.float-motif {
-  position: fixed;
+  left: 0;
+  right: 0;
+  top: -28px;
+  height: 28px;
   pointer-events: none;
-  opacity: 0.22;
-  z-index: 0;
-  animation: floatY 7s ease-in-out infinite alternate;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='28' viewBox='0 0 24 28'%3E%3Cpath d='M0 2.5H24M0 25.5H24' stroke='%23D9B25F' stroke-width='1'/%3E%3Cpath d='M0 14C3 6.5 9 6.5 12 14S21 21.5 24 14' fill='none' stroke='%238E1330' stroke-width='1.4'/%3E%3Cpath d='M0 14C3 21.5 9 21.5 12 14S21 6.5 24 14' fill='none' stroke='%23C77A0A' stroke-width='1.4'/%3E%3Ccircle cx='6' cy='14' r='1.7' fill='%238E1330'/%3E%3Ccircle cx='18' cy='14' r='1.7' fill='%23C77A0A'/%3E%3Ccircle cx='12' cy='5.5' r='.9' fill='%23D9B25F'/%3E%3Ccircle cx='12' cy='22.5' r='.9' fill='%23D9B25F'/%3E%3C/svg%3E") center / 24px 28px round no-repeat;
 }
 
-.float-motif img {
-  width: 46px;
-  height: 46px;
+/* the old per-page "• శుభం •" divider now lives in the middle of the threshold, on a cream
+   cartouche that interrupts the border (one sign-off instead of two stacked ornaments).
+   Text is kumkum on cream (8.9:1), 15px. */
+.site-footer::after {
+  content: "శుభం";
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 28px;
+  padding: 0 14px;
+  background: var(--h-cream);
+  border-left: 1px solid var(--h-zari);
+  border-right: 1px solid var(--h-zari);
+  color: var(--h-kumkum);
+  font: 700 0.9375rem/28px "Noto Sans Telugu", "Plus Jakarta Sans", system-ui, sans-serif;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* wrapping row of links; block + text-wrap:balance avoids a single orphan
+   link on the last line (falls back to normal wrapping in older browsers) */
+.site-footer-links,
+.site-footer-legal {
   display: block;
+  max-width: 100%;
+  text-align: center;
+  text-wrap: balance;
+  line-height: 1;
 }
 
-@keyframes floatY {
-  from { transform: translateY(-8px) rotate(-4deg); }
-  to { transform: translateY(10px) rotate(5deg); }
+.site-footer-links a,
+.site-footer-legal a {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  min-height: 44px;
+  margin: 0;
+  padding: 4px 9px;
+  border-radius: 999px;
+  font-family: "Noto Sans Telugu", "Plus Jakarta Sans", system-ui, sans-serif;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: background-color 0.15s, color 0.15s;
 }
 
-.fm-1 { top: 8%; left: 4%; }
-.fm-2 { top: 16%; right: 6%; animation-delay: 1.2s; }
-.fm-3 { bottom: 10%; left: 8%; animation-delay: 2.1s; }
-.fm-4 { bottom: 18%; right: 5%; animation-delay: 0.6s; }
+.site-footer-links a { color: var(--maroon); font-size: 0.9375rem; font-weight: 600; }
+.site-footer-legal a { color: var(--muted-brown); font-size: 0.875rem; font-weight: 500; }
 
-/* ---------- decorations: couple art ---------- */
-.couple-art {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 8px;
+.site-footer-links a:hover,
+.site-footer-legal a:hover {
+  color: var(--brand);
+  background: var(--brand-soft);
+  text-decoration: underline;
 }
 
-.couple-art .hero-couple {
-  width: min(340px, 78vw);
-  height: auto;
-  display: block;
-  animation: bob 4s ease-in-out infinite;
+.site-footer-note {
+  max-width: 640px;
+  margin-top: 4px;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--muted);
 }
 
-@keyframes bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-7px); }
+.site-footer-note a { color: var(--muted-brown); text-decoration: underline; text-decoration-color: rgba(87, 83, 78, 0.4); }
+.site-footer-note a:hover { color: var(--brand); text-decoration-color: currentColor; }
+
+
+
+@media (prefers-reduced-motion: reduce) {
+  .view.active { animation: none; }
 }
 
-.nadi-alert{margin-top:14px;background:linear-gradient(135deg,#fef2f2,#fff1f2);border:1px solid #fecaca;border-radius:16px;padding:14px 16px;display:flex;gap:12px;align-items:center}
-.nadi-alert .ico{width:38px;height:38px;border-radius:11px;background:#fff;border:1px solid #fecaca;display:grid;place-items:center;flex:none}
-.nadi-alert a{color:#9f1239;font-weight:800;text-decoration:underline;text-underline-offset:2px}
-.koota.nadi-bad{border:1px solid #fecaca;background:#fef2f2;border-radius:14px;padding:12px 8px 10px;margin-top:2px}

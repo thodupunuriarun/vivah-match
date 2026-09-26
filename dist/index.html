@@ -27,8 +27,8 @@
   <meta name="twitter:title" content="వివాహ మ్యాచింగ్ | Match My Jathakam — 36 గుణాల పొంతన">
   <meta name="twitter:description" content="వధువు-వరుడి రాశి నక్షత్రం ఎంచుకోండి — 36 గుణాల పొంతన, 8 కూటముల తక్షణ ఫలితం. 1296 కాంబినేషన్లు. Free Telugu Jathakam matching.">
   <meta name="twitter:image" content="https://matchmyjathakam.com/og-image.png">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="apple-touch-icon" href="favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
+  <link rel="apple-touch-icon" href="favicon.svg?v=2">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Match My Jathakam — వివాహ మ్యాచింగ్","url":"https://matchmyjathakam.com/","inLanguage":["te","en"],"description":"తెలుగు వివాహ పొంతన — 36 గుణాల అష్టకూట మ్యాచింగ్. 1296 రాశి-నక్షత్ర కాంబినేషన్లు.","applicationCategory":"LifestyleApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"publisher":{"@type":"Organization","name":"Match My Jathakam","url":"https://matchmyjathakam.com"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"వివాహ పొంతన ఎలా చూడాలి?","acceptedAnswer":{"@type":"Answer","text":"వధువు మరియు వరుడి రాశి-నక్షత్రం ఎంచుకుని 'పొంతన చూడండి' నొక్కండి — 8 కూటముల మార్కులు, మొత్తం 36 గుణాల స్కోరు తక్షణం వస్తుంది."}},{"@type":"Question","name":"36 గుణాలలో ఎన్ని వస్తే పెళ్లికి అనుకూలం?","acceptedAnswer":{"@type":"Answer","text":"సాధారణంగా 18కి పైగా సామాన్యం, 24కి పైగా అనుకూలంగా పరిగణిస్తారు, కానీ జాతక చక్ర పరిశీలనతో పాటు జోతిష్యుని సలహా తీసుకోవాలి."}}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://matchmyjathakam.com/"}]}</script>
@@ -36,212 +36,585 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Telugu:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Telugu:wght@400;500;600;700;800&display=swap"></noscript>
-  <link rel="stylesheet" href="style.css">
-  <link rel="preload" as="fetch" href="data/telungu_thirumanam.db" crossorigin="anonymous">
-  <link rel="preload" as="fetch" href="vendor/sql-wasm.wasm" crossorigin="anonymous">
-  <style>#app-loader{position:fixed;inset:0;z-index:9999;background:#fdf8ee;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;transition:opacity .35s ease,visibility .35s}
-  #app-loader.hide{opacity:0;visibility:hidden;pointer-events:none}
-  #app-loader .loader-om{width:44px;height:44px;border-radius:10px;background:#fff1f2;border:1px solid #fecdd3;display:grid;place-items:center;font-size:22px}
-  #app-loader .loader-bar{width:120px;height:4px;border-radius:99px;background:#f3f4f6;overflow:hidden}
-  #app-loader .loader-bar span{display:block;height:100%;width:45%;background:linear-gradient(90deg,#e11d48,#9f1239);border-radius:99px;animation:loaderSlide 1.1s ease-in-out infinite}
-  @keyframes loaderSlide{0%{transform:translateX(-100%)}100%{transform:translateX(260%)}}</style>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap"></noscript>
+  <link rel="stylesheet" href="style.css?v=5">
   <style>
-  .quick-links{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:0 0 14px}
-  .qbox{display:flex;align-items:center;gap:8px;padding:10px 10px;border-radius:12px;background:#fff;border:1px solid #e5e7eb;text-decoration:none;box-shadow:0 1px 2px rgba(17,24,39,.04);transition:transform .15s,box-shadow .15s,border-color .15s}
-  .qbox:hover{transform:translateY(-1px);box-shadow:0 6px 18px -8px rgba(17,24,39,.12);border-color:#e7e5e4}
-  .qico{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;flex:none;border:1px solid #fecdd3;background:#fff1f2;color:#9f1239;line-height:0;position:relative}
-  .qbox-kootam .qico{background:#fffbeb;border-color:#fde68a;color:#92400e}
-  .qbox-nak .qico{background:#f0f9ff;border-color:#bae6fd;color:#0369a1}
-  .qbox-rasi .qico{background:#f0fdf4;border-color:#bbf7d0;color:#15803d}
-  .qbox-nadi .qico{background:#fef2f2;border-color:#fecaca;color:#dc2626}
-  .qbox div{flex:1;min-width:0}
-  .qbox strong{display:block;font-size:.82rem;font-weight:800;color:#111827;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .qbox span{font-size:.68rem;color:#6b7280;line-height:1.3;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .qico img{width:20px;height:20px;display:block;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);object-fit:contain}
-  .dob-row{display:grid;grid-template-columns:124px minmax(0,1fr);gap:6px;margin-top:8px}
-  .dob-row input{height:42px;font-size:.88rem;min-width:0;width:100%}
-  .time-picker{display:flex;align-items:center;gap:2px;height:42px;min-width:0;width:100%;max-width:100%}
-  .time-picker select{height:42px;border:1px solid #e5e7eb;border-radius:10px;padding:0 0 0 2px;font-size:.80rem;background:#fff;color:#111827;flex:1 1 0;min-width:0;cursor:pointer;text-align:center;text-align-last:center;overflow:hidden;text-overflow:ellipsis}
-  .time-picker select:focus{outline:none;border-color:#f59e0b;box-shadow:0 0 0 3px rgba(245,158,11,.15)}
-  .time-picker .tp-sep{font-weight:700;color:#6b7280;padding:0 1px;flex:none}
-  .time-picker select.tp-hour{flex-basis:48px} .time-picker select.tp-min{flex-basis:52px} .time-picker select.tp-ampm{flex-basis:54px;font-weight:700}
-  .calc-btn{margin-top:6px;width:100%;height:38px;border:1px solid #fde68a;background:#fffbeb;color:#92400e;font-weight:700;border-radius:10px;cursor:pointer;font-size:.82rem}
-  .calc-btn:hover{background:#fef3c7}
-  .calc-btn:disabled{opacity:.6;cursor:wait}
-  .or-divider{text-align:center;color:#9ca3af;font-size:.72rem;font-weight:700;letter-spacing:.08em;margin:10px 0 4px;position:relative}
-  .or-divider::before,.or-divider::after{content:"";position:absolute;top:50%;width:38%;height:1px;background:#f3f4f6}
-  .or-divider::before{left:0} .or-divider::after{right:0}
-  .place-input{height:42px}
-  .place-input::placeholder,input::placeholder{color:#9ca3af;opacity:.55;font-weight:400}
-  label{color:#57534e}
-  .calc-status{font-size:.74rem;color:#059669;margin-top:4px;min-height:16px}
-  .qarrow{color:#9ca3af;font-weight:700;font-size:.8rem}
-  .best-match-entry{margin-top:16px;padding:18px 20px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:15px;border-radius:20px;background:linear-gradient(135deg,#7f1020 0%,#9f1239 58%,#b45309 140%);color:#fff;text-decoration:none;box-shadow:0 12px 28px -12px rgba(127,16,32,.48);transition:transform .18s,box-shadow .18s}
-  .best-match-entry:hover{transform:translateY(-2px);box-shadow:0 16px 34px -12px rgba(127,16,32,.55)}
-  .best-match-entry-icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.24)}
-  .best-match-entry-icon img{width:25px;height:25px}
-  .best-match-entry-copy strong{display:block;font-size:1rem;line-height:1.6}
-  .best-match-entry-copy span{display:block;margin-top:2px;color:#ffe4e6;font-size:.78rem;line-height:1.6}
-  .best-match-entry-action{padding:9px 12px;border-radius:11px;background:#fff;color:#881337;font-size:.76rem;font-weight:800;white-space:nowrap}
-  .best-match-entry-action b{margin-left:3px}
-  @media(max-width:980px){ .quick-links{grid-template-columns:repeat(3,1fr)} }
-  @media(max-width:640px){ .quick-links{grid-template-columns:repeat(2,1fr)} }
-  @media(max-width:560px){.best-match-entry{grid-template-columns:auto 1fr;padding:16px}.best-match-entry-action{grid-column:1/-1;text-align:center;width:100%}}
-  @media(max-width:400px){ .quick-links{grid-template-columns:1fr} }
+  /* ===== home (approved redesign): warm palette, Ramabhadra display type ===== */
+  body.home{
+    --h-cream:#FBF4E6;--h-card:#FFFDF8;--h-line:#EADFC8;--h-field:#DCCFB6;--h-soft:#F6EEDC;--h-rule:#F1E8D6;
+    --h-ink:#2A1A12;--h-muted:#5E4B3C;
+    --h-kumkum:#8E1330;--h-kumkum-2:#6B0F24;
+    --h-turmeric:#C77A0A;--h-turmeric-bg:#FCEBC4;--h-turmeric-ink:#6B3A00;
+    --h-zari:#D9B25F;--h-hair:#C9A24A;
+    --h-leaf:#4D6B1F;--h-leaf-2:#3F6212;
+    --h-display:"Ramabhadra","Noto Sans Telugu",sans-serif;
+    --h-text:"Noto Sans Telugu","Plus Jakarta Sans",system-ui,sans-serif;
+    background-color:var(--h-cream);color:var(--h-ink);
+  }
+  body.home .wrap{max-width:912px;padding:24px 16px 8px}
+  body.home [hidden]{display:none!important}
+  :root{color-scheme:light}
+
+  /* hero */
+  .home-hero{display:flex;flex-direction:column;align-items:center;gap:6px;margin:0 0 20px;text-align:center}
+  .invocation{display:flex;align-items:center;justify-content:center;gap:10px;margin:0;font:600 .875rem/1.5 var(--h-text);color:var(--h-kumkum)}
+  .invocation .hair{flex:none;width:28px;height:1px;background:var(--h-hair)}
+  .home-hero h1{margin:4px 0 0;font-family:var(--h-display);font-weight:400;font-size:2.375rem;line-height:1.35;letter-spacing:0;color:var(--h-ink)}
+  .home-hero h1 span{color:var(--h-kumkum)}
+  .home-sub{margin:0;max-width:34em;text-wrap:balance;font:400 .9375rem/1.6 var(--h-text);color:var(--h-muted)}
+
+  /* bride / groom cards */
+  .person-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+  .pcard{min-width:0;overflow:hidden;background:var(--h-card);border:1px solid var(--h-line);border-radius:18px;box-shadow:0 1px 2px rgba(60,30,10,.06),0 8px 24px rgba(60,30,10,.06)}
+  .pcard-band{display:block;width:100%;height:14px}
+  .pcard-body{display:flex;flex-direction:column;gap:14px;padding:16px 18px 18px}
+  .pcard-title{display:flex;align-items:center;gap:10px}
+  .pcard-title .pdot{flex:none;width:12px;height:12px;border-radius:50%}
+  .pcard-bride .pdot{background:#B3123A;box-shadow:0 0 0 3px #F6DCE2}
+  .pcard-groom .pdot{background:#3F5A16;box-shadow:0 0 0 3px #E3EBD2}
+  .pcard-title h2{margin:0;font-family:var(--h-display);font-weight:400;font-size:1.4375rem;line-height:1.35;letter-spacing:0;color:var(--h-ink)}
+  .field{display:flex;flex-direction:column;gap:6px;min-width:0}
+  body.home .field label,.field .flabel{display:block;margin:0;font:600 .875rem/1.5 var(--h-text);color:var(--h-ink)}
+  .field .hint{font-weight:500;color:var(--h-muted)}
+  body.home .pcard input[type="text"],body.home .pcard input[type="date"],body.home .pcard select{display:block;width:100%;min-width:0;height:50px;padding:0 14px;border:1.5px solid var(--h-field);border-radius:12px;background-color:#fff;font:400 1rem/1.4 var(--h-text);color:var(--h-ink);transition:border-color .15s,box-shadow .15s}
+  body.home .pcard select{-webkit-appearance:none;appearance:none;padding-right:40px;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 6 L8 10.5 L12.5 6' stroke='%235E4B3C' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:16px 16px}
+  body.home .pcard input[type="date"]{-webkit-appearance:none;appearance:none;text-align:left}
+  body.home .pcard input[type="date"]::-webkit-date-and-time-value{text-align:left}
+  body.home .pcard input[type="date"]::-webkit-calendar-picker-indicator{opacity:.7;cursor:pointer}
+  body.home .pcard input::placeholder{color:#7A6A58;opacity:1;font-weight:400}
+  body.home .pcard input:focus,body.home .pcard select:focus{outline:none;border-color:var(--h-kumkum);box-shadow:0 0 0 3px rgba(142,19,48,.22)}
+
+  /* "how will you give the details" segmented toggle */
+  .mode-toggle{display:flex;gap:4px;padding:4px;background:#F3E9D6;border-radius:12px}
+  .mode-toggle button{flex:1 1 0;min-width:0;min-height:44px;padding:4px 6px;border:0;border-radius:9px;background:transparent;color:var(--h-muted);font:600 .9375rem/1.3 var(--h-text);cursor:pointer;transition:background-color .15s,color .15s,box-shadow .15s}
+  .mode-toggle button[aria-pressed="true"]{background:#fff;color:var(--h-kumkum);box-shadow:0 1px 3px rgba(60,30,10,.16)}
+  .mode-toggle button[aria-pressed="false"]:hover{background:rgba(255,255,255,.55);color:var(--h-ink)}
+  .mode-toggle button:focus-visible{outline:2px solid var(--h-kumkum);outline-offset:1px}
+  .mode-panel{display:flex;flex-direction:column;gap:14px}
+
+  /* birth time: hour / minute / morning-evening */
+  .time-row{display:flex;gap:8px;min-width:0}
+  body.home .time-row select{flex:1 1 0;padding:0 28px 0 12px;background-position:right 9px center;background-size:14px 14px}
+  body.home .time-row select.tp-ampm{flex-grow:1.55}
+  .place-field{position:relative}
+  .place-field .pin{position:absolute;left:14px;top:16px;z-index:1;pointer-events:none}
+  body.home .place-field input[type="text"]{padding-left:42px}
+
+  /* finder result */
+  .finder-slot{display:flex;flex-direction:column;gap:8px}
+  .found-row{display:flex;align-items:center;gap:12px;padding:8px 8px 8px 14px;background:#EEF3E2;border:1px solid #C9D8A8;border-radius:12px}
+  .found-row > svg{flex:none}
+  .found-text{flex:1 1 auto;min-width:0;display:flex;flex-direction:column}
+  .found-text strong{font:700 1rem/1.5 var(--h-text);color:var(--h-ink)}
+  .found-text span{font:400 .875rem/1.5 var(--h-text);color:#44542A}
+  .found-change{flex:none;min-width:44px;min-height:44px;padding:0 10px;border:0;border-radius:8px;background:transparent;color:var(--h-kumkum);font:600 .875rem/1.4 var(--h-text);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+  .found-change:hover{color:var(--h-kumkum-2);background:rgba(142,19,48,.06)}
+  .found-change:focus-visible{outline:2px solid var(--h-kumkum);outline-offset:1px}
+  .calc-status{margin:0;font:500 .875rem/1.5 var(--h-text);color:var(--h-muted)}
+  .calc-status:empty{display:none}
+
+  /* main CTA — primary option A (పట్టు అంచు) */
+  .cta-block{display:flex;flex-direction:column;align-items:center;gap:12px;max-width:420px;margin:24px auto 0}
+  body.home .btn.btn-primary.match-cta{width:100%;height:62px;min-height:62px;padding:0 18px;gap:12px;border:0;border-radius:16px;background:#8E1330;color:#FFF6E5;font:400 1.375rem/1 var(--h-display);box-shadow:inset 0 0 0 3px #8E1330,inset 0 0 0 4.5px #D9B25F,0 4px 0 #5A0B1E,0 14px 28px rgba(142,19,48,.25)}
+  body.home .btn.btn-primary.match-cta:hover{background:#9C1737;transform:none;box-shadow:inset 0 0 0 3px #9C1737,inset 0 0 0 4.5px #D9B25F,0 4px 0 #5A0B1E,0 16px 30px rgba(142,19,48,.3)}
+  body.home .btn.btn.btn-primary.match-cta:active{background:#7A0F29;transform:translateY(3px);box-shadow:inset 0 0 0 3px #7A0F29,inset 0 0 0 4.5px #D9B25F,0 1px 0 #5A0B1E}
+  body.home .btn.btn.btn-primary.match-cta:focus-visible{outline:none;box-shadow:inset 0 0 0 3px #8E1330,inset 0 0 0 4.5px #D9B25F,0 0 0 3px #FFFDF8,0 0 0 6px #2A1A12,0 14px 28px rgba(142,19,48,.25)}
+  body.home .btn.btn-primary.match-cta[aria-busy="true"]{font:600 1rem/1 var(--h-text);cursor:progress;opacity:1;pointer-events:none;box-shadow:inset 0 0 0 3px #8E1330,inset 0 0 0 4.5px #D9B25F,0 4px 0 #5A0B1E,0 14px 28px rgba(142,19,48,.25)}
+  body.home .btn.btn-primary.match-cta:disabled:not([aria-busy="true"]){background:#E6DCCB;color:#5E4B3C;box-shadow:none;opacity:1;cursor:not-allowed}
+  .match-cta:disabled:not([aria-busy="true"]) svg{display:none}
+  .match-cta .cta-spin{display:none}
+  .match-cta[aria-busy="true"] .cta-spin{display:block;animation:ctaSpin .8s linear infinite}
+  .match-cta[aria-busy="true"] .cta-rings,.match-cta[aria-busy="true"] .cta-arrow{display:none}
+  @keyframes ctaSpin{to{transform:rotate(360deg)}}
+  @media (prefers-reduced-motion:reduce){.match-cta[aria-busy="true"] .cta-spin{animation-duration:2.4s}}
+  .trust-line{display:flex;align-items:center;justify-content:center;gap:6px;margin:0;font:400 .875rem/1.5 var(--h-text);color:var(--h-muted);text-align:center}
+  .trust-line svg{flex:none}
+
+  /* best matches — card-style link row */
+  .bm-link{display:flex;align-items:center;gap:12px;max-width:560px;margin:24px auto 0;padding:14px 14px 14px 16px;background:var(--h-card);border:1px solid var(--h-line);border-radius:16px;color:var(--h-ink);text-decoration:none;transition:border-color .15s,box-shadow .15s}
+  .bm-link:hover{border-color:var(--h-zari);box-shadow:0 6px 18px rgba(60,30,10,.08);color:var(--h-ink)}
+  .bm-link:hover strong{text-decoration:underline;text-underline-offset:3px}
+  .bm-link:focus-visible{outline:3px solid var(--h-kumkum);outline-offset:2px}
+  .bm-medal{flex:none;display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:#FCEBC4}
+  .bm-copy{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px}
+  .bm-copy strong{font:700 1rem/1.5 var(--h-text);color:var(--h-ink)}
+  .bm-copy span{font:400 .875rem/1.5 var(--h-text);color:var(--h-muted)}
+  .bm-link > svg{flex:none}
+
+
+  /* ---------- result view (patrika redesign) ---------- */
+  body.home #view-input{max-width:880px;margin:0 auto}
+  body.home #view-result{max-width:1040px;margin:0 auto}
+  body.home #view-result .back-btn{display:inline-flex;align-items:center;min-height:44px;margin:0 0 8px;padding:0 4px;border:0;background:none;font:600 .9375rem/1.5 var(--h-text);color:var(--h-kumkum);cursor:pointer}
+  body.home #view-result .back-btn:hover{text-decoration:underline;text-underline-offset:3px}
+  .r-grid{display:flex;flex-direction:column;gap:16px}
+  .r-col{display:contents}
+  .r-o1{order:1}.r-o2{order:2}.r-o3{order:3}.r-o4{order:4}.r-o5{order:5}.r-o6{order:6}
+  #view-result h2{font-family:var(--h-display);font-weight:400;letter-spacing:0;line-height:1.4;color:var(--h-ink)}
+
+  /* patrika hero — mirrored by makeImage() in app.js */
+  .patrika{position:relative;overflow:hidden;background:#FFFDF8;border:2px solid #E5CB8E;border-radius:18px;box-shadow:0 1px 2px rgba(60,30,10,.06),0 10px 28px rgba(60,30,10,.08)}
+  .pt-band{display:block}
+  .pt-frame{position:absolute;inset:22px 8px 8px;border:1px solid #EAD6A4;border-radius:10px;pointer-events:none}
+  .pt-frame i{position:absolute;width:26px;height:26px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cpath d='M2 24 V8 A6 6 0 0 1 8 2 H24' stroke='%23D9B25F' stroke-width='1.5' fill='none'/%3E%3Ccircle cx='8' cy='8' r='2.2' fill='%23C77A0A'/%3E%3C/svg%3E") no-repeat}
+  .pt-frame i:nth-child(1){top:3px;left:3px}
+  .pt-frame i:nth-child(2){top:3px;right:3px;transform:scaleX(-1)}
+  .pt-frame i:nth-child(3){bottom:3px;left:3px;transform:scaleY(-1)}
+  .pt-frame i:nth-child(4){bottom:3px;right:3px;transform:scale(-1,-1)}
+  .pt-body{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 20px 22px;text-align:center}
+  .pt-kalasam{display:block}
+  #view-result .pt-title{margin:0;font-size:1.625rem;color:var(--h-ink)}
+  .pt-pair{display:grid;grid-template-columns:minmax(0,1fr) 112px minmax(0,1fr);align-items:start;gap:8px;width:100%;margin-top:6px}
+  .pt-person{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
+  .pt-role{display:inline-flex;align-items:center;gap:6px;font:600 .875rem/1.5 var(--h-text);color:var(--h-muted)}
+  .pt-role i{width:9px;height:9px;border-radius:50%}
+  .pt-bride .pt-role i{background:#B3123A}.pt-groom .pt-role i{background:#3F5A16}
+  .pt-name{max-width:100%;overflow-wrap:anywhere;font:400 1.625rem/1.35 var(--h-display);color:#8E1330}
+  .pt-groom .pt-name{color:#3F5A16}
+  .pt-box{display:flex;flex-direction:column;width:100%;padding:8px 6px;border-radius:10px;font:400 .875rem/1.5 var(--h-text);color:var(--h-ink)}
+  .pt-box b{font-weight:700}
+  .pt-bride .pt-box{background:#F6DCE2;border:1px solid #EBC3CD}
+  .pt-groom .pt-box{background:#E3EBD2;border:1px solid #C9D8A8}
+  .pt-seal{position:relative;width:112px;height:112px;margin-top:10px}
+  .pt-seal svg{display:block}
+  .pt-seal-txt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#FFF6E5}
+  .pt-seal-txt strong{font:400 2.75rem/1 var(--h-display);color:#FFF6E5}
+  .pt-seal-txt strong.is-dec{font-size:2.1rem}
+  .pt-of{font:800 .8125rem/1.3 "Plus Jakarta Sans",sans-serif;color:#F3D98E}
+  .pt-gun{font:600 .875rem/1.35 var(--h-text);color:#FFF6E5}
+  .pt-verdict{display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:4px}
+  .pt-tier{margin:0;font:400 1.625rem/1.4 var(--h-display)}
+  .pt-sub{margin:0;font:500 .9375rem/1.5 var(--h-text);color:var(--h-muted)}
+  .pt-chips{margin:4px 0 0}
+  .pt-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:#EEF3E2;border:1px solid #C9D8A8;font:600 .875rem/1.5 var(--h-text);color:#2F4A10}
+  .pt-chip.is-nadi{background:#FCEBC4;border-color:#E9C77A;color:#6B3A00}
+  .pt-parihara{margin:2px 0 0;max-width:34rem;font:500 .875rem/1.5 var(--h-text);color:#3F5A16}
+  .pt-parihara ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:2px}
+  .pt-ph-total{margin:4px 0 0;font-weight:700}
+  .pt-shanti{margin:2px 0 0;max-width:34rem;font:500 .875rem/1.5 var(--h-text);color:var(--h-ink)}
+  .pt-shanti span{white-space:nowrap}
+  .pt-shanti small{display:block;font:500 .875rem/1.5 var(--h-text);color:var(--h-muted)}
+  .pt-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;width:100%;margin-top:8px}
+  .pt-tile{display:flex;flex-direction:column;gap:2px;padding:8px 10px;background:#FFFDF8;border:1.5px solid #EFE4CF;border-radius:12px;text-align:left}
+  .pt-tile-top{display:flex;align-items:baseline;justify-content:space-between;gap:6px}
+  .pt-tile-top b{font:700 .9375rem/1.5 var(--h-text);color:var(--h-ink)}
+  .pt-tile-top span{font:800 1rem/1.3 "Plus Jakarta Sans",sans-serif}
+  .pt-dots{display:flex;flex-wrap:wrap;gap:3px}
+  .pt-dots i{width:8px;height:8px;border-radius:50%;border:1.3px solid #A8977A}
+  .pt-dots i.on{border-color:transparent}
+  .pt-tile-ph{font:600 .875rem/1.5 var(--h-text);color:#4D6B1F}
+  .pt-foot{margin:6px 0 0;font:500 .875rem/1.5 var(--h-text);color:var(--h-muted)}
+  .k-ok{margin-right:6px;font-weight:800}
+  .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  /* calm inline messages (no alert(), no red) */
+  .form-msg{margin:0;padding:10px 14px;background:#FFFDF8;border:1px solid #E5CB8E;border-left:4px solid #8E1330;border-radius:10px;font:500 .9375rem/1.6 var(--h-text);color:#8E1330;text-align:left}
+  #url-msg{max-width:560px;margin:0 auto 16px}
+  #match-msg{width:100%}
+
+  /* share */
+  .r-share{display:flex;flex-direction:column;gap:10px}
+  .r-share-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .r-share-row .btn{flex-direction:column;gap:4px;min-height:68px;padding:8px 4px;font:600 .875rem/1.35 var(--h-text);white-space:normal;text-align:center}
+  .r-msg{display:flex;flex-direction:column;gap:8px;padding:12px 14px;background:var(--h-card);border:1px solid var(--h-line);border-radius:14px}
+  .r-msg-h{font:600 .875rem/1.5 var(--h-text);color:var(--h-muted)}
+  .r-bubble{display:flex;flex-direction:column;margin:0;padding:10px 12px;background:#E4F4D4;border-radius:4px 12px 12px 12px;font:400 .9375rem/1.5 var(--h-text);color:var(--h-ink)}
+  .r-link{overflow-wrap:anywhere;color:#1F5E8C}
+  .r-check{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+  .r-check input,.r-steps input{flex:none;width:20px;height:20px;margin:2px 0 0;accent-color:#8E1330}
+  .r-check > span,.r-steps label > span{display:flex;flex-direction:column;font:400 .875rem/1.5 var(--h-text);color:var(--h-muted)}
+  .r-check b,.r-steps b{font-weight:700;font-size:.9375rem;color:var(--h-ink)}
+
+  /* section cards */
+  .r-card{padding:18px;background:var(--h-card);border:1px solid var(--h-line);border-radius:18px;box-shadow:0 1px 2px rgba(60,30,10,.06),0 8px 24px rgba(60,30,10,.06)}
+  #view-result .r-card h2{margin:0 0 4px;font-size:1.375rem}
+  .r-lead{margin:0 0 12px;font:400 .9375rem/1.5 var(--h-text);color:var(--h-muted)}
+  .r-glance{margin:6px 0 0;font:400 1rem/1.6 var(--h-text);color:var(--h-ink)}
+  .r-nadi{margin-top:12px;padding:12px 14px;background:#FCEBC4;border:1px solid #E9C77A;border-radius:12px;font:400 .9375rem/1.6 var(--h-text);color:#4A2A00}
+  .r-nadi b{color:#6B3A00}
+  .r-nadi p{margin:4px 0 0}
+  .r-nadi a,.k-why a{color:#8E1330;font-weight:600}
+  .r-legend{display:flex;gap:16px;margin:4px 0 8px;font:500 .875rem/1.5 var(--h-text);color:var(--h-muted)}
+  .r-legend > span{display:inline-flex;align-items:center;gap:6px}
+  .r-legend i{width:9px;height:9px;border-radius:50%}
+  .lg-g i{background:#B3123A}.lg-b i{background:#3F5A16}
+  .k-row{padding:12px 0;border-top:1px solid var(--h-rule)}
+  .k-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+  .k-head b{font:700 1rem/1.5 var(--h-text);color:var(--h-ink)}
+  .k-head .k-tag{display:block;font:400 .875rem/1.5 var(--h-text);color:var(--h-muted)}
+  .k-score{flex:none;font:800 1.0625rem/1.3 "Plus Jakarta Sans",sans-serif}
+  .k-bar{height:6px;margin:8px 0;border-radius:3px;background:#F1E8D6;overflow:hidden}
+  .k-bar span{display:block;height:100%;border-radius:3px}
+  .k-labels{display:flex;flex-wrap:wrap;gap:4px 16px;font:400 .875rem/1.5 var(--h-text);color:var(--h-ink)}
+  .k-labels span{display:inline-flex;align-items:center;gap:6px}
+  .k-labels i{width:8px;height:8px;border-radius:50%}
+  .k-status{margin:4px 0 0;font:600 .875rem/1.5 var(--h-text)}
+  .k-parihara{margin:2px 0 0;font:600 .875rem/1.5 var(--h-text);color:#4D6B1F}
+  .r-nadi.is-parihara{background:#EEF3E2;border-color:#C9D8A8;color:#2A1A12}
+  .r-nadi.is-parihara b{color:#2F4A10}
+  .k-why{margin-top:6px}
+  .k-why summary{display:inline-flex;align-items:center;min-height:44px;font:600 .9375rem/1.5 var(--h-text);color:#8E1330;cursor:pointer}
+  .k-why-body{padding:10px 12px;background:var(--h-soft);border-radius:10px;font:400 .9375rem/1.6 var(--h-text);color:var(--h-ink)}
+  .k-why-body p{margin:0 0 6px}.k-why-body p:last-child{margin:0}
+  .k-why-body b{color:var(--h-muted)}
+  #advanced-btn{min-height:52px;margin-top:8px}
+  .r-steps{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-direction:column;gap:12px}
+  .r-steps label{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+  .r-scope{display:grid;gap:8px;padding:12px 14px;background:var(--h-soft);border-radius:12px}
+  .r-scope p{display:flex;flex-direction:column;margin:0;font:400 .875rem/1.5 var(--h-text);color:var(--h-muted)}
+  .r-scope b{font-size:.9375rem;color:var(--h-ink)}
+  .r-tabs{display:flex;gap:4px;padding:4px;margin-bottom:10px;background:#F3E9D6;border-radius:12px}
+  .r-tabs button{flex:1 1 0;min-width:0;min-height:44px;padding:4px 6px;border:0;border-radius:9px;background:transparent;color:var(--h-muted);font:600 .9375rem/1.35 var(--h-text);cursor:pointer;overflow-wrap:anywhere}
+  .r-tabs button[aria-selected="true"]{background:#fff;color:#8E1330;box-shadow:0 1px 3px rgba(60,30,10,.16)}
+  .r-alt-list{list-style:none;margin:0 0 12px;padding:0}
+  .r-alt-list li + li{border-top:1px solid var(--h-rule)}
+  .r-alt-list a{display:flex;align-items:center;gap:12px;min-height:56px;padding:8px 4px;color:var(--h-ink);text-decoration:none}
+  .r-alt-list a:hover .alt-main{text-decoration:underline;text-underline-offset:3px}
+  .alt-rank{flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#FCEBC4;font:800 .875rem/1 "Plus Jakarta Sans",sans-serif;color:#6B3A00}
+  .alt-text{flex:1 1 auto;min-width:0;display:flex;flex-direction:column}
+  .alt-main{font:700 .9375rem/1.5 var(--h-text)}
+  .alt-sub{font:400 .875rem/1.5 var(--h-text);color:var(--h-muted)}
+  .alt-score{flex:none;display:flex;flex-direction:column;align-items:flex-end;text-align:right}
+  .alt-score b{font:800 1rem/1.3 "Plus Jakarta Sans",sans-serif}
+  .alt-score span{font:500 .875rem/1.5 var(--h-text)}
+  .r-bottom{display:flex;flex-direction:column;align-items:center;gap:10px;max-width:640px;margin:20px auto 0;text-align:center}
+  .r-bottom-btns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;width:100%}
+  .r-bottom-btns .btn{min-height:52px;white-space:normal}
+
+  /* ---------- widths ---------- */
+  @media (min-width:720px){
+    .person-grid{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:20px}
+    .home-hero{margin-bottom:24px}
+    .home-hero h1{font-size:2.75rem}
+    .home-sub{font-size:1rem}
+  }
+  @media (min-width:1000px){
+    body.home .wrap{max-width:1072px}
+    .r-grid{display:grid;grid-template-columns:420px minmax(0,1fr);align-items:start;gap:20px}
+    .r-col{display:flex;flex-direction:column;gap:16px;min-width:0}
+    /* left column (patrika + share) stays in view while the koota list scrolls */
+    .r-col:first-child{position:sticky;top:16px}
+    /* the koota rows sit right beside the hero on desktop, so the 8 tiles would only repeat them */
+    .pt-tiles{display:none}
+    /* compact koota rows: name | bar | score on one line, values under the bar, "ఎందుకు?" at the right */
+    .k-row{position:relative;display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr) auto;grid-template-areas:"nm bar sc" "nm lb lb" "nm st st";column-gap:16px;row-gap:2px;align-items:center;padding:10px 92px 10px 0}
+    .k-head{display:contents}
+    .k-head > span:first-child{grid-area:nm;align-self:start}
+    .k-score{grid-area:sc;justify-self:end}
+    .k-bar{grid-area:bar;margin:0}
+    .k-labels{grid-area:lb}
+    .k-status,.k-parihara{grid-area:st;margin:0}
+    .k-why{grid-column:1/-1;margin:0}
+    .k-why summary{position:absolute;top:6px;right:0}
+    .k-why[open] .k-why-body{margin-top:8px}
+  }
+  /* sticky only when the left column fits the screen; shorter screens scroll normally */
+  @media (min-width:1000px) and (max-height:860px){.r-col:first-child{position:static}}
+  /* footer "Sitemap" link: 44px tap height without moving the line */
+  .site-footer-note a{display:inline-block;padding:13px 4px;margin:-13px 0}
+  @media (max-width:400px){
+    .pt-body{padding:16px 14px 20px}
+    .pt-pair{grid-template-columns:minmax(0,1fr) 96px minmax(0,1fr);gap:4px}
+    .pt-seal{width:96px;height:96px;margin-top:14px}
+    .pt-seal svg{width:96px;height:96px}
+    .pt-seal-txt strong{font-size:2.25rem}
+    .pt-seal-txt strong.is-dec{font-size:1.75rem}
+    .pt-name{font-size:1.375rem}
+    .pt-box{padding:6px 4px}
+  }
+  @media print{
+    .site-header,.site-footer,#back-btn,.r-share,.r-o6,.r-bottom,.k-why summary,#advanced-btn,.r-steps input{display:none!important}
+    .k-why-body{display:block}
+    body.home{background:#fff}
+    .r-grid{display:block}.r-col{display:block;position:static}
+    .patrika{break-inside:avoid;box-shadow:none;margin-bottom:12px}
+    .r-card{box-shadow:none;margin-bottom:12px}
+    .k-row,.r-steps li,.r-scope{break-inside:avoid}
+    #view-result h2{break-after:avoid}
+  }
+  @media (max-width:370px){
+    .pcard-body{padding:16px 14px 16px}
+    body.home .time-row{gap:6px}
+    body.home .time-row select{padding:0 24px 0 10px;background-position:right 7px center}
+  }
+  .home .site-header{justify-content:center}
   </style>
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"></noscript>
 </head>
-<body>
-<div id="app-loader" aria-live="polite" aria-label="లోడ్ అవుతోంది"><div class="loader-om">🕉</div><div style="font:700 .82rem 'Noto Sans Telugu',sans-serif;color:#9f1239">Match My Jathakam</div><div style="font:500 .72rem sans-serif;color:#6b7280">36 గుణాల పొంతన</div><div class="loader-bar"><span></span></div></div>
-<script>addEventListener('DOMContentLoaded',function(){var l=document.getElementById('app-loader');var hide=function(){if(!l)return;l.classList.add('hide');setTimeout(function(){if(l&&l.parentNode)l.parentNode.removeChild(l)},400)};var t=setTimeout(hide,2800);var iv=setInterval(function(){if(window.db){clearInterval(iv);clearTimeout(t);setTimeout(hide,250)}},120);});</script>
-<div class="blob blob-a"></div>
-<div class="blob blob-b"></div>
-
+<body class="home">
+<header class="site-header">
+  <a class="site-brand" href="/" aria-label="Match My Jathakam — హోమ్">
+    <img src="/favicon.svg?v=2" width="28" height="28" alt="">
+    <span>Match My Jathakam</span>
+  </a>
+</header>
 <main class="wrap">
   <div id="view-input" class="view active">
-    <div class="steps"><span class="on"></span><span></span></div>
+    <p id="url-msg" class="form-msg" role="status" hidden>ఈ లింక్ సరిగా లేదు — కింద మళ్లీ ఎంచుకోండి.</p>
+    <section class="home-hero">
+      <p class="invocation"><span class="hair" aria-hidden="true"></span><span>శ్రీరస్తు · శుభమస్తు · అవిఘ్నమస్తు</span><span class="hair" aria-hidden="true"></span></p>
+      <h1>వివాహ <span>పొంతన</span></h1>
+      <p class="home-sub">వధువు, వరుడి రాశి-నక్షత్రాలతో 36 గుణాల పొంతన — క్షణాల్లో ఫలితం.</p>
+    </section>
 
-    <header>
-      <span class="badge">✦ 36 గుణాల పొంతన</span>
-      <h1>వివాహ <span class="grad">మ్యాచింగ్</span></h1>
-      <p class="tag">వధువు &amp; వరుడి జాతక సరిపోలిక — క్షణంలో ఫలితం</p>
-    </header>
-
-  <div class="quick-links">
-    <a href="/nakshatras.html" class="qbox qbox-nak">
-      <span class="qico"><img src="vendor/twemoji/sparkle.svg" alt=""></span>
-      <div><strong>నక్షత్రాలు</strong><span>27 నక్షత్రాలు</span></div>
-      <span class="qarrow">→</span>
-    </a>
-    <a href="/rasi.html" class="qbox qbox-rasi">
-      <span class="qico"><img src="vendor/twemoji/om.svg" alt=""></span>
-      <div><strong>రాశులు</strong><span>12 రాశులు</span></div>
-      <span class="qarrow">→</span>
-    </a>
-    <a href="/kootas.html" class="qbox qbox-kootam">
-      <span class="qico"><img src="vendor/twemoji/marigold.svg" alt=""></span>
-      <div><strong>8 కూటములు</strong><span>ఏమి చూస్తుంది?</span></div>
-      <span class="qarrow">→</span>
-    </a>
-    <a href="/gunalu.html" class="qbox qbox-gunalu">
-      <span class="qico"><img src="vendor/twemoji/diya.svg" alt=""></span>
-      <div><strong>36 గుణాలు</strong><span>ఎన్ని మంచిది?</span></div>
-      <span class="qarrow">→</span>
-    </a>
-    <a href="/nadi-dosha.html" class="qbox qbox-nadi">
-      <span class="qico"><img src="vendor/twemoji/hibiscus.svg" alt=""></span>
-      <div><strong>నాడి దోషం</strong><span>పరిహారాలు</span></div>
-      <span class="qarrow">→</span>
-    </a>
-  </div>
-  <section class="card form-card">
-    <p style="text-align:center;font-size:.84rem;color:#92400e;background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:8px 10px;margin-bottom:12px">✦ <strong>రాశి-నక్షత్రం</strong> లేదా <strong>పుట్టిన తేదీ/సమయం/ప్రదేశం</strong> — ఏదో ఒకటి ఇస్తే చాలు, ఫలితం వస్తుంది</p>
-    <div class="grid">
-      <div class="person bride">
-        <h3><span class="dot"></span>వధువు <span class="en">BRIDE</span></h3>
-        <label>పేరు</label>
-        <input type="text" id="girl-name" placeholder="ఐచ్ఛికం" maxlength="40">
-        <label>పుట్టిన తేదీ / సమయం <span style="font-weight:400;color:#9ca3af">(తెలిస్తే)</span></label>
-        <div class="dob-row">
-          <input type="date" id="girl-date" aria-label="వధువు పుట్టిన తేదీ">
-          <div class="time-picker" id="girl-time-group" aria-label="వధువు పుట్టిన సమయం">
-            <select id="girl-hour" class="tp-hour" aria-label="గంట"><option value="" disabled selected>HH</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
-            <span class="tp-sep">:</span>
-            <select id="girl-min" class="tp-min" aria-label="నిమిషం"><option value="" disabled selected>MM</option><option value="00">00</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option></select>
-            <select id="girl-ampm" class="tp-ampm" aria-label="AM PM"><option value="AM">AM</option><option value="PM">PM</option></select>
+    <div class="person-grid">
+      <section class="pcard pcard-bride" data-person="girl" data-mode="known" aria-labelledby="girl-title">
+        <svg class="pcard-band" width="100%" height="14" aria-hidden="true" focusable="false"><defs><pattern id="band-bride" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#8E1330"/><path d="M0 14 L7 7 L14 14 Z" fill="#D9B25F"/><rect y="3" width="14" height="1.2" fill="#D9B25F"/></pattern></defs><rect width="100%" height="14" fill="url(#band-bride)"/></svg>
+        <div class="pcard-body">
+          <div class="pcard-title"><span class="pdot" aria-hidden="true"></span><h2 id="girl-title">వధువు</h2></div>
+          <div class="field">
+            <label for="girl-name">పేరు <span class="hint">(తప్పనిసరి కాదు)</span></label>
+            <input type="text" id="girl-name" placeholder="ఉదా: సీత" maxlength="40" autocomplete="off">
+          </div>
+          <div class="mode-toggle" role="group" aria-label="వధువు వివరాలు ఎలా ఇస్తారు">
+            <button type="button" data-mode="known" aria-pressed="true" aria-controls="girl-known">నక్షత్రం తెలుసు</button>
+            <button type="button" data-mode="birth" aria-pressed="false" aria-controls="girl-birth">పుట్టిన వివరాలు</button>
+          </div>
+          <div class="mode-panel" id="girl-known" data-panel="known">
+            <div class="field">
+              <label for="girl-combo">రాశి - నక్షత్రం</label>
+              <select id="girl-combo"><option value="">లోడ్ అవుతోంది…</option></select>
+            </div>
+          </div>
+          <div class="mode-panel" id="girl-birth" data-panel="birth" hidden>
+            <div class="field">
+              <label for="girl-date">పుట్టిన తేదీ</label>
+              <input type="date" id="girl-date">
+            </div>
+            <div class="field">
+              <span class="flabel" id="girl-time-label">పుట్టిన సమయం</span>
+              <div class="time-row" id="girl-time-group" role="group" aria-labelledby="girl-time-label">
+                <select id="girl-hour" class="tp-hour" aria-label="గంట"><option value="" disabled selected>గం</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
+                <select id="girl-min" class="tp-min" aria-label="నిమిషం"><option value="" disabled selected>ని</option><option value="00">00</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option></select>
+                <select id="girl-ampm" class="tp-ampm" aria-label="ఉదయం లేదా సాయంత్రం"><option value="AM">ఉదయం</option><option value="PM">సాయంత్రం</option></select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="girl-place">పుట్టిన ఊరు <span class="hint">(తప్పనిసరి కాదు)</span></label>
+              <div class="place-field">
+                <svg class="pin" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M9 16 C 9 16, 3.5 10.5, 3.5 7 A5.5 5.5 0 0 1 14.5 7 C 14.5 10.5, 9 16, 9 16 Z" stroke="#8E1330" stroke-width="1.6" fill="none"/><circle cx="9" cy="7" r="2" fill="#8E1330"/></svg>
+                <input type="text" id="girl-place" class="place-input" placeholder="ఉదా: గుంటూరు" autocomplete="off">
+              </div>
+            </div>
+            <p class="calc-status">సమయాన్ని భారత కాలమానం (IST) ప్రకారం లెక్కిస్తాం.</p>
+            <div class="finder-slot" aria-live="polite">
+              <button type="button" class="calc-btn btn btn-secondary btn-block" data-for="girl"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M12.5 3.2 A7 7 0 1 0 16.8 14.6 A5.6 5.6 0 1 1 12.5 3.2 Z" fill="#C77A0A"/><path d="M16 1.5 L16.9 3.6 L19 4.5 L16.9 5.4 L16 7.5 L15.1 5.4 L13 4.5 L15.1 3.6 Z" fill="#8E1330"/></svg><span class="calc-label">రాశి-నక్షత్రం కనుగొనండి</span></button>
+              <div class="found-row" id="girl-found" hidden>
+                <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11" fill="#3F6212"/><path d="M7 12.5 L10.5 16 L17 8.5" stroke="#FFFFFF" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="found-text"><strong id="girl-found-main"></strong><span id="girl-found-sub"></span></div>
+                <button type="button" class="found-change" data-for="girl" aria-label="వధువు రాశి-నక్షత్రం మార్చు">మార్చు</button>
+              </div>
+              <p id="girl-calc-status" class="calc-status"></p>
+            </div>
           </div>
         </div>
-        <label>ప్రదేశం</label>
-        <input type="text" id="girl-place" class="place-input" placeholder="ఉదా: Guntur" autocomplete="off">
-        <button type="button" class="calc-btn" data-for="girl">రాశి కనుగొనండి ✨</button>
-        <div id="girl-calc-status" class="calc-status"></div>
-        <div class="or-divider">OR</div>
-        <label>రాశి - నక్షత్రము</label>
-        <select id="girl-combo"></select>
-      </div>
-      <div class="person groom">
-        <h3><span class="dot"></span>వరుడు <span class="en">GROOM</span></h3>
-        <label>పేరు</label>
-        <input type="text" id="boy-name" placeholder="ఐచ్ఛికం" maxlength="40">
-        <label>పుట్టిన తేదీ / సమయం <span style="font-weight:400;color:#9ca3af">(తెలిస్తే)</span></label>
-        <div class="dob-row">
-          <input type="date" id="boy-date" aria-label="వరుడు పుట్టిన తేదీ">
-          <div class="time-picker" id="boy-time-group" aria-label="వరుడు పుట్టిన సమయం">
-            <select id="boy-hour" class="tp-hour" aria-label="గంట"><option value="" disabled selected>HH</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
-            <span class="tp-sep">:</span>
-            <select id="boy-min" class="tp-min" aria-label="నిమిషం"><option value="" disabled selected>MM</option><option value="00">00</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option></select>
-            <select id="boy-ampm" class="tp-ampm" aria-label="AM PM"><option value="AM">AM</option><option value="PM">PM</option></select>
+      </section>
+      <section class="pcard pcard-groom" data-person="boy" data-mode="known" aria-labelledby="boy-title">
+        <svg class="pcard-band" width="100%" height="14" aria-hidden="true" focusable="false"><defs><pattern id="band-groom" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#3F5A16"/><path d="M0 14 L7 7 L14 14 Z" fill="#D9B25F"/><rect y="3" width="14" height="1.2" fill="#D9B25F"/></pattern></defs><rect width="100%" height="14" fill="url(#band-groom)"/></svg>
+        <div class="pcard-body">
+          <div class="pcard-title"><span class="pdot" aria-hidden="true"></span><h2 id="boy-title">వరుడు</h2></div>
+          <div class="field">
+            <label for="boy-name">పేరు <span class="hint">(తప్పనిసరి కాదు)</span></label>
+            <input type="text" id="boy-name" placeholder="ఉదా: రామ్" maxlength="40" autocomplete="off">
+          </div>
+          <div class="mode-toggle" role="group" aria-label="వరుడి వివరాలు ఎలా ఇస్తారు">
+            <button type="button" data-mode="known" aria-pressed="true" aria-controls="boy-known">నక్షత్రం తెలుసు</button>
+            <button type="button" data-mode="birth" aria-pressed="false" aria-controls="boy-birth">పుట్టిన వివరాలు</button>
+          </div>
+          <div class="mode-panel" id="boy-known" data-panel="known">
+            <div class="field">
+              <label for="boy-combo">రాశి - నక్షత్రం</label>
+              <select id="boy-combo"><option value="">లోడ్ అవుతోంది…</option></select>
+            </div>
+          </div>
+          <div class="mode-panel" id="boy-birth" data-panel="birth" hidden>
+            <div class="field">
+              <label for="boy-date">పుట్టిన తేదీ</label>
+              <input type="date" id="boy-date">
+            </div>
+            <div class="field">
+              <span class="flabel" id="boy-time-label">పుట్టిన సమయం</span>
+              <div class="time-row" id="boy-time-group" role="group" aria-labelledby="boy-time-label">
+                <select id="boy-hour" class="tp-hour" aria-label="గంట"><option value="" disabled selected>గం</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
+                <select id="boy-min" class="tp-min" aria-label="నిమిషం"><option value="" disabled selected>ని</option><option value="00">00</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option></select>
+                <select id="boy-ampm" class="tp-ampm" aria-label="ఉదయం లేదా సాయంత్రం"><option value="AM">ఉదయం</option><option value="PM">సాయంత్రం</option></select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="boy-place">పుట్టిన ఊరు <span class="hint">(తప్పనిసరి కాదు)</span></label>
+              <div class="place-field">
+                <svg class="pin" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M9 16 C 9 16, 3.5 10.5, 3.5 7 A5.5 5.5 0 0 1 14.5 7 C 14.5 10.5, 9 16, 9 16 Z" stroke="#8E1330" stroke-width="1.6" fill="none"/><circle cx="9" cy="7" r="2" fill="#8E1330"/></svg>
+                <input type="text" id="boy-place" class="place-input" placeholder="ఉదా: కరీంనగర్" autocomplete="off">
+              </div>
+            </div>
+            <p class="calc-status">సమయాన్ని భారత కాలమానం (IST) ప్రకారం లెక్కిస్తాం.</p>
+            <div class="finder-slot" aria-live="polite">
+              <button type="button" class="calc-btn btn btn-secondary btn-block" data-for="boy"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M12.5 3.2 A7 7 0 1 0 16.8 14.6 A5.6 5.6 0 1 1 12.5 3.2 Z" fill="#C77A0A"/><path d="M16 1.5 L16.9 3.6 L19 4.5 L16.9 5.4 L16 7.5 L15.1 5.4 L13 4.5 L15.1 3.6 Z" fill="#8E1330"/></svg><span class="calc-label">రాశి-నక్షత్రం కనుగొనండి</span></button>
+              <div class="found-row" id="boy-found" hidden>
+                <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11" fill="#3F6212"/><path d="M7 12.5 L10.5 16 L17 8.5" stroke="#FFFFFF" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="found-text"><strong id="boy-found-main"></strong><span id="boy-found-sub"></span></div>
+                <button type="button" class="found-change" data-for="boy" aria-label="వరుడి రాశి-నక్షత్రం మార్చు">మార్చు</button>
+              </div>
+              <p id="boy-calc-status" class="calc-status"></p>
+            </div>
           </div>
         </div>
-        <label>ప్రదేశం</label>
-        <input type="text" id="boy-place" class="place-input" placeholder="ఉదా: Karimnagar" autocomplete="off">
-        <button type="button" class="calc-btn" data-for="boy">రాశి కనుగొనండి ✨</button>
-        <div id="boy-calc-status" class="calc-status"></div>
-        <div class="or-divider">OR</div>
-        <label>రాశి - నక్షత్రము</label>
-        <select id="boy-combo"></select>
-      </div>
+      </section>
     </div>
 
-    <button id="match-btn" class="primary">పొంతన చూడండి →</button>
-  </section>
+    <div class="cta-block">
+      <button id="match-btn" type="button" class="btn btn-primary btn-block match-cta">
+        <svg class="cta-rings" width="30" height="24" viewBox="0 0 30 24" aria-hidden="true" focusable="false"><circle cx="11" cy="14" r="7" stroke="#E7C170" stroke-width="2.2" fill="none"/><circle cx="19" cy="14" r="7" stroke="#E7C170" stroke-width="2.2" fill="none"/><path d="M19 2.5 L21.3 4.8 L19 7.1 L16.7 4.8 Z" fill="#E7C170"/></svg>
+        <svg class="cta-spin" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="7.5" stroke="#E7C170" stroke-opacity="0.35" stroke-width="2.5" fill="none"/><path d="M10 2.5 A7.5 7.5 0 0 1 17.5 10" stroke="#E7C170" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+        <span class="cta-label">పొంతన చూడండి</span>
+        <svg class="cta-arrow" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><circle cx="14" cy="14" r="13" fill="#D9B25F"/><path d="M9 14 H19 M15 9.5 L19.5 14 L15 18.5" stroke="#6B0F24" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <p id="match-msg" class="form-msg" role="alert" hidden></p>
+      <p class="trust-line"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="3" y="7" width="10" height="7" rx="1.5" stroke="#5E4B3C" stroke-width="1.5" fill="none"/><path d="M5.5 7 V5 A2.5 2.5 0 0 1 10.5 5 V7" stroke="#5E4B3C" stroke-width="1.5" fill="none"/></svg><span>మీ వివరాలు ఎక్కడా సేవ్ చేయబడవు</span></p>
+    </div>
 
-  <a href="/best-matches.html" class="best-match-entry" aria-label="మీ రాశికి ఉత్తమ జోడీలు చూడండి">
-    <span class="best-match-entry-icon" aria-hidden="true"><img src="vendor/twemoji/sparkle.svg" alt=""></span>
-    <span class="best-match-entry-copy">
-      <strong>మీ రాశికి ఉత్తమ జోడీలు</strong>
-      <span>మీ రాశి, నక్షత్రానికి అనుకూలమైన జోడీలను స్కోరు ఆధారంగా చూడండి</span>
-    </span>
-    <span class="best-match-entry-action">ఉత్తమ జోడీలు చూడండి <b aria-hidden="true">→</b></span>
-  </a>
+    <a href="/best-matches.html" class="bm-link">
+      <span class="bm-medal" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 22 22" focusable="false"><path d="M11 2 L13.6 7.6 L19.6 8.3 L15.1 12.4 L16.4 18.4 L11 15.3 L5.6 18.4 L6.9 12.4 L2.4 8.3 L8.4 7.6 Z" fill="#C77A0A"/></svg></span>
+      <span class="bm-copy">
+        <strong>మీ రాశికి ఉత్తమ జోడీలు</strong>
+        <span>మీ నక్షత్రానికి సరిపోయే జోడీలు, స్కోరు క్రమంలో</span>
+      </span>
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M6.5 3.5 L12 9 L6.5 14.5" stroke="#8E1330" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
   </div>
 
   <div id="view-result" class="view hidden">
-    <button id="back-btn" class="back-btn">← వివరాలకు తిరిగి వెళ్ళండి</button>
-    <div class="steps"><span class="on"></span><span class="on"></span></div>
+    <button id="back-btn" type="button" class="back-btn">← వివరాలకు తిరిగి వెళ్ళండి</button>
 
-    <section id="result" class="card result">
-    <div class="score-row">
-      <div class="ring" id="ring">
-        <div class="ring-inner">
-          <strong id="score">0/36</strong>
-        </div>
+    <div class="r-grid">
+      <div class="r-col">
+        <section id="result" class="patrika r-o1" aria-label="పొంతన పత్రం">
+          <svg class="pt-band" width="100%" height="14" aria-hidden="true" focusable="false"><defs><pattern id="ptb" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#8E1330"/><path d="M0 14 L7 7 L14 14 Z" fill="#D9B25F"/><rect y="3" width="14" height="1.2" fill="#D9B25F"/></pattern><pattern id="ptg" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#3F5A16"/><path d="M0 14 L7 7 L14 14 Z" fill="#D9B25F"/><rect y="3" width="14" height="1.2" fill="#D9B25F"/></pattern></defs><rect width="50%" height="14" fill="url(#ptb)"/><rect x="50%" width="50%" height="14" fill="url(#ptg)"/></svg>
+          <div class="pt-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <div class="pt-body">
+            <svg class="pt-kalasam" width="40" height="40" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g transform="translate(32 24)"><path transform="rotate(-64)" d="M0 0 C-4.5 -5 -5.5 -15 0 -23 C5.5 -15 4.5 -5 0 0Z" fill="#3F6212"/><path transform="rotate(64)" d="M0 0 C-4.5 -5 -5.5 -15 0 -23 C5.5 -15 4.5 -5 0 0Z" fill="#3F6212"/><path transform="rotate(-31)" d="M0 0 C-4.5 -5 -5.5 -15 0 -23 C5.5 -15 4.5 -5 0 0Z" fill="#4D6B1F"/><path transform="rotate(31)" d="M0 0 C-4.5 -5 -5.5 -15 0 -23 C5.5 -15 4.5 -5 0 0Z" fill="#4D6B1F"/></g><path d="M32 5.5 C35.5 8.5 38.5 12.5 38.5 17.5 C38.5 22 35.5 25 32 25 C28.5 25 25.5 22 25.5 17.5 C25.5 12.5 28.5 8.5 32 5.5Z" fill="#7A4A1E"/><path d="M25 26 V29 C25 32.5 12 34.5 12 44 C12 52 19 57 26 57 L23 61.5 H41 L38 57 C45 57 52 52 52 44 C52 34.5 39 32.5 39 29 V26 Z" fill="#C77A0A"/><path d="M17.5 40 C18.5 36.5 21.5 34.5 25 33.5 C21.5 36.5 20 40 20 45 C18.5 44 17.3 42 17.5 40Z" fill="#E3A63A"/><path d="M15.5 22.5 Q15.5 21 17 21 H47 Q48.5 21 48.5 22.5 L45 28 H19 Z" fill="#8E1330"/><circle cx="32" cy="43" r="3.4" fill="#8E1330"/></svg>
+            <p class="invocation"><span class="hair" aria-hidden="true"></span><span>శ్రీరస్తు · శుభమస్తు · అవిఘ్నమస్తు</span><span class="hair" aria-hidden="true"></span></p>
+            <h2 class="pt-title">వివాహ పొంతన పత్రం</h2>
+            <div class="pt-pair">
+              <div class="pt-person pt-bride">
+                <span class="pt-role"><i aria-hidden="true"></i>వధువు</span>
+                <span class="pt-name" id="pt-gname"></span>
+                <span class="pt-box"><b id="pt-grasi"></b><span id="pt-gnak"></span><span id="pt-gpada"></span></span>
+              </div>
+              <div class="pt-seal">
+                <svg width="112" height="112" viewBox="0 0 112 112" aria-hidden="true" focusable="false"><defs><radialGradient id="pt-sealg" cx="42%" cy="36%" r="70%"><stop offset="0" stop-color="#A51A3B"/><stop offset="1" stop-color="#7A0F29"/></radialGradient></defs><g fill="#D9B25F"><circle cx="105.28" cy="56.00" r="5.82"/><circle cx="104.04" cy="66.97" r="5.82"/><circle cx="100.40" cy="77.38" r="5.82"/><circle cx="94.53" cy="86.73" r="5.82"/><circle cx="86.73" cy="94.53" r="5.82"/><circle cx="77.38" cy="100.40" r="5.82"/><circle cx="66.97" cy="104.04" r="5.82"/><circle cx="56.00" cy="105.28" r="5.82"/><circle cx="45.03" cy="104.04" r="5.82"/><circle cx="34.62" cy="100.40" r="5.82"/><circle cx="25.27" cy="94.53" r="5.82"/><circle cx="17.47" cy="86.73" r="5.82"/><circle cx="11.60" cy="77.38" r="5.82"/><circle cx="7.96" cy="66.97" r="5.82"/><circle cx="6.72" cy="56.00" r="5.82"/><circle cx="7.96" cy="45.03" r="5.82"/><circle cx="11.60" cy="34.62" r="5.82"/><circle cx="17.47" cy="25.27" r="5.82"/><circle cx="25.27" cy="17.47" r="5.82"/><circle cx="34.62" cy="11.60" r="5.82"/><circle cx="45.03" cy="7.96" r="5.82"/><circle cx="56.00" cy="6.72" r="5.82"/><circle cx="66.97" cy="7.96" r="5.82"/><circle cx="77.38" cy="11.60" r="5.82"/><circle cx="86.73" cy="17.47" r="5.82"/><circle cx="94.53" cy="25.27" r="5.82"/><circle cx="100.40" cy="34.62" r="5.82"/><circle cx="104.04" cy="45.03" r="5.82"/><circle cx="56" cy="56" r="49.28"/></g><circle cx="56" cy="56" r="45.36" fill="url(#pt-sealg)"/><circle cx="56" cy="56" r="40.88" fill="none" stroke="#E7C170" stroke-width="1"/></svg>
+                <span class="pt-seal-txt"><strong id="score">0</strong><span class="pt-of">/ 36</span><span class="pt-gun">గుణాలు</span></span>
+              </div>
+              <div class="pt-person pt-groom">
+                <span class="pt-role"><i aria-hidden="true"></i>వరుడు</span>
+                <span class="pt-name" id="pt-bname"></span>
+                <span class="pt-box"><b id="pt-brasi"></b><span id="pt-bnak"></span><span id="pt-bpada"></span></span>
+              </div>
+            </div>
+            <div class="pt-verdict">
+              <p id="verdict" class="pt-tier">—</p>
+              <p id="pt-subline" class="pt-sub"></p>
+              <p class="pt-chips" hidden><span id="pt-chip" class="pt-chip"></span></p>
+              <div id="pt-parihara" class="pt-parihara" hidden></div>
+              <p id="pt-shanti" class="pt-shanti" hidden></p>
+            </div>
+            <div id="pt-tiles" class="pt-tiles"></div>
+            <p class="pt-foot">matchmyjathakam.com</p>
+          </div>
+        </section>
+
+        <section class="r-share r-o2" aria-label="పంచుకోండి">
+          <button id="wa-btn" type="button" class="btn btn-primary btn-block match-cta"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true" focusable="false"><path d="M13 3 C7.5 3 3 7 3 12 C3 14.2 3.8 16.2 5.2 17.8 L4.2 22.2 L8.8 20.6 C10.1 21.2 11.5 21.5 13 21.5 C18.5 21.5 23 17.5 23 12.2 C23 7 18.5 3 13 3 Z" stroke="#E7C170" stroke-width="2" fill="none" stroke-linejoin="round"/><path d="M9.5 9.6 C9.5 12.8 12.4 15.8 15.8 15.9 L17.2 14.4 L15.3 13.3 L14.4 14 C13.2 13.5 12.2 12.5 11.7 11.3 L12.4 10.4 L11.3 8.5 Z" fill="#E7C170"/></svg><span class="cta-label">వాట్సాప్‌లో పంపండి</span><svg class="cta-arrow" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" focusable="false"><circle cx="14" cy="14" r="13" fill="#D9B25F"/><path d="M9 14 H19 M15 9.5 L19.5 14 L15 18.5" stroke="#6B0F24" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="r-share-row">
+            <button id="download-btn" type="button" class="btn btn-secondary"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5 V14.5 M7.5 10 L12 14.5 L16.5 10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 15.5 V19 A1.5 1.5 0 0 0 5.5 20.5 H18.5 A1.5 1.5 0 0 0 20 19 V15.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg><span>చిత్రం సేవ్</span></button>
+            <button id="copy-btn" type="button" class="btn btn-secondary"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 14 A4 4 0 0 0 15.7 14 L18.5 11.2 A4 4 0 0 0 12.8 5.5 L11.6 6.7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M14 10 A4 4 0 0 0 8.3 10 L5.5 12.8 A4 4 0 0 0 11.2 18.5 L12.4 17.3" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg><span id="copy-label">లింక్ కాపీ</span></button>
+            <button id="print-btn" type="button" class="btn btn-secondary"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 9 V3.5 H17 V9 M7 17 H4.5 V10.5 A1.5 1.5 0 0 1 6 9 H18 A1.5 1.5 0 0 1 19.5 10.5 V17 H17 M7 14 H17 V20.5 H7 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg><span>ప్రింట్ / PDF</span></button>
+          </div>
+          <div class="r-msg">
+            <span class="r-msg-h">పొంతన పత్రం చిత్రంతో పాటు వెళ్లే సందేశం</span>
+            <p class="r-bubble"><b id="msg-title"></b><span id="msg-line"></span><span id="msg-link" class="r-link"></span></p>
+            <label id="msg-names-row" class="r-check"><input type="checkbox" id="msg-names" checked><span><b>లింక్‌లో పేర్లు కూడా పంపండి</b><span>పేర్లు లింక్ చివర (# తర్వాత) ఉంటాయి — మా సర్వర్‌కు చేరవు, కానీ లింక్ అందుకున్నవారికి కనిపిస్తాయి.</span></span></label>
+          </div>
+        </section>
       </div>
-      <div class="verdict">
-        <p class="verdict-label">ఫలితం</p>
-        <h2 id="verdict">—</h2>
-        <p id="pair-line" class="muted"></p>
+
+      <div class="r-col">
+        <section class="r-card r-o3" aria-labelledby="glance-h">
+          <h2 id="glance-h">ఒక్క చూపులో</h2>
+          <p id="glance-text" class="r-glance"></p>
+          <div id="nadi-box" class="r-nadi" hidden><b id="nadi-title">నాడి 0/8 — ఇద్దరిదీ ఒకే నాడి</b><p><span id="nadi-text"></span> <a href="/nadi-dosha.html">నాడి దోషం గురించి చదవండి</a></p></div>
+        </section>
+
+        <section class="r-card r-o4" aria-labelledby="kootas-h">
+          <h2 id="kootas-h">8 కూటముల వివరం</h2>
+          <p class="r-legend"><span class="lg-g"><i aria-hidden="true"></i><span id="lg-girl">వధువు</span></span><span class="lg-b"><i aria-hidden="true"></i><span id="lg-boy">వరుడు</span></span></p>
+          <div id="kootas" class="r-kootas"></div>
+          <a id="advanced-btn" class="btn btn-secondary btn-block" href="/explain.html">ప్రతి కూటమి వివరంగా చూడండి</a>
+        </section>
+
+        <section class="r-card r-o5" aria-labelledby="next-h">
+          <h2 id="next-h">తర్వాత ఏం చేయాలి?</h2>
+          <p class="r-lead">పెళ్లి మాట్లాడే ముందు ఇవి చూసుకోండి</p>
+          <ul class="r-steps">
+            <li><label><input type="checkbox"><span><b>ఇంట్లో పెద్దలతో ఈ పత్రం పంచుకోండి</b><span>నిర్ణయం కుటుంబం కలిసి తీసుకోవాలి.</span></span></label></li>
+            <li><label><input type="checkbox"><span><b>ఇద్దరి జాతక చక్రాలు జ్యోతిష్యులకు చూపించండి</b><span>పుట్టిన తేదీ, సమయం, ఊరు — మూడూ తీసుకెళ్లండి.</span></span></label></li>
+            <li><label><input type="checkbox"><span><b>జాతక చక్రంలో కుజ స్థానం, దశలు కూడా చూపించండి</b><span>ఇవి జాతక చక్రం నుంచే తెలుస్తాయి.</span></span></label></li>
+            <li><label><input type="checkbox"><span><b id="step4-h">ఈ జోడీకి ప్రత్యేకంగా అడగండి</b><span id="step4"></span></span></label></li>
+          </ul>
+          <div class="r-scope">
+            <p><b>ఈ సైట్ చూసేది</b><span>జన్మ నక్షత్రం ఆధారంగా అష్టకూట పొంతన — 8 కూటములు, 36 గుణాలు.</span></p>
+            <p><b>ఈ సైట్ చూడనివి</b><span>పూర్తి జాతక చక్రం, కుజ దోషం, దశలు, ముహూర్తం — ఇవి జ్యోతిష్యులే చూడాలి.</span></p>
+          </div>
+        </section>
+
+        <section class="r-card r-o6" aria-labelledby="alts-h">
+          <h2 id="alts-h">ఇంకా సంబంధాలు చూస్తుంటే</h2>
+          <p class="r-lead">ఈ నక్షత్రాలకు ఎక్కువ గుణాలు కలిసే జోడీలు</p>
+          <div class="r-tabs" role="tablist" aria-label="ఎవరికి జోడీలు">
+            <button type="button" role="tab" id="tab-girl" aria-controls="alts-girl" aria-selected="true"></button>
+            <button type="button" role="tab" id="tab-boy" aria-controls="alts-boy" aria-selected="false" tabindex="-1"></button>
+          </div>
+          <div id="alts-girl" role="tabpanel" aria-labelledby="tab-girl"><ol class="r-alt-list"></ol><a class="btn btn-secondary btn-block r-all" href="/best-matches.html">అన్నీ చూడండి</a></div>
+          <div id="alts-boy" role="tabpanel" aria-labelledby="tab-boy" hidden><ol class="r-alt-list"></ol><a class="btn btn-secondary btn-block r-all" href="/best-matches.html">అన్నీ చూడండి</a></div>
+        </section>
       </div>
     </div>
 
-    <div id="kootas" class="kootas"></div>
-
-    <div class="total-row">
-      <span>మొత్తం మార్కులు</span>
-      <span id="total-pts">0/36</span>
+    <div class="r-bottom">
+      <p class="trust-line"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="3" y="7" width="10" height="7" rx="1.5" stroke="#5E4B3C" stroke-width="1.5" fill="none"/><path d="M5.5 7 V5 A2.5 2.5 0 0 1 10.5 5 V7" stroke="#5E4B3C" stroke-width="1.5" fill="none"/></svg><span>మీ వివరాలు ఎక్కడా సేవ్ చేయబడవు</span></p>
+      <div class="r-bottom-btns">
+        <button id="edit-btn" type="button" class="btn btn-secondary">వివరాలు మార్చండి</button>
+        <button id="new-btn" type="button" class="btn btn-secondary">మరో జోడీ చూడండి</button>
+      </div>
     </div>
-
-    <div class="share-row">
-      <button id="share-btn" class="secondary"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> షేర్ చేయండి</button>
-      <button id="download-btn" class="secondary"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> డౌన్‌లోడ్</button>
-    </div>
-    <a id="advanced-btn" href="/explain.html" style="display:block;margin-top:12px;text-align:center;padding:14px 16px;border-radius:14px;background:linear-gradient(135deg,#9f1239,#e11d48);color:#fff;font-weight:800;text-decoration:none;box-shadow:0 8px 20px -6px rgba(225,29,72,0.45)">వివరంగా చూడండి — ఏ గుణం ఎందుకు కలిసింది? →</a>
-
-    <p class="note">గమనిక : పైన తెలిపిన విషయాలు ప్రాధమిక సమాచారం మాత్రమే. వివాహ పొంతనతోపాటు మీ దగ్గరలో ఉన్న జోతిష్యునితో జాతక చక్రములు పరిశీలించి నిర్ణయం తీసుకోవడం మంచిది.</p>
-  </section>
   </div>
-
-  <footer>
-    <p><a href="/about.html">About</a> · <a href="/how-to-match.html">How to</a> · <a href="/nakshatras.html">Nakshatras</a> · <a href="/rasi.html">Rasis</a> · <a href="/kootas.html">8 Kootas</a> · <a href="/gunalu.html">36 Gunalu</a> · <a href="/nadi-dosha.html">Nadi Dosha</a></p>
-    <p style="margin-top:6px"><a href="/privacy.html">Privacy</a> · <a href="/disclaimer.html">Disclaimer</a> · <a href="/terms.html">Terms</a> · <a href="/contact.html">Contact</a></p>
-    <p style="margin-top:8px">matchmyjathakam.com · Informational only · No data leaves your machine · Illustration by <a href="https://storyset.com" style="color:inherit">Storyset</a> · <a href="/sitemap.xml" style="color:#9ca3af">Sitemap</a></p>
-  </footer>
 </main>
+<footer class="site-footer">
+  <nav class="site-footer-links" aria-label="విషయాలు">
+    <a href="/">పొంతన</a>
+    <a href="/best-matches.html">ఉత్తమ జోడీలు</a>
+    <a href="/how-to-match.html">ఎలా చూడాలి</a>
+    <a href="/nakshatras.html">నక్షత్రాలు</a>
+    <a href="/rasi.html">రాశులు</a>
+    <a href="/kootas.html">8 కూటములు</a>
+    <a href="/gunalu.html">36 గుణాలు</a>
+    <a href="/nadi-dosha.html">నాడి దోషం</a>
+  </nav>
+  <nav class="site-footer-legal" aria-label="సైట్ సమాచారం">
+    <a href="/about.html">మా గురించి</a>
+    <a href="/contact.html">సంప్రదించండి</a>
+    <a href="/privacy.html">గోప్యత</a>
+    <a href="/disclaimer.html">నిరాకరణ</a>
+    <a href="/terms.html">నిబంధనలు</a>
+  </nav>
+  <p class="site-footer-note">matchmyjathakam.com · సమాచారం కోసం మాత్రమే · <a href="/sitemap.xml">Sitemap</a></p>
+</footer>
+<script>(function(){var q=new URLSearchParams(location.search),p=location.pathname;if(!q.has("g")||!q.has("b")||(p!=="/"&&p!=="/index.html"&&p!=="/results"))return;var i=document.getElementById("view-input"),r=document.getElementById("view-result");if(!i||!r)return;i.classList.add("hidden");i.classList.remove("active");r.classList.remove("hidden");r.classList.add("active");})();</script>
 <script async src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-<script defer src="vendor/sql-wasm.js"></script>
-<script defer src="decor.js?v=5"></script>
-<script defer src="rashi.js"></script>
-<script defer src="app.js?v=5"></script>
+<script defer src="decor.js?v=8"></script>
+<script defer src="/koota.js?v=6"></script>
+<script defer src="rashi.js?v=10"></script>
+<script defer src="app.js?v=18"></script>
 </body>
 </html>

@@ -11,70 +11,71 @@
   <!-- TODO: replace Bing token when you verify in Bing Webmaster -->
   <meta name="msvalidate.01" content="REPLACE_WITH_BING_TOKEN">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://matchmyjathakam.com/"},{"@type":"ListItem","position":2,"name":"Contact","item":"https://matchmyjathakam.com/contact.html"}]}</script>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Telugu:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Telugu:wght@400;500;600;700;800&display=swap"></noscript>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=5">
   <style>
-    /* Legal — Contact: warm ivory #fdf8ee, brand #9f1239, gold #d97706 — form placeholder variant */
-    .legal-wrap{max-width:860px;margin:0 auto;padding:56px 20px 40px;position:relative;z-index:1}
+    /* Legal — Contact: warm ivory #FBF4E6, brand #8E1330, gold #C77A0A — form placeholder variant */
+    .legal-wrap{max-width:860px;margin:0 auto;padding:24px 20px 40px;position:relative;z-index:1}
     .legal-header{text-align:center;margin-bottom:26px}
-    .legal-header h1{font-size:clamp(2.15rem,5.6vw,2.9rem);font-weight:800;line-height:1.2;letter-spacing:-.02em}
-    .legal-header h1 .grad{background:linear-gradient(92deg,#9f1239 10%,#e11d48 55%,#d97706);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-    .legal-header .tag{color:#6b7280;margin-top:11px;font-size:.98rem;font-weight:500;line-height:1.7;max-width:640px;margin-left:auto;margin-right:auto}
+    .legal-header h1{font-size:clamp(2.15rem,5.6vw,2.9rem);font-weight:800;line-height:1.35;letter-spacing:-.02em}
+    .legal-header h1 .grad{background:linear-gradient(92deg,#8E1330,#8E1330);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .legal-header .tag{color:#5E4B3C;margin-top:11px;font-size:.98rem;font-weight:500;line-height:1.7;max-width:640px;margin-left:auto;margin-right:auto}
     .doc-meta{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-top:16px}
-    .pill{display:inline-flex;align-items:center;gap:7px;font-size:.78rem;font-weight:700;padding:7px 13px;border-radius:999px;border:1px solid}
-    .pill-updated{background:#fdf8ee;border-color:#f3e8d3;color:#7c2d12}
-    .pill-info{background:#fff1f2;border-color:#fecdd3;color:#9f1239}
+    .pill{display:inline-flex;align-items:center;gap:7px;font-size:.875rem;font-weight:700;padding:7px 13px;border-radius:999px;border:1px solid}
+    .pill-updated{background:#FBF4E6;border-color:#EADFC8;color:#7c2d12}
+    .pill-info{background:#F6EEDC;border-color:#E6D2A8;color:#8E1330}
     .pill .dot{width:7px;height:7px;border-radius:50%;background:#059669;flex:none}
-    .contact-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:18px;margin-top:4px}
+    .contact-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:18px;margin-top:4px;align-items:stretch}
     @media(max-width:740px){.contact-grid{grid-template-columns:1fr}}
-    .legal-doc{background:#fff;border:1px solid #e5e7eb;border-radius:22px;padding:26px 22px;box-shadow:0 1px 2px rgba(17,24,39,.04),0 14px 36px -14px rgba(17,24,39,.10);position:relative;overflow:hidden}
-    .legal-doc::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#9f1239,#d97706);border-radius:22px 0 0 22px}
-    .info-card{background:linear-gradient(180deg,#fdf8ee 0%,#ffffff 100%);border:1px solid #f3e8d3;border-radius:18px;padding:20px 18px}
-    .info-card h3{font-size:1rem;font-weight:800;color:#7f1020;display:flex;align-items:center;gap:8px;margin-bottom:12px}
-    .info-row{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid #fdf2e0}
+    .legal-doc{background:linear-gradient(180deg,#FBF4E6 0%,#FFFDF8 100%);border:1px solid #EADFC8;border-radius:22px;padding:26px 22px 22px;box-shadow:0 1px 2px rgba(60,30,10,.04),0 14px 36px -14px rgba(60,30,10,.10);position:relative;overflow:hidden;display:flex;flex-direction:column;height:100%}
+    .legal-doc::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#8E1330,#C77A0A);border-radius:22px 0 0 22px}
+    .info-card{flex:1}
+    .info-card h3{font-size:1rem;font-weight:800;line-height:1.35;color:#6B0F24;display:flex;align-items:center;gap:8px;margin-bottom:12px}
+    .info-row{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid #EADFC8}
     .info-row:last-child{border-bottom:none}
     .info-icon{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;flex:none;font-size:16px;border:1px solid}
-    .info-row:nth-child(1) .info-icon{background:#fff1f2;border-color:#fecdd3;color:#9f1239}
+    .info-icon svg{width:17px;height:17px;display:block}
+    .info-row:nth-child(1) .info-icon{background:#F6EEDC;border-color:#E6D2A8;color:#8E1330}
     .info-row:nth-child(2) .info-icon{background:#fffbeb;border-color:#fde68a;color:#92400e}
-    .info-row:nth-child(3) .info-icon{background:#f0fdf4;border-color:#bbf7d0;color:#059669}
-    .info-row strong{font-size:.88rem;color:#111827}
-    .info-row p{font-size:.84rem;color:#6b7280;line-height:1.6;margin-top:2px}
-    .info-row a{color:#9f1239;font-weight:700;text-decoration:underline;text-underline-offset:2px;word-break:break-all}
-    .privacy-mini{margin-top:14px;background:#fff;border:1px dashed #f3e8d3;border-radius:12px;padding:12px 14px;font-size:.82rem;color:#57534e;line-height:1.7}
-    .privacy-mini strong{color:#7f1020}
-    .form-card{background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:20px 18px;position:relative;overflow:hidden}
-    .form-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#9f1239,#d97706);opacity:.9}
-    .form-card h3{font-size:.98rem;font-weight:800;color:#111827;margin-bottom:4px}
-    .form-card .sub{font-size:.82rem;color:#6b7280;line-height:1.6;margin-bottom:14px}
+    .info-row:nth-child(3) .info-icon{background:#f0fdf4;border-color:#bbf7d0;color:#047857}
+    .info-row strong{font-size:.88rem;color:#2A1A12}
+    .info-row p{font-size:.875rem;color:#5E4B3C;line-height:1.6;margin-top:2px}
+    .info-row a{color:#8E1330;font-weight:700;text-decoration:underline;text-underline-offset:2px;word-break:break-all}
+    .privacy-mini{margin-top:14px;background:#FFFDF8;border:1px dashed #EADFC8;border-radius:12px;padding:12px 14px;font-size:.875rem;color:#5E4B3C;line-height:1.7}
+    .privacy-mini strong{color:#6B0F24}
+    .legal-doc > .btn{margin-top:18px;align-self:flex-start}
+    .form-card{background:#FFFDF8;border:1px solid #EADFC8;border-radius:18px;padding:20px 18px;position:relative;overflow:hidden;height:100%;display:flex;flex-direction:column}
+    .form-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#8E1330,#C77A0A);opacity:.9}
+    .form-card h3{font-size:.98rem;font-weight:800;line-height:1.35;color:#2A1A12;margin-bottom:4px}
+    .form-card .sub{font-size:.875rem;color:#5E4B3C;line-height:1.6;margin-bottom:14px}
+    .form-card .field:last-of-type{flex:1;display:flex;flex-direction:column}
+    .form-card .field:last-of-type textarea{flex:1}
     .field{margin-bottom:12px}
-    .field label{display:block;font-size:.78rem;font-weight:700;color:#6b7280;margin-bottom:6px;letter-spacing:.01em}
-    .field input,.field textarea,.field select{width:100%;border:1.5px solid #e5e7eb;border-radius:12px;padding:11px 13px;font:500 .92rem "Plus Jakarta Sans","Noto Sans Telugu",system-ui,sans-serif;color:#6b7280;background:#f9fafb}
+    .field label{display:block;font-size:.875rem;font-weight:700;color:#5E4B3C;margin-bottom:6px;letter-spacing:.01em}
+    .field input,.field textarea,.field select{width:100%;border:1.5px solid #EADFC8;border-radius:12px;padding:11px 13px;font:500 .92rem "Plus Jakarta Sans","Noto Sans Telugu",system-ui,sans-serif;color:#2A1A12;background:#FFFDF8}
     .field textarea{resize:vertical;min-height:92px}
-    .field input:disabled,.field textarea:disabled{cursor:not-allowed;opacity:.9}
-    .form-note{background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:10px 12px;font-size:.78rem;color:#92400e;line-height:1.6;display:flex;gap:8px;align-items:flex-start;margin-bottom:14px}
-    .btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;height:48px;border:none;border-radius:14px;background:linear-gradient(135deg,#e11d48,#9f1239);color:#fff;font:700 .95rem "Plus Jakarta Sans","Noto Sans Telugu",sans-serif;cursor:pointer;box-shadow:0 8px 20px -8px rgba(159,18,57,.45);text-decoration:none;transition:transform .15s}
-    .btn-primary:hover{transform:translateY(-1px)}
-    .btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;height:44px;border:1.5px solid #e5e7eb;border-radius:14px;background:#fff;color:#111827;font:700 .88rem "Plus Jakarta Sans","Noto Sans Telugu",sans-serif;text-decoration:none;margin-top:10px}
-    .btn-secondary:hover{background:#f9fafb}
-    .ornament{display:flex;align-items:center;justify-content:center;gap:10px;margin:22px 0 0;color:#d6a27a;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700}
-    .ornament::before,.ornament::after{content:"";height:1px;flex:1;max-width:120px;background:linear-gradient(90deg,transparent,#f3d9b8,transparent)}
+    .field ::placeholder{color:#5E4B3C;opacity:.55}
   </style>
 </head>
 <body>
-<div class="blob blob-a"></div><div class="blob blob-b"></div>
+<header class="site-header">
+  <a class="site-brand" href="/" aria-label="Match My Jathakam — హోమ్">
+    <img src="/favicon.svg?v=2" width="28" height="28" alt="">
+    <span>Match My Jathakam</span>
+  </a>
+  <a class="btn btn-primary btn-sm" href="/">పొంతన చూడండి</a>
+</header>
 <main class="legal-wrap">
-  <div class="steps" aria-hidden="true"><span class="on"></span><span class="on"></span></div>
   <header class="legal-header">
-    <span class="badge">✦ మమ్మల్ని సంప్రదించండి • Contact</span>
-    <h1>Contact <span class="grad">సంప్రదించండి</span></h1>
-    <p class="tag">సలహాలు, తప్పులు, ఫీచర్ అభ్యర్థనలకు — 2–3 రోజుల్లో స్పందిస్తాము. Email ద్వారా మాత్రమే.</p>
+    <span class="badge">మమ్మల్ని సంప్రదించండి</span>
+    <h1><span class="grad">సంప్రదించండి</span></h1>
+    <p class="tag">సలహాలు, తప్పులు, ఫీచర్ అభ్యర్థనలకు — 2–3 రోజుల్లో స్పందిస్తాము. ఈమెయిల్ ద్వారా మాత్రమే.</p>
     <div class="doc-meta">
-      <span class="pill pill-updated"><span class="dot"></span> Response time: 2–3 days</span>
-      <span class="pill pill-info">✉ hello@matchmyjathakam.com</span>
+      <span class="pill pill-updated"><span class="dot"></span> స్పందన సమయం: 2–3 రోజులు</span>
     </div>
   </header>
 
@@ -82,64 +83,111 @@
     <!-- Left: info -->
     <article class="legal-doc">
       <div class="info-card">
-        <h3>◈ How to reach us</h3>
+        <h3>మమ్మల్ని ఎలా సంప్రదించాలి</h3>
         <div class="info-row">
           <div class="info-icon">✉</div>
           <div>
-            <strong>Email — preferred</strong>
-            <p><a href="mailto:hello@matchmyjathakam.com">hello@matchmyjathakam.com</a><br>For corrections, suggestions, feature requests. Telugu or English — both welcome.</p>
+            <strong>ఈమెయిల్ — ప్రాధాన్యం</strong>
+            <p><a href="mailto:hello@matchmyjathakam.com">hello@matchmyjathakam.com</a><br>సవరణలు, సూచనలు, కొత్త ఫీచర్ అభ్యర్థనలకు. తెలుగు లేదా English — ఏదైనా పరవాలేదు.</p>
           </div>
         </div>
         <div class="info-row">
           <div class="info-icon">◷</div>
           <div>
-            <strong>Response time</strong>
-            <p>2–3 రోజులు — Usually within 2–3 days. We’re a small team, thank you for your patience.</p>
+            <strong>స్పందన సమయం</strong>
+            <p>సాధారణంగా 2–3 రోజుల్లో స్పందిస్తాము. మేము చిన్న బృందం — మీ సహనానికి ధన్యవాదాలు.</p>
           </div>
         </div>
         <div class="info-row">
-          <div class="info-icon">⬢</div>
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>
+          </div>
           <div>
-            <strong>What to include</strong>
-            <p>Brief description + rasi/nakshatra pair if reporting a calculation. Screenshots help.</p>
+            <strong>ఏమి రాయాలి</strong>
+            <p>సంక్షిప్త వివరణ + లెక్క తప్పు అయితే రాశి/నక్షత్రం జత తెలియజేయండి. స్క్రీన్‌షాట్ ఉంటే సహాయపడుతుంది.</p>
           </div>
         </div>
         <div class="privacy-mini">
-          <strong>Privacy note:</strong> మీరు పంపే పేర్లు / జాతకం సర్వర్‌లో సేవ్ చేయము. Screenshot / share చేస్తేనే మీరు ఇతరులకు పంపుతారు — మేము marketing కు వాడము, అమ్మము.
+          <strong>గోప్యత గమనిక:</strong> మీరు పంపే పేర్లు / జాతకం వివరాలు మా సర్వర్‌లో సేవ్ చేయము. "పంపండి" నొక్కితే మీ ఈమెయిల్ యాప్ తెరుచుకుని అక్కడి నుంచే నేరుగా పంపబడుతుంది — మేము మీ డేటాను అమ్మము, మార్కెటింగ్‌కు వాడము.
         </div>
       </div>
-      <a href="/" class="btn-secondary">పొంతన చూడండి →</a>
+      <a href="/" class="btn btn-secondary">పొంతన చూడండి</a>
     </article>
 
-    <!-- Right: form placeholder -->
-    <article class="form-card" aria-label="Contact form placeholder">
-      <h3>Send a message</h3>
-      <p class="sub">Form is a placeholder — clicking Send opens your email app with <strong style="color:#9f1239">hello@matchmyjathakam.com</strong>.</p>
-      <div class="form-note"><span>ⓘ</span><span>We don’t store form data on a server. Your message is sent only via your email client when you click Send.</span></div>
+    <!-- Right: contact form (mailto) -->
+    <article class="form-card" aria-label="సంప్రదింపు ఫారం">
+      <h3>సందేశం పంపండి</h3>
+      <p class="sub">పంపండి నొక్కితే మీ ఈమెయిల్ యాప్ తెరుచుకుంటుంది.</p>
       <div class="field">
-        <label for="c-name">Name</label>
-        <input id="c-name" type="text" placeholder="Your name" disabled>
+        <label for="c-name">పేరు</label>
+        <input id="c-name" type="text" placeholder="మీ పేరు">
       </div>
       <div class="field">
-        <label for="c-email">Email</label>
-        <input id="c-email" type="text" placeholder="you@example.com" disabled>
+        <label for="c-email">ఈమెయిల్</label>
+        <input id="c-email" type="email" placeholder="you@example.com">
       </div>
       <div class="field">
-        <label for="c-topic">Topic</label>
-        <select id="c-topic" disabled><option>General question</option><option>Correction / bug</option><option>Feature request</option></select>
+        <label for="c-topic">విషయం</label>
+        <select id="c-topic">
+          <option>సాధారణ ప్రశ్న</option>
+          <option>లెక్కలో తప్పు</option>
+          <option>కొత్త సూచన</option>
+          <option>ఇతర</option>
+        </select>
       </div>
       <div class="field">
-        <label for="c-msg">Message</label>
-        <textarea id="c-msg" placeholder="How can we help?" disabled></textarea>
+        <label for="c-msg">సందేశం</label>
+        <textarea id="c-msg" placeholder="మీకు ఎలా సహాయం చేయగలం?"></textarea>
       </div>
-      <a class="btn-primary" href="mailto:hello@matchmyjathakam.com?subject=Match%20My%20Jathakam%20—%20Contact&body=Hi%20team%2C%0A%0A">Send via Email →</a>
-      <p style="text-align:center;margin-top:10px;font-size:.76rem;color:#9ca3af">or email directly: <a href="mailto:hello@matchmyjathakam.com" style="color:#9f1239;font-weight:700">hello@matchmyjathakam.com</a></p>
+      <a class="btn btn-primary btn-block" id="c-send" href="mailto:hello@matchmyjathakam.com?subject=Match%20My%20Jathakam%20%E2%80%94%20%E0%B0%B8%E0%B0%BE%E0%B0%A7%E0%B0%BE%E0%B0%B0%E0%B0%A3%20%E0%B0%AA%E0%B1%8D%E0%B0%B0%E0%B0%B6%E0%B1%8D%E0%B0%A8&body=" style="margin-top:auto">ఈమెయిల్ ద్వారా పంపండి →</a>
     </article>
   </div>
-
-  <div class="ornament">• శుభం •</div>
-  <p style="text-align:center;margin-top:18px"><a href="/" style="color:#9f1239;font-weight:700;text-decoration:none">← హోమ్ కి తిరిగి వెళ్ళండి</a></p>
-  <footer><p><a href="/">Home</a> · <a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a> · <a href="/disclaimer.html">Disclaimer</a> · <a href="/terms.html">Terms</a> · <a href="/contact.html">Contact</a><br>matchmyjathakam.com · Informational only · Illustration by <a href="https://storyset.com" style="color:inherit">Storyset</a></p></footer>
 </main>
+<footer class="site-footer">
+  <nav class="site-footer-links" aria-label="విషయాలు">
+    <a href="/">పొంతన</a>
+    <a href="/best-matches.html">ఉత్తమ జోడీలు</a>
+    <a href="/how-to-match.html">ఎలా చూడాలి</a>
+    <a href="/nakshatras.html">నక్షత్రాలు</a>
+    <a href="/rasi.html">రాశులు</a>
+    <a href="/kootas.html">8 కూటములు</a>
+    <a href="/gunalu.html">36 గుణాలు</a>
+    <a href="/nadi-dosha.html">నాడి దోషం</a>
+  </nav>
+  <nav class="site-footer-legal" aria-label="సైట్ సమాచారం">
+    <a href="/about.html">మా గురించి</a>
+    <a href="/contact.html">సంప్రదించండి</a>
+    <a href="/privacy.html">గోప్యత</a>
+    <a href="/disclaimer.html">నిరాకరణ</a>
+    <a href="/terms.html">నిబంధనలు</a>
+  </nav>
+  <p class="site-footer-note">matchmyjathakam.com · సమాచారం కోసం మాత్రమే · <a href="/sitemap.xml">Sitemap</a></p>
+</footer>
+<script>
+(function(){
+  var name = document.getElementById('c-name');
+  var email = document.getElementById('c-email');
+  var topic = document.getElementById('c-topic');
+  var msg = document.getElementById('c-msg');
+  var send = document.getElementById('c-send');
+  if(!send) return;
+  function buildMailto(){
+    var topicText = topic.options[topic.selectedIndex] ? topic.options[topic.selectedIndex].text : 'సాధారణ ప్రశ్న';
+    var subject = 'Match My Jathakam — ' + topicText;
+    var lines = [];
+    if(name.value) lines.push('పేరు: ' + name.value);
+    if(email.value) lines.push('ఈమెయిల్: ' + email.value);
+    if(lines.length) lines.push('');
+    lines.push(msg.value || '');
+    var body = lines.join('\n');
+    send.setAttribute('href', 'mailto:hello@matchmyjathakam.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body));
+  }
+  [name, email, topic, msg].forEach(function(el){
+    el.addEventListener('input', buildMailto);
+    el.addEventListener('change', buildMailto);
+  });
+  buildMailto();
+})();
+</script>
 </body>
 </html>

@@ -24,43 +24,87 @@
   <!-- TODO: replace Bing token when you verify in Bing Webmaster -->
   <meta name="msvalidate.01" content="REPLACE_WITH_BING_TOKEN">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://matchmyjathakam.com/"},{"@type":"ListItem","position":2,"name":"వివరణ","item":"https://matchmyjathakam.com/explain.html"}]}</script>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Telugu:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Telugu:wght@400;500;600;700;800&display=swap"></noscript>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=5">
+  <script defer src="/koota.js?v=6"></script>
+  <style>
+    .ex-row{padding:16px 18px;border-bottom:1px solid #F1E8D6}
+    .ex-row:last-child{border-bottom:0}
+    .ex-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 12px}
+    .ex-name{font-weight:800;color:#2A1A12}
+    .ex-pts{font-weight:600;color:#5E4B3C;font-size:.875rem;font-variant-numeric:tabular-nums}
+    .ex-verdict{font-weight:800;font-size:.9375rem;white-space:nowrap}
+    .ex-verdict.good{color:#047857}.ex-verdict.neutral{color:#b45309}.ex-verdict.low{color:#7A4A1E}.ex-verdict.leaf{color:#4D6B1F}
+    .ex-about{margin-top:6px;color:#5E4B3C;font-size:.9rem;line-height:1.7}
+    .ex-effect{margin-top:6px;color:#3F2E22;font-size:.92rem;line-height:1.7}
+    .ex-detail{margin-top:6px;color:#5E4B3C;font-size:.9rem}
+    .ex-ph{margin-top:6px;color:#4D6B1F;font-size:.9rem;font-weight:600;line-height:1.7}
+    .ex-bar{margin-top:10px;height:7px;background:#F6EEDC;border-radius:99px;overflow:hidden}
+    .ex-bar div{height:100%;border-radius:99px}
+    .ex-chip{display:inline-block;vertical-align:middle;padding:2px 10px;border:1px solid #f0d19b;border-radius:999px;background:#FCEBC4;color:#6B3A00;font-size:.875rem;font-weight:800}
+    .ex-parihara{margin-top:6px;font-size:.9rem;font-weight:600;color:#4D6B1F}
+  </style>
 </head>
 <body>
-<div class="blob blob-a"></div><div class="blob blob-b"></div>
+<header class="site-header">
+  <a class="site-brand" href="/" aria-label="Match My Jathakam — హోమ్">
+    <img src="/favicon.svg?v=2" width="28" height="28" alt="">
+    <span>Match My Jathakam</span>
+  </a>
+  <a class="btn btn-primary btn-sm" href="/">పొంతన చూడండి</a>
+</header>
 <main class="wrap">
-  <button id="back-home" class="back-btn" onclick="history.back()">← వెనక్కి</button>
+  <p id="result-return" class="ex-hide-empty" style="margin:0 0 10px"><a href="/" id="result-return-link" style="color:#8E1330;font-weight:700;text-decoration:none">← ఫలితానికి తిరిగి</a></p>
   <header>
-    <span class="badge">✦ వివరణ</span>
+    <span class="badge">వివరణ</span>
     <h1>ఎందుకు <span class="grad">ఇలా వచ్చింది?</span></h1>
     <p class="tag" id="pair-tag">వధువు-వరుడి కూటముల వారీగా వివరం</p>
   </header>
 
   <section class="card" id="summary-card" style="text-align:center;padding:22px">
-    <div id="score-line" style="font-size:1.1rem;font-weight:800;color:#9f1239">లోడ్ అవుతోంది…</div>
-    <div id="verdict-line" style="margin-top:6px;color:#6b7280"></div>
+    <div id="score-line" style="font-size:1.1rem;font-weight:800;color:#8E1330">లోడ్ అవుతోంది…</div>
   </section>
 
-  <section class="card" style="margin-top:16px;padding:0;overflow:hidden">
+  <section class="card ex-hide-empty" style="margin-top:16px;padding:0;overflow:hidden">
     <div id="explain-list"></div>
   </section>
 
-  <section class="card" style="margin-top:16px;line-height:1.85;font-size:0.94rem;color:#374151">
-    <h3 style="color:#7f1020;margin-bottom:8px">మొత్తంగా ఏమి అర్థం?</h3>
+  <section class="card ex-hide-empty" style="margin-top:16px;line-height:1.85;font-size:0.94rem;color:#3F2E22">
+    <h3 style="color:#6B0F24;margin-bottom:8px">మొత్తంగా ఏమి అర్థం?</h3>
     <p id="overall-text"></p>
-    <p style="margin-top:8px"><a href="/gunalu.html" style="color:#9f1239;font-weight:700">36 గుణాల అర్థం పూర్తి గైడ్ →</a> &nbsp; <a href="/kootas.html" style="color:#9f1239;font-weight:700">8 కూటముల వివరం →</a></p>
+    <p style="margin-top:10px;display:flex;flex-wrap:wrap;gap:10px">
+      <a href="/gunalu.html" class="btn btn-secondary btn-sm">36 గుణాల అర్థం పూర్తి గైడ్</a>
+      <a href="/kootas.html" class="btn btn-secondary btn-sm">8 కూటముల వివరం</a>
+    </p>
     <p class="note" style="margin-top:14px">గమనిక: పై వివరణలు సంప్రదాయ జ్యోతిష్య అర్థాల ఆధారంగా — వ్యక్తిగత జాతక చక్రం, దశలను కూడా పరిగణించాలి.</p>
   </section>
 
-  <p style="text-align:center;margin-top:18px"><a href="/" style="color:#9f1239;font-weight:700;text-decoration:none">← మరో పొంతన చూడండి</a></p>
-  <footer><p><a href="/">Home</a> · <a href="/about.html">About</a> · <a href="/privacy.html">Privacy</a><br>matchmyjathakam.com · Informational only</p></footer>
+  <p style="text-align:center;margin-top:18px"><a href="/" id="another-match-link" class="btn btn-secondary">← మరో పొంతన చూడండి</a></p>
 </main>
-<script src="vendor/sql-wasm.js"></script>
-<script src="explain.js"></script>
+<footer class="site-footer">
+  <nav class="site-footer-links" aria-label="విషయాలు">
+    <a href="/">పొంతన</a>
+    <a href="/best-matches.html">ఉత్తమ జోడీలు</a>
+    <a href="/how-to-match.html">ఎలా చూడాలి</a>
+    <a href="/nakshatras.html">నక్షత్రాలు</a>
+    <a href="/rasi.html">రాశులు</a>
+    <a href="/kootas.html">8 కూటములు</a>
+    <a href="/gunalu.html">36 గుణాలు</a>
+    <a href="/nadi-dosha.html">నాడి దోషం</a>
+  </nav>
+  <nav class="site-footer-legal" aria-label="సైట్ సమాచారం">
+    <a href="/about.html">మా గురించి</a>
+    <a href="/contact.html">సంప్రదించండి</a>
+    <a href="/privacy.html">గోప్యత</a>
+    <a href="/disclaimer.html">నిరాకరణ</a>
+    <a href="/terms.html">నిబంధనలు</a>
+  </nav>
+  <p class="site-footer-note">matchmyjathakam.com · సమాచారం కోసం మాత్రమే · <a href="/sitemap.xml">Sitemap</a></p>
+</footer>
+<script src="explain.js?v=7" defer></script>
 </body>
 </html>
