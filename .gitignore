@@ -5,6 +5,7 @@ __pycache__/
 .venv/
 venv/
 .env
+.env.*
 
 # Wrangler / Cloudflare
 .wrangler/
@@ -29,3 +30,9 @@ AGENTS.md
 CLAUDE.md
 .claude/
 archive/
+
+# Node
+node_modules/
+
+# Databases (old DB must never come back)
+*.db
