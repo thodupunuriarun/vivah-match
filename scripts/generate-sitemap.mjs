@@ -21,22 +21,22 @@ const PAGE_META = {
   "rasi.html":         { changefreq: "monthly", priority: "0.6" },
   "about.html":        { changefreq: "monthly", priority: "0.6" },
   "nadi-dosha.html":   { changefreq: "monthly", priority: "0.6" },
-  "explain.html":      { changefreq: "monthly", priority: "0.5" },
   "privacy.html":      { changefreq: "yearly",  priority: "0.3" },
   "disclaimer.html":   { changefreq: "yearly",  priority: "0.3" },
   "terms.html":        { changefreq: "yearly",  priority: "0.3" },
   "contact.html":      { changefreq: "yearly",  priority: "0.3" },
 };
 
-// Extra URLs not backed by a HTML file (kept from current sitemap). Add here as needed.
-const EXTRA_URLS = [
-  { loc: `${BASE}/results?g=1&amp;b=2`, changefreq: "monthly", priority: "0.4" },
-];
+// Pages kept out of the sitemap (noindex).
+const EXCLUDE = new Set(["explain.html"]);
+
+// Extra URLs not backed by a HTML file. Add here as needed.
+const EXTRA_URLS = [];
 
 function buildXml() {
   const files = fs
     .readdirSync(DIST)
-    .filter((f) => f.endsWith(".html"))
+    .filter((f) => f.endsWith(".html") && !EXCLUDE.has(f))
     .sort((a, b) => {
       if (a === "index.html") return -1;
       if (b === "index.html") return 1;
@@ -49,7 +49,7 @@ function buildXml() {
 
   for (const file of files) {
     const meta = PAGE_META[file] ?? { changefreq: "monthly", priority: "0.6" };
-    const loc = file === "index.html" ? `${BASE}/` : `${BASE}/${file}`;
+    const loc = file === "index.html" ? `${BASE}/` : `${BASE}/${file.replace(/.html$/, "")}`;
     lines.push(`  <url><loc>${loc}</loc><changefreq>${meta.changefreq}</changefreq><priority>${meta.priority}</priority></url>`);
   }
   for (const extra of EXTRA_URLS) {

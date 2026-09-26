@@ -381,7 +381,7 @@ function renderKootas(d) {
     if (k.key === "nadi" && d.nadiDosha) {
       const p = el("p");
       const a = el("a", "", "నాడి దోషం గురించి చదవండి");
-      a.href = "/nadi-dosha.html";
+      a.href = "/nadi-dosha";
       p.appendChild(a);
       body.appendChild(p);
     }
@@ -392,7 +392,7 @@ function renderKootas(d) {
     row.appendChild(det);
     wrap.appendChild(row);
   });
-  $("advanced-btn").href = `/explain.html?g=${d.g}&b=${d.b}${d.gp ? `&gp=${d.gp}` : ""}${d.bp ? `&bp=${d.bp}` : ""}`;
+  $("advanced-btn").href = `/explain?g=${d.g}&b=${d.b}${d.gp ? `&gp=${d.gp}` : ""}${d.bp ? `&bp=${d.bp}` : ""}`;
 }
 
 function renderNext(d) {
@@ -435,7 +435,7 @@ function renderAlts(d) {
       li.appendChild(a);
       ol.appendChild(li);
     });
-    panel.querySelector(".r-all").href = `/best-matches.html?side=${s.side}&id=${s.id}`;
+    panel.querySelector(".r-all").href = `/best-matches?side=${s.side}&id=${s.id}`;
   });
   selectTab("girl", false);
 }

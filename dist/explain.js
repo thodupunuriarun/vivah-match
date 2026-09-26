@@ -39,7 +39,7 @@ function init(){
   }
 
   const gp = pada("gp", g), bp = pada("bp", b);
-  document.getElementById("result-return-link").setAttribute("href", `/index.html?g=${g}&b=${b}${gp ? `&gp=${gp}` : ""}${bp ? `&bp=${bp}` : ""}`);
+  document.getElementById("result-return-link").setAttribute("href", `/?g=${g}&b=${b}${gp ? `&gp=${gp}` : ""}${bp ? `&bp=${bp}` : ""}`);
 
   const girl = Koota.combo(g);
   const boy = Koota.combo(b);
