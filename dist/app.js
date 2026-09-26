@@ -21,37 +21,35 @@ const SUBLINE = {
   vgood: "చాలా కూటములు చక్కగా కలిశాయి",
   good: "సాధారణంగా అనుకూలంగా చెబుతారు",
   fair: "సర్దుబాటుతో సాధ్యం",
-  advice: "ఈ జోడీలో చాలా కూటములు అంతగా కలవలేదు — నిర్ణయానికి ముందు జ్యోతిష్యులతో వివరంగా చర్చించడం మంచిది.",
+  advice: "ఈ జోడీలో చాలా కూటములు అంతగా కలవలేదు",
 };
-// Totals/scores can be x.5: one decimal only when fractional ("34.5", "28").
+// Row scores can be x.5: one decimal only when fractional ("1.5", "28"). Totals (TTD) are integers.
 const fmt = (n) => (Number.isInteger(n) ? String(n) : n.toFixed(1));
+// Telugu dative after a list of names: "రాశికి" / "తారకు" (decided by the last name).
+const toList = (ns) => ns.join(", ") + (/ి$/.test(ns[ns.length - 1]) ? "కి" : "కు");
 // Plain explanation of each parihara for the "ఎందుకు?" box (no fear words).
 const PARIHARA_WHY = {
-  nadi: "ఇద్దరిదీ ఒకే నాడి అయినా, ఈ నక్షత్ర-రాశి పొందికలో సంప్రదాయం ఈ నియమాన్ని సడలిస్తుంది.",
-  bhakoot: "రాశుల దూరానికి 0 వచ్చినా, రాశ్యధిపతులు ఒకరే లేదా మిత్రులైతే ఆ నియమం సడలుతుందని పెద్దలు చెబుతారు.",
-  graha_maitri: "అధిపతుల మైత్రి తక్కువగా ఉన్నా, రాశికూటం అనుకూలంగా ఉన్నప్పుడు ఇది సడలుతుందని సంప్రదాయం చెబుతుంది.",
-  gana: "గణాలు వేరైనా, రాశ్యధిపతులు లేదా నవాంశ అధిపతులు ఒకరే లేదా మిత్రులైతే, లేదా వధువు నక్షత్రం కొన్ని ప్రత్యేక నక్షత్రాలలో ఉంటే ఈ నియమం సడలుతుందని సంప్రదాయం చెబుతుంది.",
+  nadi: "ఇద్దరిదీ ఒకే నాడి అయినా, ఈ నక్షత్రాలకు ఏకనాడీ దోషం లేదని తిరుమల తిరుపతి దేవస్థానం పంచాంగం చెబుతుంది.",
+  bhakoot: "రాశుల దూరానికి 0 వచ్చినా, రాశ్యధిపతులు ఒకరే లేదా మిత్రులైతే వివాహం శుభమని తిరుమల తిరుపతి దేవస్థానం పంచాంగం చెబుతుంది.",
+  gana: "రాక్షస గణ వధువుకు, మనుష్య గణ వరుడికి వివాహం చేయవచ్చని తిరుమల తిరుపతి దేవస్థానం పంచాంగం చెబుతుంది.",
 };
 const C_FULL = "#047857", C_PART = "#b45309", C_ZERO = "#7A4A1E";
 const scoreColor = (k) => (k.score === k.max ? C_FULL : k.score > 0 ? C_PART : C_ZERO);
 const statusText = (k) => (k.score > 0 ? "కొంత కలిసింది" : "ఈ కూటమికి 0 వచ్చింది · జ్యోతిష్యులతో చర్చించండి");
 // Parihara summary, only when it raises the total:
-//   items = ["నాడి 0/8 — దోష పరిహారం: <reason>", ...], total = "ఈ పరిహారాలతో: 30/36",
-//   short = "నాడి, గ్రహమైత్రి దోష పరిహారాలతో: 30/36" (one line for tight spots).
-// Commonly suggested shanti for a 0-score dosha that has no parihara.
-const SHANTI = { nadi: "మహా మృత్యుంజయ జపం", bhakoot: "నవగ్రహ శాంతి", gana: "గణ దోష శాంతి" };
-const hasShanti = (k) => SHANTI[k.key] && k.score === 0 && !k.parihara;
-const PH_NAME = { nadi: "నాడి", bhakoot: "రాశి", graha_maitri: "గ్రహమైత్రి", gana: "గణ" };
+//   items = ["నాడి 0/8 — దోష పరిహారం: <reason>", ...], total = advice to consult an astrologer,
+//   short = one line naming the doshas (tight spots). No adjusted score: only one score is shown.
+const PH_NAME = { nadi: "నాడి", bhakoot: "రాశి", gana: "గణ" };
 function pariharaInfo(d) {
-  if (!(d.totalWithParihara > d.total)) return null;
-  const ps = d.parihara.filter((p) => p.restored > 0);
-  const many = ps.length > 1, tw = `${fmt(d.totalWithParihara)}/36`;
+  const ps = d.parihara;
+  if (!ps.length) return null;
+  const many = ps.length > 1;
   const items = ps.map((p) => {
     const k = d.kootas.find((x) => x.key === p.key);
     return `${INFO[p.key].short} ${fmt(k.score)}/${k.max} — దోష పరిహారం: ${p.reason}`;
   });
-  return { items, total: `ఈ ${many ? "పరిహారాలతో" : "పరిహారంతో"}: ${tw}`,
-    short: `${ps.map((p) => PH_NAME[p.key]).join(", ")} దోష ${many ? "పరిహారాలతో" : "పరిహారంతో"}: ${tw}` };
+  return { items, total: `${many ? "పరిహారాలతో ఈ దోషాలు" : "పరిహారంతో ఈ దోషం"} తగ్గవచ్చు`,
+    short: `${ps.map((p) => PH_NAME[p.key]).join(", ")} దోష ${many ? "పరిహారాలు ఉన్నాయి" : "పరిహారం ఉంది"}` };
 }
 
 const RASIS = [];
@@ -65,33 +63,45 @@ function padaText(p) {
 }
 const comboLabel = (c) => `${c.rasi} — ${c.nakshatra}${c.padas === "1,2,3,4" ? "" : ` (${padaText(c.padas)})`}`;
 
-// "This pair" sentence for each koota (plain Telugu, no fear words).
+// "This pair" sentence for each koota: attributes only (plain Telugu, no fear words). No points rule:
+// the row scores come from koota.js ROWS and the same attribute pair can score differently.
+const VARNA_RANK = ["శూద్ర", "వైశ్య", "క్షత్రియ", "బ్రాహ్మణ"];
+const BAD_TARA = ["విపత్తార", "ప్రత్యక్తార", "నైధనతార"];
+// Traditional vaira (enemy) yoni pairs.
+const YONI_ENEMY = [["గుర్రం", "దున్న"], ["గజము", "సింహము"], ["మేక", "కోతి"], ["పాము", "ముంగీస"], ["కుక్క", "లేడి"], ["పిల్లి", "ఎలుక"], ["ఆవు", "పులి"]];
 function reason(k) {
-  const g = k.girl, b = k.boy, full = k.score === k.max, zero = k.score === 0;
+  const g = k.girl, b = k.boy;
   switch (k.key) {
-    case "varna":
-      return `వధువు ${g}, వరుడు ${b} వర్ణం. ` + (full ? "సంప్రదాయ నియమం ప్రకారం సరిపోయింది." : "వరుడి వర్ణం వధువుతో సమానం లేదా పై స్థాయిలో ఉండాలనేది నియమం; ఇక్కడ అలా లేదు.");
+    case "varna": {
+      const d = VARNA_RANK.indexOf(b) - VARNA_RANK.indexOf(g);
+      return `వధువు ${g}, వరుడు ${b} వర్ణం. ` + (d === 0 ? "ఇద్దరిదీ ఒకే వర్ణం." : d > 0 ? "వరుడి వర్ణం వధువు కంటే పై స్థాయిలో ఉంది." : "వరుడి వర్ణం వధువు కంటే కింది స్థాయిలో ఉంది.");
+    }
     case "vashya":
-      return `వధువు ${g}, వరుడు ${b} వర్గం. ` + (full ? "ఒకే వర్గం — పరస్పర వశ్యత ఉంది." : zero ? "ఈ వర్గాల మధ్య వశ్యత తక్కువగా లెక్కిస్తారు." : "వేర్వేరు వర్గాలు అయినా కొంత అనుకూలత ఉంది.");
-    case "tara":
-      return `వధువు నక్షత్రం నుంచి వరుడిది ${g}, వరుడి నుంచి వధువుది ${b}. ` + (full ? "రెండు వైపులా శుభ తారలు." : zero ? "రెండు వైపులా శుభ తార రాలేదు." : "ఒక వైపు శుభ తార వచ్చింది.");
+      return `వధువు ${g}, వరుడు ${b} వర్గం. ` + (g === b ? "ఇద్దరిదీ ఒకే వర్గం." : "ఇద్దరివీ వేర్వేరు వర్గాలు.");
+    case "tara": {
+      const n = [g, b].filter((t) => !BAD_TARA.includes(t)).length;
+      return `వధువు నక్షత్రం నుంచి వరుడిది ${g}, వరుడి నుంచి వధువుది ${b}. ` + (n === 2 ? "రెండు వైపులా శుభ తారలు." : n === 1 ? "ఒక వైపు శుభ తార వచ్చింది." : "రెండు వైపులా శుభ తార రాలేదు.");
+    }
     case "yoni":
-      return `వధువు ${g} యోని, వరుడు ${b} యోని. ` + (full ? "ఒకే యోని — పూర్తి అనుకూలత." : k.score >= 2 ? "స్నేహపూర్వక యోనులుగా చెబుతారు." : zero ? "సంప్రదాయంలో ఈ రెండు యోనులను విరోధంగా చెబుతారు." : "సాధారణ పోలిక.");
+      return `వధువు ${g} యోని, వరుడు ${b} యోని. ` + (g === b ? "ఇద్దరిదీ ఒకే యోని."
+        : YONI_ENEMY.some(([x, y]) => (x === g && y === b) || (x === b && y === g)) ? "సంప్రదాయంలో ఈ రెండు యోనులను విరోధంగా చెబుతారు." : "ఇద్దరివీ వేర్వేరు యోనులు.");
     case "graha_maitri": {
       const gl = g.replace(/\(.*\)/, ""), bl = b.replace(/\(.*\)/, "");
-      return `రాశ్యాధిపతులు: వధువుకు ${gl}, వరుడికి ${bl}. ` + (full ? "అధిపతులు మిత్రులు లేదా ఒకరే — మంచి స్నేహం." : k.score >= 3 ? "స్నేహం లేదా సమ భావం — మంచి పోలిక." : zero ? "అధిపతులను పరస్పరం శత్రువులుగా చెబుతారు." : "కొంత దూరం ఉన్న సంబంధం.");
+      if (gl === bl) return `రాశ్యాధిపతులు: వధువుకు ${gl}, వరుడికి ${bl}. ఇద్దరికీ ఒకే అధిపతి.`;
+      const rg = (g.match(/\((.*)\)/) || [])[1], rb = (b.match(/\((.*)\)/) || [])[1];
+      return `రాశ్యాధిపతులు: వధువుకు ${gl}, వరుడికి ${bl}. ${toList([gl])} ${bl} ${rg} గ్రహం; ${toList([bl])} ${gl} ${rb} గ్రహం.`;
     }
     case "gana":
-      return `వధువు ${g} గణం, వరుడు ${b} గణం. ` + (full ? "స్వభావాలు కలుస్తాయని చెబుతారు." : "సంప్రదాయంలో ఈ గణాల జోడీకి తక్కువ గుణాలు ఇస్తారు.");
+      return `వధువు ${g} గణం, వరుడు ${b} గణం. ` + (g === b ? "ఇద్దరిదీ ఒకే గణం." : "ఇద్దరివీ వేర్వేరు గణాలు.");
     case "bhakoot": {
       const gi = RASIS.indexOf(g), bi = RASIS.indexOf(b);
       const d = gi < 0 || bi < 0 ? 0 : ((bi - gi + 12) % 12) + 1;
       const name = { 2: "ద్వి-ద్వాదశం", 12: "ద్వి-ద్వాదశం", 5: "నవ-పంచమం", 9: "నవ-పంచమం", 6: "షష్టాష్టకం", 8: "షష్టాష్టకం" }[d];
       const pos = d ? ` వధువు రాశి నుంచి వరుడి రాశి ${d}వ స్థానం.` : "";
-      return `వధువు ${g}, వరుడు ${b}.${pos} ` + (full ? "ఈ దూరం శుభంగా చెబుతారు." : `దీన్ని ${name || "రాశి దోషం"} అంటారు. రాశ్యాధిపతులు మిత్రులైతే చాలామంది పెద్దలు ఇది సడలిస్తారు.`);
+      return `వధువు ${g}, వరుడు ${b}.${pos} ` + (name ? `దీన్ని ${name} అంటారు. రాశ్యాధిపతులు మిత్రులైతే చాలామంది పెద్దలు ఇది సడలిస్తారు.` : "ఈ దూరం శుభంగా చెబుతారు.");
     }
     case "nadi":
-      return `వధువు ${g} నాడి, వరుడు ${b} నాడి. ` + (full ? "వేర్వేరు నాడులు — పూర్తి గుణాలు." : "ఇద్దరిదీ ఒకే నాడి — దీన్నే నాడి దోషం అంటారు. కొన్ని సందర్భాల్లో పెద్దలు మినహాయింపు చెబుతారు.");
+      return `వధువు ${g} నాడి, వరుడు ${b} నాడి. ` + (g !== b ? "ఇద్దరివీ వేర్వేరు నాడులు." : "ఇద్దరిదీ ఒకే నాడి — దీన్నే నాడి దోషం అంటారు. కొన్ని సందర్భాల్లో పెద్దలు మినహాయింపు చెబుతారు.");
   }
   return "";
 }
@@ -228,10 +238,10 @@ async function match(skipPush) {
 
 // gp/bp: exact pada 1..4 when known (birth-details finder or URL), else undefined = whole combo.
 function computeMatch(g, b, gn, bn, gp, bp) {
-  const m = K.match(g, b, { gPada: gp, bPada: bp });
+  const m = K.match(g, b);
   const nadiParihara = m.parihara.some((p) => p.key === "nadi");
   return { g, b, gn, bn, gp, bp, girl: K.combo(g), boy: K.combo(b), kootas: m.kootas, total: m.total, nadiDosha: m.nadiDosha,
-    nadiParihara, parihara: m.parihara, totalWithParihara: m.totalWithParihara, tier: K.tier(m.total) };
+    nadiParihara, parihara: m.parihara, tier: K.tier(m.total) };
 }
 
 // ---------- render ----------
@@ -275,20 +285,14 @@ function renderHero(d) {
     pi.items.forEach((t) => ul.appendChild(el("li", "", t)));
     ph.append(ul, el("p", "pt-ph-total", pi.total));
   }
-  const sh = $("pt-shanti"), shs = d.kootas.filter(hasShanti);
-  sh.replaceChildren();
-  sh.hidden = !shs.length;
-  if (shs.length) {
-    sh.append("సూచించే శాంతి: ");
-    shs.forEach((k, i) => sh.append(i ? " · " : "", el("span", "", `${INFO[k.key].short} — ${SHANTI[k.key]}`)));
-    sh.append(el("small", "", "జ్యోతిష్యులను సంప్రదించి చేయించుకోండి"));
-  }
-  $("score").classList.toggle("is-dec", !Number.isInteger(d.total));
+  // "Consult an astrologer" is said once, here, after the parihara lines.
+  $("pt-shanti").hidden = !(pi || t.key === "advice" || d.kootas.some((k) => k.score === 0 && !k.parihara));
 
   const tiles = $("pt-tiles");
   tiles.replaceChildren();
-  d.kootas.forEach((k) => {
+  d.kootas.forEach((k, i) => {
     const tile = el("div", "pt-tile");
+    tile.style.setProperty("--i", i);
     const top = el("span", "pt-tile-top");
     const sc = el("span", "", `${fmt(k.score)}/${k.max}`);
     sc.style.color = scoreColor(k);
@@ -297,19 +301,27 @@ function renderHero(d) {
     if (k.parihara) tile.appendChild(el("span", "pt-tile-ph", "పరిహారం ఉంది"));
     tiles.appendChild(tile);
   });
+  // Replay the seal/verdict reveal (CSS in index.html) on every render.
+  const pt = $("result");
+  pt.classList.remove("is-in");
+  void pt.offsetWidth;
+  pt.classList.add("is-in");
   animateScore(d.total);
 }
 
+// Count-up in step with the seal stamp (starts 120ms in, 800ms); halves for x.5 totals, exact final text.
+let scoreRaf = 0;
 function animateScore(total) {
   const s = $("score");
+  cancelAnimationFrame(scoreRaf);
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) { s.textContent = fmt(total); return; }
-  const t0 = performance.now();
+  const t0 = performance.now() + 120, half = !Number.isInteger(total);
   const step = (ts) => {
-    const p = Math.min((ts - t0) / 900, 1);
-    s.textContent = p < 1 ? Math.round(total * (1 - Math.pow(1 - p, 3))) : fmt(total);
-    if (p < 1) requestAnimationFrame(step);
+    const p = Math.min(Math.max((ts - t0) / 800, 0), 1), v = total * (1 - Math.pow(1 - p, 3));
+    s.textContent = p < 1 ? (half ? fmt(Math.round(v * 2) / 2) : String(Math.round(v))) : fmt(total);
+    if (p < 1) scoreRaf = requestAnimationFrame(step);
   };
-  requestAnimationFrame(step);
+  scoreRaf = requestAnimationFrame(step);
 }
 
 function renderGlance(d) {
@@ -317,14 +329,14 @@ function renderGlance(d) {
   const zero = d.kootas.filter((k) => k.score === 0);
   const part = 8 - full.length - zero.length;
   let t = `8 కూటముల్లో ${full.length} పూర్తిగా${part ? `, ${part} కొంత` : ""} కలిశాయి`;
-  if (zero.length) t += `; ${zero.map((k) => INFO[k.key].short).join(", ")}కు 0 వచ్చింది`;
+  if (zero.length) t += `; ${toList(zero.map((k) => INFO[k.key].short))} 0 వచ్చింది`;
   t += ".";
   $("glance-text").textContent = t;
   $("nadi-box").hidden = !d.nadiDosha;
   $("nadi-box").classList.toggle("is-parihara", d.nadiParihara);
   $("nadi-title").textContent = d.nadiParihara ? "నాడి 0/8 — దోష పరిహారం ఉంది" : "నాడి 0/8 — ఇద్దరిదీ ఒకే నాడి";
   $("nadi-text").textContent = d.nadiParihara
-    ? `${d.kootas[7].parihara} — ఈ పొందికలో నాడి నియమం సడలుతుందని సంప్రదాయం చెబుతుంది. వర్తిస్తుందో లేదో పెద్దలు, జ్యోతిష్యులు నిర్ణయిస్తారు.`
+    ? `${d.kootas[7].parihara}. ${PARIHARA_WHY.nadi} వర్తిస్తుందో లేదో పెద్దలు, జ్యోతిష్యులు నిర్ణయిస్తారు.`
     : "ఇద్దరిదీ ఒకే నాడి అయితే సంప్రదాయంలో 0 ఇస్తారు. చాలా కుటుంబాలు దీన్ని ముఖ్యంగా చూస్తాయి — ఈ జోడీకి పరిహారాలు వర్తిస్తాయో జ్యోతిష్యులను అడగండి.";
 }
 
@@ -352,9 +364,9 @@ function renderKootas(d) {
     const bar = el("div", "k-bar");
     const fill = el("span");
     fill.style.background = c;
-    fill.style.width = "0";
+    fill.style.width = `${(k.score / k.max) * 100}%`;
+    fill.style.setProperty("--i", i); // staggered scaleX draw, CSS in index.html
     bar.appendChild(fill);
-    setTimeout(() => { fill.style.transition = "width .6s"; fill.style.width = `${(k.score / k.max) * 100}%`; }, 100 + i * 60);
 
     const labels = el("div", "k-labels");
     [["#B3123A", k.girl], ["#3F5A16", k.boy]].forEach(([col, txt]) => {
@@ -376,7 +388,6 @@ function renderKootas(d) {
     const line = (label, text) => { const p = el("p"); p.append(el("b", "", label + " "), document.createTextNode(text)); return p; };
     body.append(line("ఏం చూస్తుంది:", info.about), line("ఈ జోడీలో:", reason(k)));
     if (k.parihara) body.appendChild(line("దోష పరిహారం:", `${k.parihara}. ${PARIHARA_WHY[k.key]} వర్తిస్తుందో లేదో పెద్దలు, జ్యోతిష్యులు నిర్ణయిస్తారు.`));
-    if (hasShanti(k)) body.appendChild(line("సూచించే శాంతి:", `${SHANTI[k.key]} — జ్యోతిష్యులను సంప్రదించి చేయించుకోండి`));
     if (k.score < k.max) body.appendChild(line("జ్యోతిష్యుడిని అడగండి:", info.ask));
     if (k.key === "nadi" && d.nadiDosha) {
       const p = el("p");
@@ -392,23 +403,31 @@ function renderKootas(d) {
     row.appendChild(det);
     wrap.appendChild(row);
   });
+  // Rows (koota.js ROWS) add up to the TTD total for every pair but one: 31x27, where TTD prints a total
+  // below its own rasi + nadi points. Consult advice stays in #pt-shanti only.
+  const sum = d.kootas.reduce((a, k) => a + k.score, 0);
+  const fixed = d.kootas[6].score + d.kootas[7].score;
+  $("kootas-note").hidden = sum === d.total;
+  $("kootas-note").textContent = fixed > d.total
+    ? `తిరుమల తిరుపతి దేవస్థానం పంచాంగం గుణమేళన చక్రంలో ఈ జోడీకి ${d.total} గుణాలు ఉన్నాయి. కానీ రాశి, నాడి కూటములకే ${fmt(fixed)} వస్తాయి, కాబట్టి అది ముద్రణ పొరపాటు కావచ్చు. ఇక్కడ కూటముల గుణాలు సాధారణ అష్టకూట పద్ధతిలో చూపించాం (కలిపితే ${fmt(sum)}).`
+    : `పైన చూపిన మొత్తం ${d.total} గుణాలు తిరుమల తిరుపతి దేవస్థానం పంచాంగం గుణమేళన చక్రం ప్రకారం. ఇక్కడ కూటముల గుణాలు సాధారణ అష్టకూట పద్ధతిలో చూపించాం (కలిపితే ${fmt(sum)}).`;
   $("advanced-btn").href = `/explain?g=${d.g}&b=${d.b}${d.gp ? `&gp=${d.gp}` : ""}${d.bp ? `&bp=${d.bp}` : ""}`;
 }
 
 function renderNext(d) {
   const zero = d.kootas.filter((k) => k.score === 0 && k.key !== "nadi");
   let t;
-  if (d.parihara.length) t = `${d.parihara.map((p) => INFO[p.key].short).join(", ")}కు సంప్రదాయ పరిహారం కనిపిస్తోంది. ఇది ఈ జోడీకి వర్తిస్తుందో లేదో పెద్దలు, జ్యోతిష్యులే నిర్ణయిస్తారు.`;
+  if (d.parihara.length) t = `${toList(d.parihara.map((p) => INFO[p.key].short))} సంప్రదాయ పరిహారం కనిపిస్తోంది. ఇది ఈ జోడీకి వర్తిస్తుందో లేదో పెద్దలు, జ్యోతిష్యులే నిర్ణయిస్తారు.`;
   else if (d.nadiDosha) t = "నాడి 0/8 వచ్చింది — ఈ జోడీకి నాడి పరిహారం వర్తిస్తుందా అని అడగండి.";
-  else if (zero.length) t = `${zero.map((k) => INFO[k.key].short).join(", ")}కు 0 వచ్చింది — ${INFO[zero[0].key].ask}`;
+  else if (zero.length) t = `${toList(zero.map((k) => INFO[k.key].short))} 0 వచ్చింది — ${INFO[zero[0].key].ask}`;
   else t = "అన్ని కూటములకు గుణాలు వచ్చాయి — మంచి ముహూర్తం గురించి అడగండి.";
   $("step4").textContent = t;
 }
 
 function renderAlts(d) {
   const sides = [
-    { key: "girl", tab: `${d.gn || "వధువు"}కు వరులు`, id: d.g, other: (x) => K.match(d.g, x, { gPada: d.gp }), link: (x) => resultPath(d.g, x, d.gn, "", d.gp), skip: d.b, side: "girl" },
-    { key: "boy", tab: `${d.bn || "వరుడి"}కి వధువులు`, id: d.b, other: (x) => K.match(x, d.b, { bPada: d.bp }), link: (x) => resultPath(x, d.b, "", d.bn, undefined, d.bp), skip: d.g, side: "boy" },
+    { key: "girl", tab: `${d.gn || "వధువు"}కు వరులు`, id: d.g, other: (x) => K.match(d.g, x), link: (x) => resultPath(d.g, x, d.gn, "", d.gp), skip: d.b, side: "girl" },
+    { key: "boy", tab: `${d.bn || "వరుడి"}కి వధువులు`, id: d.b, other: (x) => K.match(x, d.b), link: (x) => resultPath(x, d.b, "", d.bn, undefined, d.bp), skip: d.g, side: "boy" },
   ];
   sides.forEach((s) => {
     $(`tab-${s.key}`).textContent = s.tab;
@@ -462,7 +481,7 @@ function shareText(d) {
     : `${d.girl.nakshatra} – ${d.boy.nakshatra} వివాహ పొంతన`;
   let line = `36లో ${fmt(d.total)} గుణాలు · ${d.tier.label}`;
   const pi = pariharaInfo(d);
-  if (pi) line += `\n${pi.items.join("\n")}\n${pi.total} — వివరాలు ఈ లింక్‌లో చూడండి`;
+  if (pi) line += `\n${pi.items.join("\n")}\n${pi.total} — మీ జ్యోతిష్యులను సంప్రదించండి. వివరాలు ఈ లింక్‌లో`;
   return { title, line };
 }
 function renderShare(d) {
@@ -487,7 +506,8 @@ function render(d, skipPush) {
   showView("view-result", skipPush ? false : undefined);
   // Pre-draw the share card so the share tap still has user activation.
   makeImage(d).then((blob) => { if (lastData === d) lastBlob = blob; }).catch((e) => console.warn(e));
-  if (d.tier.key === "best" && window.celebrate) setTimeout(() => window.celebrate(true), 400);
+  // Pasupu shower as the seal settles (stamp ends ~620ms).
+  if (d.tier.key === "best" && window.celebrate) setTimeout(() => { if (lastData === d) window.celebrate(true); }, 650);
 }
 
 async function getBlob() {
@@ -749,7 +769,7 @@ async function makeImage(d) {
   fitText(ctx, cta, 780, 29, `700 {s}px ${TXT}`);
   ctx.fillText(cta, cx, 1204);
   ctx.fillStyle = "#5E4B3C";
-  const note = "నక్షత్రాల ఆధారంగా అష్టకూట లెక్క మాత్రమే · జాతకం జ్యోతిష్యులతో చూపించండి";
+  const note = "గుణాలు: టీటీడీ పంచాంగం గుణమేళన చక్రం ప్రకారం · జాతకం జ్యోతిష్యులతో చూపించండి";
   fitText(ctx, note, 760, 24, `400 {s}px ${TXT}`);
   ctx.fillText(note, cx, 1244);
 
@@ -778,7 +798,10 @@ $("copy-btn").addEventListener("click", copyLink);
 $("download-btn").addEventListener("click", async () => { if (lastData) downloadBlob(await getBlob()); });
 $("print-btn").addEventListener("click", () => window.print());
 // Print shows every "ఎందుకు?" answer (closed <details> content doesn't print otherwise).
-addEventListener("beforeprint", () => document.querySelectorAll(".k-why").forEach((x) => { x.open = true; }));
+addEventListener("beforeprint", () => {
+  document.querySelectorAll(".k-why").forEach((x) => { x.open = true; });
+  if (lastData) { cancelAnimationFrame(scoreRaf); $("score").textContent = fmt(lastData.total); }
+});
 $("msg-names").addEventListener("change", () => lastData && renderShare(lastData));
 ["girl", "boy"].forEach((k) => $(`tab-${k}`).addEventListener("click", () => selectTab(k, false)));
 $("tab-girl").parentElement.addEventListener("keydown", (e) => {

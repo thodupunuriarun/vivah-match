@@ -6,7 +6,7 @@ const tierResults = document.getElementById("tier-results");
 const comboLabel = document.getElementById("combo-label");
 const finderHelp = document.getElementById("finder-help");
 
-const fmt = (n) => Number.isInteger(n) ? String(n) : n.toFixed(1);
+const fmt = (n) => String(n); // totals are TTD integers
 // short koota names for the parihara chip ("గణ దోష పరిహారం")
 const SHORT = { varna: "వర్ణ", vashya: "వశ్య", tara: "తారా", yoni: "యోని", graha_maitri: "గ్రహమైత్రి", gana: "గణ", bhakoot: "భకూట", nadi: "నాడి" };
 
@@ -46,7 +46,7 @@ function buildRankings(side, selectedId) {
     const girlId = side === "boy" ? candidate.id : selectedId;
     const boyId = side === "boy" ? selectedId : candidate.id;
     const m = Koota.match(girlId, boyId);
-    const restored = m.totalWithParihara > m.total ? m.parihara.filter((p) => p.restored > 0).map((p) => SHORT[p.key]) : [];
+    const restored = m.parihara.map((p) => SHORT[p.key]);
     return { ...candidate, total: m.total, nadiDosha: m.nadiDosha, restored, girlId, boyId };
   }).filter((item) => item.total >= 18);
 
@@ -176,6 +176,7 @@ function renderRankings(ranked, side, selectedId) {
   }
 
   results.classList.remove("hidden");
+  if (window.revealIn) window.revealIn(tierResults, true);
   results.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 

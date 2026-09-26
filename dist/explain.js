@@ -1,12 +1,12 @@
 const KOOTAS = [
-  { key:"varna", about:"అహం/స్వభావ స్థాయి — బ్రాహ్మణ, క్షత్రియ, వైశ్య, శూద్ర వర్ణ పోలిక.", good:"ఒకే స్థాయి లేదా వధువు కంటే వరుడు ఒక మెట్టు పైన — గౌరవం, సమాన ఆలోచన.", bad:"వరుడు తక్కువ వర్ణమైతే అహం ఘర్షణ, నిర్ణయాల్లో అసమానత." },
+  { key:"varna", about:"అహం/స్వభావ స్థాయి — బ్రాహ్మణ, క్షత్రియ, వైశ్య, శూద్ర వర్ణ పోలిక.", good:"గౌరవం, సమాన ఆలోచన.", bad:"అహం ఘర్షణ, నిర్ణయాల్లో అసమానత." },
   { key:"vashya", about:"ఆకర్షణ/వశ్యత — ఒకరు మరొకరి మాట వినే గుణం.", good:"పరస్పర వశ్యత — సర్దుబాటు సులభం.", bad:"వశ్యత లేకపోతే పట్టుదల, మాట వినకపోవడం." },
-  { key:"tara", about:"ఆరోగ్యం/ఆయుష్షు — జన్మ నక్షత్రాల తారా బలం.", good:"తారా బలం — ఆరోగ్యం, ప్రయాణ శుభం.", bad:"తక్కువైతే అనారోగ్య భయం, తరచు తారా దోష శాంతి సూచిస్తారు." },
-  { key:"yoni", about:"దాంపత్య సుఖం/శారీరక అనుకూలత — జంతు యోని పోలిక.", good:"ఒకే యోని లేదా మిత్ర యోని — సాన్నిహిత్యం, సంతాన శుభం.", bad:"శత్రు యోని — మనస్పర్థలు, సర్దుబాటు కష్టం." },
-  { key:"graha_maitri", about:"మానసిక స్నేహం — రాశ్యాధిపతుల మైత్రి.", good:"మిత్ర గ్రహాలు — ఆలోచనలు కలవడం, స్నేహం.", bad:"శత్రు గ్రహాలు — అభిప్రాయ భేదాలు, ఆర్థిక విషయాల్లో ఘర్షణ." },
-  { key:"gana", about:"స్వభావం — దేవ, మనుష్య, రాక్షస గణ పోలిక.", good:"ఒకే గణం — స్వభావం కలవడం, ఇంట్లో శాంతి.", bad:"విరుద్ధ గణాలు — కోపం, జీవనశైలి తేడాలు." },
-  { key:"bhakoot", about:"కుటుంబ/సంతాన అనుకూలత — రాశుల తత్వ పోలిక (చర/స్థిర/ద్విస్వభావ).", good:"రాశి కలిస్తే సంతానం, కుటుంబ వృద్ధి శుభం.", bad:"6-8 రాశి సంబంధం — దూరం, అపార్థాలు." },
-  { key:"nadi", about:"సంతాన ఆరోగ్యం — ఆది/మధ్య/అంత్య నాడి. 0 వస్తే నాడి దోషం.", good:"వేరు నాడులు — సంతాన ఆరోగ్యానికి మంచిదని సంప్రదాయం.", bad:"0/8 నాడి దోషం — పరిహార పూజలు/శాంతి సూచిస్తారు; మిగతా కూటములు బాగుంటే సర్దుబాటు చెబుతారు." },
+  { key:"tara", about:"ఆరోగ్యం/ఆయుష్షు — జన్మ నక్షత్రాల తారా బలం.", good:"తారా బలం — ఆరోగ్యం, ప్రయాణ శుభం.", bad:"తక్కువైతే తారా బలం తక్కువని చెబుతారు." },
+  { key:"yoni", about:"దాంపత్య సుఖం/శారీరక అనుకూలత — జంతు యోని పోలిక.", good:"సాన్నిహిత్యం, సంతాన శుభం.", bad:"మనస్పర్థలు, సర్దుబాటు కష్టం." },
+  { key:"graha_maitri", about:"మానసిక స్నేహం — రాశ్యాధిపతుల మైత్రి.", good:"ఆలోచనలు కలవడం, స్నేహం.", bad:"అభిప్రాయ భేదాలు, ఆర్థిక విషయాల్లో ఘర్షణ." },
+  { key:"gana", about:"స్వభావం — దేవ, మనుష్య, రాక్షస గణ పోలిక.", good:"స్వభావం కలవడం, ఇంట్లో శాంతి.", bad:"కోపం, జీవనశైలి తేడాలు." },
+  { key:"bhakoot", about:"కుటుంబ/సంతాన అనుకూలత — రాశుల తత్వ పోలిక (చర/స్థిర/ద్విస్వభావ).", good:"సంతానం, కుటుంబ వృద్ధి శుభం.", bad:"దూరం, అపార్థాలు." },
+  { key:"nadi", about:"సంతాన ఆరోగ్యం — ఆది/మధ్య/అంత్య నాడి. 0 వస్తే నాడి దోషం.", good:"వేరు నాడులు — సంతాన ఆరోగ్యానికి మంచిదని సంప్రదాయం.", bad:"0/8 నాడి దోషం — కొన్ని నక్షత్రాలకు ఈ దోషం వర్తించదని పంచాంగం చెబుతుంది." },
 ];
 
 const OVERALL = {
@@ -43,7 +43,7 @@ function init(){
 
   const girl = Koota.combo(g);
   const boy = Koota.combo(b);
-  const match = Koota.match(g, b, { gPada: gp, bPada: bp });
+  const match = Koota.match(g, b);
   const tier = Koota.tier(match.total);
 
   document.getElementById("pair-tag").textContent = `వధువు: ${who(girl, gp)} · వరుడు: ${who(boy, bp)}`;
@@ -53,7 +53,8 @@ function init(){
   scoreSpan.style.color = tier.color;
   scoreLine.append(scoreSpan, document.createTextNode(` — ${tier.label}`));
   if (match.nadiDosha) scoreLine.append(" ", el("span", "ex-chip", "నాడి 0/8"));
-  if (match.totalWithParihara > match.total) scoreLine.append(el("div", "ex-parihara", `దోష ${match.parihara.length > 1 ? "పరిహారాలతో" : "పరిహారంతో"}: ${fmt(match.totalWithParihara)}/${match.max} — కారణం కింద ఆ కూటమి వివరాల్లో ఉంది`));
+  scoreLine.append(el("div", "ex-src", "మొత్తం గుణాలు: తిరుమల తిరుపతి దేవస్థానం పంచాంగం (2025-26) గుణమేళన చక్రం ప్రకారం"));
+  if (match.parihara.length) scoreLine.append(el("div", "ex-parihara", `${match.parihara.length > 1 ? "పరిహారాలతో ఈ దోషాలు" : "పరిహారంతో ఈ దోషం"} తగ్గవచ్చు — కారణం కింద ఆ కూటమి వివరాల్లో ఉంది`));
 
   const wrap = document.getElementById("explain-list");
   wrap.textContent = "";
@@ -81,6 +82,12 @@ function init(){
     wrap.append(row);
   });
 
+  // Rows (koota.js ROWS) add up to the TTD total for every pair but one (31x27, see koota.js).
+  // Effect lines above are generic; the attributes are in ex-detail. Same note wording as app.js.
+  const sum = match.kootas.reduce((a, k) => a + k.score, 0), fixed = match.kootas[6].score + match.kootas[7].score;
+  if (sum !== match.total) wrap.append(el("p", "ex-src", fixed > match.total
+    ? `తిరుమల తిరుపతి దేవస్థానం పంచాంగం గుణమేళన చక్రంలో ఈ జోడీకి ${match.total} గుణాలు ఉన్నాయి. కానీ రాశి, నాడి కూటములకే ${fmt(fixed)} వస్తాయి, కాబట్టి అది ముద్రణ పొరపాటు కావచ్చు. ఇక్కడ కూటముల గుణాలు సాధారణ అష్టకూట పద్ధతిలో చూపించాం (కలిపితే ${fmt(sum)}).`
+    : `మొత్తం ${match.total} గుణాలు తిరుమల తిరుపతి దేవస్థానం పంచాంగం గుణమేళన చక్రం ప్రకారం. ఇక్కడ కూటముల గుణాలు సాధారణ అష్టకూట పద్ధతిలో చూపించాం (కలిపితే ${fmt(sum)}).`));
   document.getElementById("overall-text").textContent = OVERALL[tier.key] + ` (మొత్తం ${fmt(match.total)}/${match.max})`;
 }
 init();

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="te">
 <head>
   <meta charset="UTF-8">
@@ -38,7 +38,7 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Telugu:wght@400;500;600;700;800&display=swap"></noscript>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap"></noscript>
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=6">
   <style>
   /* ===== home (approved redesign): warm palette, Ramabhadra display type ===== */
   body.home{
@@ -180,12 +180,12 @@
   .pt-seal svg{display:block}
   .pt-seal-txt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#FFF6E5}
   .pt-seal-txt strong{font:400 2.75rem/1 var(--h-display);color:#FFF6E5}
-  .pt-seal-txt strong.is-dec{font-size:2.1rem}
   .pt-of{font:800 .8125rem/1.3 "Plus Jakarta Sans",sans-serif;color:#F3D98E}
   .pt-gun{font:600 .875rem/1.35 var(--h-text);color:#FFF6E5}
   .pt-verdict{display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:4px}
   .pt-tier{margin:0;font:400 1.625rem/1.4 var(--h-display)}
   .pt-sub{margin:0;font:500 .9375rem/1.5 var(--h-text);color:var(--h-muted)}
+  .pt-src{margin:2px 0 0;max-width:34rem;font:400 .875rem/1.5 var(--h-text);color:var(--h-muted)}
   .pt-chips{margin:4px 0 0}
   .pt-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:#EEF3E2;border:1px solid #C9D8A8;font:600 .875rem/1.5 var(--h-text);color:#2F4A10}
   .pt-chip.is-nadi{background:#FCEBC4;border-color:#E9C77A;color:#6B3A00}
@@ -193,7 +193,6 @@
   .pt-parihara ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:2px}
   .pt-ph-total{margin:4px 0 0;font-weight:700}
   .pt-shanti{margin:2px 0 0;max-width:34rem;font:500 .875rem/1.5 var(--h-text);color:var(--h-ink)}
-  .pt-shanti span{white-space:nowrap}
   .pt-shanti small{display:block;font:500 .875rem/1.5 var(--h-text);color:var(--h-muted)}
   .pt-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;width:100%;margin-top:8px}
   .pt-tile{display:flex;flex-direction:column;gap:2px;padding:8px 10px;background:#FFFDF8;border:1.5px solid #EFE4CF;border-radius:12px;text-align:left}
@@ -221,8 +220,8 @@
   .r-bubble{display:flex;flex-direction:column;margin:0;padding:10px 12px;background:#E4F4D4;border-radius:4px 12px 12px 12px;font:400 .9375rem/1.5 var(--h-text);color:var(--h-ink)}
   .r-link{overflow-wrap:anywhere;color:#1F5E8C}
   .r-check{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
-  .r-check input,.r-steps input{flex:none;width:20px;height:20px;margin:2px 0 0;accent-color:#8E1330}
-  .r-check > span,.r-steps label > span{display:flex;flex-direction:column;font:400 .875rem/1.5 var(--h-text);color:var(--h-muted)}
+  .r-check input{flex:none;width:20px;height:20px;margin:2px 0 0;accent-color:#8E1330}
+  .r-check > span,.r-steps li > span{display:flex;flex-direction:column;font:400 .875rem/1.5 var(--h-text);color:var(--h-muted)}
   .r-check b,.r-steps b{font-weight:700;font-size:.9375rem;color:var(--h-ink)}
 
   /* section cards */
@@ -234,6 +233,7 @@
   .r-nadi b{color:#6B3A00}
   .r-nadi p{margin:4px 0 0}
   .r-nadi a,.k-why a{color:#8E1330;font-weight:600}
+  .r-note{margin:10px 0 12px;font:400 .875rem/1.6 var(--h-text);color:var(--h-muted)}
   .r-legend{display:flex;gap:16px;margin:4px 0 8px;font:500 .875rem/1.5 var(--h-text);color:var(--h-muted)}
   .r-legend > span{display:inline-flex;align-items:center;gap:6px}
   .r-legend i{width:9px;height:9px;border-radius:50%}
@@ -258,8 +258,8 @@
   .k-why-body p{margin:0 0 6px}.k-why-body p:last-child{margin:0}
   .k-why-body b{color:var(--h-muted)}
   #advanced-btn{min-height:52px;margin-top:8px}
-  .r-steps{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-direction:column;gap:12px}
-  .r-steps label{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+  .r-steps{margin:0 0 12px;padding:0 0 0 1.5em;display:flex;flex-direction:column;gap:12px}
+  .r-steps li::marker{font-weight:700;color:#8E1330}
   .r-scope{display:grid;gap:8px;padding:12px 14px;background:var(--h-soft);border-radius:12px}
   .r-scope p{display:flex;flex-direction:column;margin:0;font:400 .875rem/1.5 var(--h-text);color:var(--h-muted)}
   .r-scope b{font-size:.9375rem;color:var(--h-ink)}
@@ -318,12 +318,28 @@
     .pt-seal{width:96px;height:96px;margin-top:14px}
     .pt-seal svg{width:96px;height:96px}
     .pt-seal-txt strong{font-size:2.25rem}
-    .pt-seal-txt strong.is-dec{font-size:1.75rem}
     .pt-name{font-size:1.375rem}
     .pt-box{padding:6px 4px}
   }
+  /* ---------- motion: results reveal ≤1.2s (app.js re-adds .is-in on #result every render) ---------- */
+  .pt-leaves{transform-box:fill-box;transform-origin:50% 100%}
+  .pt-ring{stroke-dasharray:1}
+  .patrika.is-in .pt-leaves{animation:mSway .9s .1s ease-in-out both}
+  .patrika.is-in .hair,.home-hero .hair{animation:mDraw .6s .15s cubic-bezier(.22,1,.36,1) both}
+  .invocation .hair:first-child{transform-origin:right}.invocation .hair:last-child{transform-origin:left}
+  .patrika.is-in .pt-seal{animation:mStamp .5s .12s cubic-bezier(.3,.7,.4,1) both}
+  .patrika.is-in .pt-ring{animation:mRing .6s .45s ease-out both}
+  .patrika.is-in .pt-verdict{animation:mUp .4s .52s ease-out both}
+  .pt-tile{animation:mUp .3s ease-out both;animation-delay:calc(620ms + var(--i,0)*40ms)}
+  .k-bar span{transform-origin:left;animation:mDraw .5s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(300ms + var(--i,0)*50ms)}
+  @keyframes mStamp{0%{opacity:0;transform:scale(1.2) rotate(-8deg)}60%{opacity:1;transform:scale(.96) rotate(1deg)}100%{opacity:1;transform:none}}
+  @keyframes mRing{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+  @keyframes mUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @keyframes mSway{0%,100%{transform:none}35%{transform:rotate(-4deg)}70%{transform:rotate(2.5deg)}}
+  @keyframes mDraw{from{transform:scaleX(0)}to{transform:none}}
+  @media (prefers-reduced-motion:reduce){.patrika.is-in *,.pt-tile,.k-bar span,.home-hero .hair{animation:none!important}}
   @media print{
-    .site-header,.site-footer,#back-btn,.r-share,.r-o6,.r-bottom,.k-why summary,#advanced-btn,.r-steps input{display:none!important}
+    .site-header,.site-footer,#back-btn,.r-share,.r-o6,.r-bottom,.k-why summary,#advanced-btn{display:none!important}
     .k-why-body{display:block}
     body.home{background:#fff}
     .r-grid{display:block}.r-col{display:block;position:static}
@@ -493,7 +509,7 @@
           <svg class="pt-band" width="100%" height="14" aria-hidden="true" focusable="false"><defs><pattern id="ptb" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#8E1330"/><path d="M0 14 L7 7 L14 14 Z" fill="#D9B25F"/><rect y="3" width="14" height="1.2" fill="#D9B25F"/></pattern><pattern id="ptg" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#3F5A16"/><path d="M0 14 L7 7 L14 14 Z" fill="#D9B25F"/><rect y="3" width="14" height="1.2" fill="#D9B25F"/></pattern></defs><rect width="50%" height="14" fill="url(#ptb)"/><rect x="50%" width="50%" height="14" fill="url(#ptg)"/></svg>
           <div class="pt-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
           <div class="pt-body">
-            <svg class="pt-kalasam" width="40" height="40" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g transform="translate(32 24)"><path transform="rotate(-64)" d="M0 0 C-4.5 -5 -5.5 -15 0 -23 C5.5 -15 4.5 -5 0 0Z" fill="#3F6212"/><path transform="rotate(64)" d="M0 0 C-4.5 -5 -5.5 -15 0 -23 C5.5 -15 4.5 -5 0 0Z" fill="#3F6212"/><path transform="rotate(-31)" d="M0 0 C-4.5 -5 -5.5 -15 0 -23 C5.5 -15 4.5 -5 0 0Z" fill="#4D6B1F"/><path transform="rotate(31)" d="M0 0 C-4.5 -5 -5.5 -15 0 -23 C5.5 -15 4.5 -5 0 0Z" fill="#4D6B1F"/></g><path d="M32 5.5 C35.5 8.5 38.5 12.5 38.5 17.5 C38.5 22 35.5 25 32 25 C28.5 25 25.5 22 25.5 17.5 C25.5 12.5 28.5 8.5 32 5.5Z" fill="#7A4A1E"/><path d="M25 26 V29 C25 32.5 12 34.5 12 44 C12 52 19 57 26 57 L23 61.5 H41 L38 57 C45 57 52 52 52 44 C52 34.5 39 32.5 39 29 V26 Z" fill="#C77A0A"/><path d="M17.5 40 C18.5 36.5 21.5 34.5 25 33.5 C21.5 36.5 20 40 20 45 C18.5 44 17.3 42 17.5 40Z" fill="#E3A63A"/><path d="M15.5 22.5 Q15.5 21 17 21 H47 Q48.5 21 48.5 22.5 L45 28 H19 Z" fill="#8E1330"/><circle cx="32" cy="43" r="3.4" fill="#8E1330"/></svg>
+            <svg class="pt-kalasam" width="40" height="40" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g transform="translate(32 24)"><g class="pt-leaves"><path transform="rotate(-64)" d="M0 0 C-4.5 -5 -5.5 -15 0 -23 C5.5 -15 4.5 -5 0 0Z" fill="#3F6212"/><path transform="rotate(64)" d="M0 0 C-4.5 -5 -5.5 -15 0 -23 C5.5 -15 4.5 -5 0 0Z" fill="#3F6212"/><path transform="rotate(-31)" d="M0 0 C-4.5 -5 -5.5 -15 0 -23 C5.5 -15 4.5 -5 0 0Z" fill="#4D6B1F"/><path transform="rotate(31)" d="M0 0 C-4.5 -5 -5.5 -15 0 -23 C5.5 -15 4.5 -5 0 0Z" fill="#4D6B1F"/></g></g><path d="M32 5.5 C35.5 8.5 38.5 12.5 38.5 17.5 C38.5 22 35.5 25 32 25 C28.5 25 25.5 22 25.5 17.5 C25.5 12.5 28.5 8.5 32 5.5Z" fill="#7A4A1E"/><path d="M25 26 V29 C25 32.5 12 34.5 12 44 C12 52 19 57 26 57 L23 61.5 H41 L38 57 C45 57 52 52 52 44 C52 34.5 39 32.5 39 29 V26 Z" fill="#C77A0A"/><path d="M17.5 40 C18.5 36.5 21.5 34.5 25 33.5 C21.5 36.5 20 40 20 45 C18.5 44 17.3 42 17.5 40Z" fill="#E3A63A"/><path d="M15.5 22.5 Q15.5 21 17 21 H47 Q48.5 21 48.5 22.5 L45 28 H19 Z" fill="#8E1330"/><circle cx="32" cy="43" r="3.4" fill="#8E1330"/></svg>
             <p class="invocation"><span class="hair" aria-hidden="true"></span><span>శ్రీరస్తు · శుభమస్తు · అవిఘ్నమస్తు</span><span class="hair" aria-hidden="true"></span></p>
             <h2 class="pt-title">వివాహ పొంతన పత్రం</h2>
             <div class="pt-pair">
@@ -503,7 +519,7 @@
                 <span class="pt-box"><b id="pt-grasi"></b><span id="pt-gnak"></span><span id="pt-gpada"></span></span>
               </div>
               <div class="pt-seal">
-                <svg width="112" height="112" viewBox="0 0 112 112" aria-hidden="true" focusable="false"><defs><radialGradient id="pt-sealg" cx="42%" cy="36%" r="70%"><stop offset="0" stop-color="#A51A3B"/><stop offset="1" stop-color="#7A0F29"/></radialGradient></defs><g fill="#D9B25F"><circle cx="105.28" cy="56.00" r="5.82"/><circle cx="104.04" cy="66.97" r="5.82"/><circle cx="100.40" cy="77.38" r="5.82"/><circle cx="94.53" cy="86.73" r="5.82"/><circle cx="86.73" cy="94.53" r="5.82"/><circle cx="77.38" cy="100.40" r="5.82"/><circle cx="66.97" cy="104.04" r="5.82"/><circle cx="56.00" cy="105.28" r="5.82"/><circle cx="45.03" cy="104.04" r="5.82"/><circle cx="34.62" cy="100.40" r="5.82"/><circle cx="25.27" cy="94.53" r="5.82"/><circle cx="17.47" cy="86.73" r="5.82"/><circle cx="11.60" cy="77.38" r="5.82"/><circle cx="7.96" cy="66.97" r="5.82"/><circle cx="6.72" cy="56.00" r="5.82"/><circle cx="7.96" cy="45.03" r="5.82"/><circle cx="11.60" cy="34.62" r="5.82"/><circle cx="17.47" cy="25.27" r="5.82"/><circle cx="25.27" cy="17.47" r="5.82"/><circle cx="34.62" cy="11.60" r="5.82"/><circle cx="45.03" cy="7.96" r="5.82"/><circle cx="56.00" cy="6.72" r="5.82"/><circle cx="66.97" cy="7.96" r="5.82"/><circle cx="77.38" cy="11.60" r="5.82"/><circle cx="86.73" cy="17.47" r="5.82"/><circle cx="94.53" cy="25.27" r="5.82"/><circle cx="100.40" cy="34.62" r="5.82"/><circle cx="104.04" cy="45.03" r="5.82"/><circle cx="56" cy="56" r="49.28"/></g><circle cx="56" cy="56" r="45.36" fill="url(#pt-sealg)"/><circle cx="56" cy="56" r="40.88" fill="none" stroke="#E7C170" stroke-width="1"/></svg>
+                <svg width="112" height="112" viewBox="0 0 112 112" aria-hidden="true" focusable="false"><defs><radialGradient id="pt-sealg" cx="42%" cy="36%" r="70%"><stop offset="0" stop-color="#A51A3B"/><stop offset="1" stop-color="#7A0F29"/></radialGradient></defs><g fill="#D9B25F"><circle cx="105.28" cy="56.00" r="5.82"/><circle cx="104.04" cy="66.97" r="5.82"/><circle cx="100.40" cy="77.38" r="5.82"/><circle cx="94.53" cy="86.73" r="5.82"/><circle cx="86.73" cy="94.53" r="5.82"/><circle cx="77.38" cy="100.40" r="5.82"/><circle cx="66.97" cy="104.04" r="5.82"/><circle cx="56.00" cy="105.28" r="5.82"/><circle cx="45.03" cy="104.04" r="5.82"/><circle cx="34.62" cy="100.40" r="5.82"/><circle cx="25.27" cy="94.53" r="5.82"/><circle cx="17.47" cy="86.73" r="5.82"/><circle cx="11.60" cy="77.38" r="5.82"/><circle cx="7.96" cy="66.97" r="5.82"/><circle cx="6.72" cy="56.00" r="5.82"/><circle cx="7.96" cy="45.03" r="5.82"/><circle cx="11.60" cy="34.62" r="5.82"/><circle cx="17.47" cy="25.27" r="5.82"/><circle cx="25.27" cy="17.47" r="5.82"/><circle cx="34.62" cy="11.60" r="5.82"/><circle cx="45.03" cy="7.96" r="5.82"/><circle cx="56.00" cy="6.72" r="5.82"/><circle cx="66.97" cy="7.96" r="5.82"/><circle cx="77.38" cy="11.60" r="5.82"/><circle cx="86.73" cy="17.47" r="5.82"/><circle cx="94.53" cy="25.27" r="5.82"/><circle cx="100.40" cy="34.62" r="5.82"/><circle cx="104.04" cy="45.03" r="5.82"/><circle cx="56" cy="56" r="49.28"/></g><circle cx="56" cy="56" r="45.36" fill="url(#pt-sealg)"/><circle class="pt-ring" pathLength="1" transform="rotate(-90 56 56)" cx="56" cy="56" r="40.88" fill="none" stroke="#E7C170" stroke-width="1"/></svg>
                 <span class="pt-seal-txt"><strong id="score">0</strong><span class="pt-of">/ 36</span><span class="pt-gun">గుణాలు</span></span>
               </div>
               <div class="pt-person pt-groom">
@@ -515,9 +531,10 @@
             <div class="pt-verdict">
               <p id="verdict" class="pt-tier">—</p>
               <p id="pt-subline" class="pt-sub"></p>
+              <p class="pt-src">మొత్తం గుణాలు: తిరుమల తిరుపతి దేవస్థానం పంచాంగం (2025-26) గుణమేళన చక్రం ప్రకారం</p>
               <p class="pt-chips" hidden><span id="pt-chip" class="pt-chip"></span></p>
               <div id="pt-parihara" class="pt-parihara" hidden></div>
-              <p id="pt-shanti" class="pt-shanti" hidden></p>
+              <p id="pt-shanti" class="pt-shanti" hidden><small>నిర్ణయానికి ముందు మీ జ్యోతిష్యులను సంప్రదించడం మంచిది</small></p>
             </div>
             <div id="pt-tiles" class="pt-tiles"></div>
             <p class="pt-foot">matchmyjathakam.com</p>
@@ -550,18 +567,19 @@
           <h2 id="kootas-h">8 కూటముల వివరం</h2>
           <p class="r-legend"><span class="lg-g"><i aria-hidden="true"></i><span id="lg-girl">వధువు</span></span><span class="lg-b"><i aria-hidden="true"></i><span id="lg-boy">వరుడు</span></span></p>
           <div id="kootas" class="r-kootas"></div>
+          <p id="kootas-note" class="r-note" hidden></p>
           <a id="advanced-btn" class="btn btn-secondary btn-block" href="/explain">ప్రతి కూటమి వివరంగా చూడండి</a>
         </section>
 
         <section class="r-card r-o5" aria-labelledby="next-h">
           <h2 id="next-h">తర్వాత ఏం చేయాలి?</h2>
           <p class="r-lead">పెళ్లి మాట్లాడే ముందు ఇవి చూసుకోండి</p>
-          <ul class="r-steps">
-            <li><label><input type="checkbox"><span><b>ఇంట్లో పెద్దలతో ఈ పత్రం పంచుకోండి</b><span>నిర్ణయం కుటుంబం కలిసి తీసుకోవాలి.</span></span></label></li>
-            <li><label><input type="checkbox"><span><b>ఇద్దరి జాతక చక్రాలు జ్యోతిష్యులకు చూపించండి</b><span>పుట్టిన తేదీ, సమయం, ఊరు — మూడూ తీసుకెళ్లండి.</span></span></label></li>
-            <li><label><input type="checkbox"><span><b>జాతక చక్రంలో కుజ స్థానం, దశలు కూడా చూపించండి</b><span>ఇవి జాతక చక్రం నుంచే తెలుస్తాయి.</span></span></label></li>
-            <li><label><input type="checkbox"><span><b id="step4-h">ఈ జోడీకి ప్రత్యేకంగా అడగండి</b><span id="step4"></span></span></label></li>
-          </ul>
+          <ol class="r-steps">
+            <li><span><b>ఇంట్లో పెద్దలతో ఈ పత్రం పంచుకోండి</b><span>నిర్ణయం కుటుంబం కలిసి తీసుకోవాలి.</span></span></li>
+            <li><span><b>ఇద్దరి జాతక చక్రాలు జ్యోతిష్యులకు చూపించండి</b><span>పుట్టిన తేదీ, సమయం, ఊరు — మూడూ తీసుకెళ్లండి.</span></span></li>
+            <li><span><b>జాతక చక్రంలో కుజ స్థానం, దశలు కూడా చూపించండి</b><span>ఇవి జాతక చక్రం నుంచే తెలుస్తాయి.</span></span></li>
+            <li><span><b id="step4-h">ఈ జోడీకి ప్రత్యేకంగా అడగండి</b><span id="step4"></span></span></li>
+          </ol>
           <div class="r-scope">
             <p><b>ఈ సైట్ చూసేది</b><span>జన్మ నక్షత్రం ఆధారంగా అష్టకూట పొంతన — 8 కూటములు, 36 గుణాలు.</span></p>
             <p><b>ఈ సైట్ చూడనివి</b><span>పూర్తి జాతక చక్రం, కుజ దోషం, దశలు, ముహూర్తం — ఇవి జ్యోతిష్యులే చూడాలి.</span></p>
@@ -612,9 +630,9 @@
 </footer>
 <script>(function(){var q=new URLSearchParams(location.search),p=location.pathname;if(!q.has("g")||!q.has("b")||(p!=="/"&&p!=="/index.html"&&p!=="/results"))return;var i=document.getElementById("view-input"),r=document.getElementById("view-result");if(!i||!r)return;i.classList.add("hidden");i.classList.remove("active");r.classList.remove("hidden");r.classList.add("active");})();</script>
 <script async src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-<script defer src="decor.js?v=8"></script>
-<script defer src="/koota.js?v=6"></script>
+<script defer src="decor.js?v=9"></script>
+<script defer src="/koota.js?v=8"></script>
 <script defer src="rashi.js?v=10"></script>
-<script defer src="app.js?v=20"></script>
+<script defer src="app.js?v=26"></script>
 </body>
 </html>

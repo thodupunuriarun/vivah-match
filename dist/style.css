@@ -571,7 +571,21 @@ footer a:focus-visible { outline: 2px solid transparent; box-shadow: var(--focus
 
 
 
+/* scroll reveal (decor.js): the hidden state exists only under the JS-set html.rv-on.
+   "backwards" fill: after the fade the card's own transform/hover transitions apply again. */
+.rv-on .rv:not(.rv-in) { opacity: 0; }
+.rv-in { animation: rvIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
+@keyframes rvIn {
+  from { opacity: 0; transform: translateY(14px); }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .view.active { animation: none; }
+  .view.active, .rv-in { animation: none; }
+}
+
+/* print / PDF always shows the final state */
+@media print {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .rv-on .rv { opacity: 1 !important; }
 }
 
