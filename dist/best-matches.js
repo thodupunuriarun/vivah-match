@@ -7,7 +7,7 @@ const comboLabel = document.getElementById("combo-label");
 const finderHelp = document.getElementById("finder-help");
 
 const fmt = (n) => String(n); // totals are TTD integers
-// short koota names for the parihara chip ("గణ దోష పరిహారం")
+// short koota names for the TTD exception chip ("గణ దోషానికి TTD మినహాయింపు")
 const SHORT = { varna: "వర్ణ", vashya: "వశ్య", tara: "తారా", yoni: "యోని", graha_maitri: "గ్రహమైత్రి", gana: "గణ", bhakoot: "భకూట", nadi: "నాడి" };
 
 // same pada wording as the results page (app.js padaText)
@@ -88,7 +88,7 @@ function createMatchCard(item) {
   const star = document.createElement("span");
   star.textContent = item.star;
   name.append(rasi, star);
-  // turmeric "నాడి 0/8" when nadi is 0; leaf chip naming the dosha(s) only when a parihara restores points
+  // turmeric "నాడి 0/8" when nadi is 0; neutral chip naming the dosha(s) with a TTD p66 exception
   if (item.nadiDosha || item.restored.length) {
     const chips = document.createElement("span");
     chips.className = "match-chips";
@@ -101,7 +101,7 @@ function createMatchCard(item) {
     if (item.restored.length) {
       const chip = document.createElement("span");
       chip.className = "nadi-chip leaf";
-      chip.textContent = `${item.restored.join(", ")} దోష పరిహారం`;
+      chip.textContent = `${item.restored.join(", ")} దోషానికి TTD మినహాయింపు`;
       chips.append(chip);
     }
     name.append(chips);

@@ -30,8 +30,14 @@
 /explain.js
   Cache-Control: public, max-age=31536000, immutable
 
+/fx.js
+  Cache-Control: public, max-age=31536000, immutable
+
 /koota.js
   Cache-Control: public, max-age=31536000, immutable
 
 /rashi.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/share.js
   Cache-Control: public, max-age=31536000, immutable

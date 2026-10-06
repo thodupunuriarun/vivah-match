@@ -13,8 +13,8 @@ const OVERALL = {
   best: "ఉత్తమ పొంతన — 8 కూటముల్లో దాదాపు అన్నీ కలిశాయి. వివాహానికి చాలా అనుకూలం.",
   vgood: "చాలా మంచి పొంతన — చాలా కూటములు అనుకూలం. సాధారణంగా పెళ్లికి అనుకూలంగా చెబుతారు.",
   good: "మంచి పొంతన — పలు కూటములు అనుకూలం. సాధారణంగా పెళ్లికి అనుకూలంగా చెబుతారు.",
-  fair: "సామాన్య పొంతన — కొన్ని కూటములు తక్కువ. సర్దుబాటు, పరిహారాలు, జాతక చక్ర పరిశీలన తర్వాత నిర్ణయం.",
-  advice: "తక్కువ పొంతన — ఈ జోడీలో చాలా కూటములు అంతగా కలవలేదు. నిర్ణయానికి ముందు దోష పరిహారాలు, పూర్తి జాతక పరిశీలన గురించి జ్యోతిష్యులతో వివరంగా చర్చించడం మంచిది.",
+  fair: "సామాన్య పొంతన — కొన్ని కూటములు తక్కువ. పూర్తి జాతక చక్ర పరిశీలన తర్వాత నిర్ణయం.",
+  advice: "తక్కువ పొంతన — ఈ జోడీలో చాలా కూటములు అంతగా కలవలేదు. నిర్ణయానికి ముందు పూర్తి జాతక పరిశీలన గురించి జ్యోతిష్యులతో వివరంగా చర్చించడం మంచిది.",
 };
 
 const fmt = (n) => Number.isInteger(n) ? String(n) : n.toFixed(1);
@@ -54,24 +54,24 @@ function init(){
   scoreLine.append(scoreSpan, document.createTextNode(` — ${tier.label}`));
   if (match.nadiDosha) scoreLine.append(" ", el("span", "ex-chip", "నాడి 0/8"));
   scoreLine.append(el("div", "ex-src", "మొత్తం గుణాలు: తిరుమల తిరుపతి దేవస్థానం పంచాంగం (2025-26) గుణమేళన చక్రం ప్రకారం"));
-  if (match.parihara.length) scoreLine.append(el("div", "ex-parihara", `${match.parihara.length > 1 ? "పరిహారాలతో ఈ దోషాలు" : "పరిహారంతో ఈ దోషం"} తగ్గవచ్చు — కారణం కింద ఆ కూటమి వివరాల్లో ఉంది`));
+  if (match.parihara.length) scoreLine.append(el("div", "ex-parihara", "TTD పంచాంగంలో మినహాయింపు ఉన్న దోషాలు కింద ఆ కూటమి వివరాల్లో ఉన్నాయి — వర్తిస్తుందో జ్యోతిష్యులు నిర్ణయిస్తారు"));
 
   const wrap = document.getElementById("explain-list");
   wrap.textContent = "";
   match.kootas.forEach((v, i) => {
     const k = KOOTAS[i];
     const cls = v.score === v.max ? "good" : v.score > 0 ? "neutral" : "low";
-    const verdict = cls === "good" ? "పూర్తిగా కలిసింది" : cls === "neutral" ? "కొంత కలిసింది" : v.parihara ? "సంప్రదాయ పరిహారం ఉంది" : "కలవలేదు";
+    const verdict = cls === "good" ? "పూర్తిగా కలిసింది" : cls === "neutral" ? "కొంత కలిసింది" : "కలవలేదు";
     const effect = cls === "good" ? k.good : cls === "neutral" ? "పాక్షికంగా కలిసింది — కొంత సర్దుబాటుతో సరిపోతుంది. " + k.good : k.bad;
 
     const row = el("div", "ex-row");
     const head = el("div", "ex-head");
     const nameDiv = el("div", "ex-name", `${i + 1}. ${v.name} `);
     nameDiv.append(el("span", "ex-pts", `(${fmt(v.score)}/${v.max})`));
-    const verdictSpan = el("span", "ex-verdict " + (cls === "low" && v.parihara ? "leaf" : cls), verdict);
+    const verdictSpan = el("span", "ex-verdict " + cls, verdict);
     head.append(nameDiv, verdictSpan);
     row.append(head, el("div", "ex-about", k.about), el("div", "ex-effect", effect), el("div", "ex-detail", `${v.girl} · ${v.boy}`));
-    if (v.parihara) row.append(el("div", "ex-ph", `దోష పరిహారం: ${v.parihara} — వర్తిస్తుందో లేదో పెద్దలు, జ్యోతిష్యులు నిర్ణయిస్తారు.`));
+    if (v.parihara) row.append(el("div", "ex-ph", `TTD పంచాంగం మినహాయింపు: ${v.parihara} — వర్తిస్తుందో జ్యోతిష్యులు నిర్ణయిస్తారు.`));
 
     const bar = el("div", "ex-bar");
     const fill = el("div");

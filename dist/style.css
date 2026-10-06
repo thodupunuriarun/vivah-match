@@ -71,6 +71,15 @@ body::before {
   body::before { top: 80px; height: 340px; background-size: 340px 340px; }
 }
 
+/* fx.js: Paper Shaders behind the home hero. Fades in; masked so it melts into the cream */
+.fx-host { position: relative; isolation: isolate; }
+.fx { position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0; transition: opacity 1.2s ease; }
+.fx.is-on { opacity: 1; }
+.fx canvas { display: block; }
+.fx-rays { top: -48px; bottom: -24px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 85% at 50% 40%, #000 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse 75% 85% at 50% 40%, #000 55%, transparent 100%); }
+
 .wrap {
   max-width: 720px;
   margin: 0 auto;
@@ -521,6 +530,28 @@ footer a:focus-visible { outline: 2px solid transparent; box-shadow: var(--focus
   white-space: nowrap;
   pointer-events: none;
 }
+
+/* "share this site" card, first thing in every footer (share.js shows the second button) */
+.share-site {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto 12px;
+  padding: 20px 16px 22px;
+  box-sizing: border-box;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+.site-footer .share-site h2 {
+  margin: 0 0 4px;
+  color: var(--maroon);
+  font: 700 1.125rem/1.5 "Noto Sans Telugu", "Plus Jakarta Sans", sans-serif;
+}
+.site-footer .share-site p { margin: 0 0 16px; font-size: 0.9375rem; color: var(--muted-brown); line-height: 1.6; }
+.share-site-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.share-site-btns .btn { font-family: "Noto Sans Telugu", "Plus Jakarta Sans", sans-serif; }
+.share-site-btns .btn:hover { text-decoration: none; }
+@media (max-width: 480px) { .share-site-btns .btn { width: 100%; } }
 
 /* wrapping row of links; block + text-wrap:balance avoids a single orphan
    link on the last line (falls back to normal wrapping in older browsers) */

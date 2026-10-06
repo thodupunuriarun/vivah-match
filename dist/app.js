@@ -9,12 +9,12 @@ const ROLE = { girl: "వధువు", boy: "వరుడు" };
 const INFO = {
   varna: { short: "వర్ణం", tag: "స్వభావ స్థాయి", about: "అహం/స్వభావ స్థాయి — బ్రాహ్మణ, క్షత్రియ, వైశ్య, శూద్ర వర్ణ పోలిక.", ask: "వర్ణ భేదానికి పూర్తి జాతకంలో ఎంత ప్రాధాన్యం ఉంది?" },
   vashya: { short: "వశ్యం", tag: "ఆకర్షణ, మాట వినే గుణం", about: "ఆకర్షణ/వశ్యత — ఒకరు మరొకరి మాట వినే గుణం.", ask: "ఇద్దరి జాతకాల్లో పరస్పర అనుకూలత ఇంకెక్కడైనా కనిపిస్తుందా?" },
-  tara: { short: "తార", tag: "ఆరోగ్యం, ఆయుష్షు", about: "ఆరోగ్యం/ఆయుష్షు — జన్మ నక్షత్రాల తారా బలం.", ask: "తారా బలం కోసం ఏవైనా శాంతి సూచిస్తారా?" },
+  tara: { short: "తార", tag: "ఆరోగ్యం, ఆయుష్షు", about: "ఆరోగ్యం/ఆయుష్షు — జన్మ నక్షత్రాల తారా బలం.", ask: "పూర్తి జాతకంలో తారా బలం ఎలా ఉంది?" },
   yoni: { short: "యోని", tag: "దాంపత్య అనుకూలత", about: "దాంపత్య సుఖం/శారీరక అనుకూలత — జంతు యోని పోలిక.", ask: "యోని పోలికకు పూర్తి జాతకంలో సర్దుబాటు ఉందా?" },
   graha_maitri: { short: "గ్రహమైత్రి", tag: "మానసిక స్నేహం", about: "మానసిక స్నేహం — రాశ్యాధిపతుల మైత్రి.", ask: "నవాంశలో రాశ్యాధిపతుల మైత్రి ఎలా ఉంది?" },
   gana: { short: "గణం", tag: "స్వభావం", about: "స్వభావం — దేవ, మనుష్య, రాక్షస గణ పోలిక.", ask: "గణ భేదానికి ఇతర కూటముల బలం సరిపోతుందా?" },
   bhakoot: { short: "రాశి", tag: "కుటుంబ, సంతాన అనుకూలత", about: "కుటుంబ/సంతాన అనుకూలత — రాశుల తత్వ పోలిక (చర/స్థిర/ద్విస్వభావ).", ask: "రాశ్యాధిపతుల మైత్రితో ఈ రాశి దోషం సడలుతుందా?" },
-  nadi: { short: "నాడి", tag: "సంతాన ఆరోగ్యం", about: "సంతాన ఆరోగ్యం — ఆది/మధ్య/అంత్య నాడి పోలిక.", ask: "ఈ జోడీకి నాడి పరిహారం వర్తిస్తుందా?" },
+  nadi: { short: "నాడి", tag: "సంతాన ఆరోగ్యం", about: "సంతాన ఆరోగ్యం — ఆది/మధ్య/అంత్య నాడి పోలిక.", ask: "పూర్తి జాతకం చూసి నాడి దోషం గురించి ఏం చెబుతారు?" },
 };
 const SUBLINE = {
   best: "అన్ని విధాలా చక్కగా కలిసింది",
@@ -27,7 +27,7 @@ const SUBLINE = {
 const fmt = (n) => (Number.isInteger(n) ? String(n) : n.toFixed(1));
 // Telugu dative after a list of names: "రాశికి" / "తారకు" (decided by the last name).
 const toList = (ns) => ns.join(", ") + (/ి$/.test(ns[ns.length - 1]) ? "కి" : "కు");
-// Plain explanation of each parihara for the "ఎందుకు?" box (no fear words).
+// TTD p66 exception for a dosha, for the "ఎందుకు?" box. A neutral note: the dosha is still shown.
 const PARIHARA_WHY = {
   nadi: "ఇద్దరిదీ ఒకే నాడి అయినా, ఈ నక్షత్రాలకు ఏకనాడీ దోషం లేదని తిరుమల తిరుపతి దేవస్థానం పంచాంగం చెబుతుంది.",
   bhakoot: "రాశుల దూరానికి 0 వచ్చినా, రాశ్యధిపతులు ఒకరే లేదా మిత్రులైతే వివాహం శుభమని తిరుమల తిరుపతి దేవస్థానం పంచాంగం చెబుతుంది.",
@@ -36,22 +36,6 @@ const PARIHARA_WHY = {
 const C_FULL = "#047857", C_PART = "#b45309", C_ZERO = "#7A4A1E";
 const scoreColor = (k) => (k.score === k.max ? C_FULL : k.score > 0 ? C_PART : C_ZERO);
 const statusText = (k) => (k.score > 0 ? "కొంత కలిసింది" : "ఈ కూటమికి 0 వచ్చింది · జ్యోతిష్యులతో చర్చించండి");
-// Parihara summary, only when it raises the total:
-//   items = ["నాడి 0/8 — దోష పరిహారం: <reason>", ...], total = advice to consult an astrologer,
-//   short = one line naming the doshas (tight spots). No adjusted score: only one score is shown.
-const PH_NAME = { nadi: "నాడి", bhakoot: "రాశి", gana: "గణ" };
-function pariharaInfo(d) {
-  const ps = d.parihara;
-  if (!ps.length) return null;
-  const many = ps.length > 1;
-  const items = ps.map((p) => {
-    const k = d.kootas.find((x) => x.key === p.key);
-    return `${INFO[p.key].short} ${fmt(k.score)}/${k.max} — దోష పరిహారం: ${p.reason}`;
-  });
-  return { items, total: `${many ? "పరిహారాలతో ఈ దోషాలు" : "పరిహారంతో ఈ దోషం"} తగ్గవచ్చు`,
-    short: `${ps.map((p) => PH_NAME[p.key]).join(", ")} దోష ${many ? "పరిహారాలు ఉన్నాయి" : "పరిహారం ఉంది"}` };
-}
-
 const RASIS = [];
 for (let i = 1; i <= 36; i++) { const r = K.combo(i).rasi; if (!RASIS.includes(r)) RASIS.push(r); }
 
@@ -273,20 +257,15 @@ function renderHero(d) {
   $("pt-subline").textContent = SUBLINE[t.key];
   // Dosha wording only when a dosha exists.
   const chip = $("pt-chip");
-  // A nadi dosha with a parihara is listed (with its reason) in the parihara list instead.
+  // A nadi dosha with a TTD exception is not flagged on the card (the koota row notes it).
   chip.parentElement.hidden = !d.nadiDosha || d.nadiParihara;
   chip.textContent = "నాడి 0/8";
   chip.classList.add("is-nadi");
-  const ph = $("pt-parihara"), pi = pariharaInfo(d);
-  ph.replaceChildren();
-  ph.hidden = !pi;
-  if (pi) {
-    const ul = el("ul");
-    pi.items.forEach((t) => ul.appendChild(el("li", "", t)));
-    ph.append(ul, el("p", "pt-ph-total", pi.total));
-  }
-  // "Consult an astrologer" is said once, here, after the parihara lines.
-  $("pt-shanti").hidden = !(pi || t.key === "advice" || d.kootas.some((k) => k.score === 0 && !k.parihara));
+  // TTD p66 exceptions: not flagged as a dosha above, just a quiet note at the bottom of the card.
+  $("pt-note").replaceChildren(...d.parihara.map((p) => el("p", "", `TTD పంచాంగం మినహాయింపు (${INFO[p.key].short}): ${p.reason}`)));
+  $("pt-note").hidden = !d.parihara.length;
+  // "Consult an astrologer" is said once, here.
+  $("pt-shanti").hidden = !(t.key === "advice" || d.kootas.some((k) => k.score === 0 && !k.parihara));
 
   const tiles = $("pt-tiles");
   tiles.replaceChildren();
@@ -298,7 +277,7 @@ function renderHero(d) {
     sc.style.color = scoreColor(k);
     top.append(el("b", "", INFO[k.key].short), sc);
     tile.append(top, dots(k));
-    if (k.parihara) tile.appendChild(el("span", "pt-tile-ph", "పరిహారం ఉంది"));
+    if (k.parihara) tile.appendChild(el("span", "pt-tile-ph", "TTD మినహాయింపు"));
     tiles.appendChild(tile);
   });
   // Replay the seal/verdict reveal (CSS in index.html) on every render.
@@ -332,12 +311,9 @@ function renderGlance(d) {
   if (zero.length) t += `; ${toList(zero.map((k) => INFO[k.key].short))} 0 వచ్చింది`;
   t += ".";
   $("glance-text").textContent = t;
-  $("nadi-box").hidden = !d.nadiDosha;
-  $("nadi-box").classList.toggle("is-parihara", d.nadiParihara);
-  $("nadi-title").textContent = d.nadiParihara ? "నాడి 0/8 — దోష పరిహారం ఉంది" : "నాడి 0/8 — ఇద్దరిదీ ఒకే నాడి";
-  $("nadi-text").textContent = d.nadiParihara
-    ? `${d.kootas[7].parihara}. ${PARIHARA_WHY.nadi} వర్తిస్తుందో లేదో పెద్దలు, జ్యోతిష్యులు నిర్ణయిస్తారు.`
-    : "ఇద్దరిదీ ఒకే నాడి అయితే సంప్రదాయంలో 0 ఇస్తారు. చాలా కుటుంబాలు దీన్ని ముఖ్యంగా చూస్తాయి — ఈ జోడీకి పరిహారాలు వర్తిస్తాయో జ్యోతిష్యులను అడగండి.";
+  $("nadi-box").hidden = !d.nadiDosha || d.nadiParihara;
+  $("nadi-title").textContent = "నాడి 0/8 — ఇద్దరిదీ ఒకే నాడి";
+  $("nadi-text").textContent = "ఇద్దరిదీ ఒకే నాడి అయితే సంప్రదాయంలో 0 ఇస్తారు. చాలా కుటుంబాలు దీన్ని ముఖ్యంగా చూస్తాయి — నిర్ణయానికి ముందు జ్యోతిష్యులను సంప్రదించండి.";
 }
 
 function renderKootas(d) {
@@ -377,17 +353,17 @@ function renderKootas(d) {
       s.append(dot, document.createTextNode(txt));
       labels.appendChild(s);
     });
-    // A parihara replaces the status line; full-score rows have no status line.
-    const status = k.parihara ? el("p", "k-parihara", `దోష పరిహారం: ${k.parihara}`)
-      : k.score < k.max ? el("p", "k-status", statusText(k)) : null;
-    if (status && !k.parihara) status.style.color = c;
+    // Full-score rows have no status line; a TTD exception is a neutral note under the dosha.
+    const status = k.score < k.max ? el("p", "k-status", statusText(k)) : null;
+    if (status) status.style.color = c;
+    const note = k.parihara ? el("p", "k-parihara", `TTD పంచాంగం మినహాయింపు: ${k.parihara}`) : null;
 
     const det = el("details", "k-why");
     det.appendChild(el("summary", "", "ఎందుకు?"));
     const body = el("div", "k-why-body");
     const line = (label, text) => { const p = el("p"); p.append(el("b", "", label + " "), document.createTextNode(text)); return p; };
     body.append(line("ఏం చూస్తుంది:", info.about), line("ఈ జోడీలో:", reason(k)));
-    if (k.parihara) body.appendChild(line("దోష పరిహారం:", `${k.parihara}. ${PARIHARA_WHY[k.key]} వర్తిస్తుందో లేదో పెద్దలు, జ్యోతిష్యులు నిర్ణయిస్తారు.`));
+    if (k.parihara) body.appendChild(line("TTD పంచాంగం మినహాయింపు:", `${k.parihara}. ${PARIHARA_WHY[k.key]} ఈ జోడీకి వర్తిస్తుందో జ్యోతిష్యులు నిర్ణయిస్తారు.`));
     if (k.score < k.max) body.appendChild(line("జ్యోతిష్యుడిని అడగండి:", info.ask));
     if (k.key === "nadi" && d.nadiDosha) {
       const p = el("p");
@@ -400,6 +376,7 @@ function renderKootas(d) {
 
     row.append(head, bar, labels);
     if (status) row.appendChild(status);
+    if (note) row.appendChild(note);
     row.appendChild(det);
     wrap.appendChild(row);
   });
@@ -417,8 +394,8 @@ function renderKootas(d) {
 function renderNext(d) {
   const zero = d.kootas.filter((k) => k.score === 0 && k.key !== "nadi");
   let t;
-  if (d.parihara.length) t = `${toList(d.parihara.map((p) => INFO[p.key].short))} సంప్రదాయ పరిహారం కనిపిస్తోంది. ఇది ఈ జోడీకి వర్తిస్తుందో లేదో పెద్దలు, జ్యోతిష్యులే నిర్ణయిస్తారు.`;
-  else if (d.nadiDosha) t = "నాడి 0/8 వచ్చింది — ఈ జోడీకి నాడి పరిహారం వర్తిస్తుందా అని అడగండి.";
+  if (d.parihara.length) t = `${d.parihara.map((p) => INFO[p.key].short).join(", ")} దోషానికి TTD పంచాంగంలో మినహాయింపు ఉంది. ఇది ఈ జోడీకి వర్తిస్తుందో జ్యోతిష్యులే నిర్ణయిస్తారు.`;
+  else if (d.nadiDosha) t = "నాడి 0/8 వచ్చింది — పూర్తి జాతకం చూసి జ్యోతిష్యులు ఏం చెబుతారో అడగండి.";
   else if (zero.length) t = `${toList(zero.map((k) => INFO[k.key].short))} 0 వచ్చింది — ${INFO[zero[0].key].ask}`;
   else t = "అన్ని కూటములకు గుణాలు వచ్చాయి — మంచి ముహూర్తం గురించి అడగండి.";
   $("step4").textContent = t;
@@ -480,8 +457,6 @@ function shareText(d) {
     ? `${d.gn || "వధువు"} – ${d.bn || "వరుడు"} వివాహ పొంతన`
     : `${d.girl.nakshatra} – ${d.boy.nakshatra} వివాహ పొంతన`;
   let line = `36లో ${fmt(d.total)} గుణాలు · ${d.tier.label}`;
-  const pi = pariharaInfo(d);
-  if (pi) line += `\n${pi.items.join("\n")}\n${pi.total} — మీ జ్యోతిష్యులను సంప్రదించండి. వివరాలు ఈ లింక్‌లో`;
   return { title, line };
 }
 function renderShare(d) {
@@ -714,8 +689,7 @@ async function makeImage(d) {
   const sub = wrapText(ctx, SUBLINE[d.tier.key], 900, `500 30px ${TXT}`);
   sub.forEach((t, i) => ctx.fillText(t, cx, 706 + i * 40));
   let y = 734 + (sub.length - 1) * 40; // y tracks the bottom of what was drawn
-  // Nadi chip only for a nadi dosha without parihara (a parihara is listed below with its reason).
-  const pi = pariharaInfo(d);
+  // Nadi chip only for a nadi dosha without a TTD exception.
   if (d.nadiDosha && !d.nadiParihara) {
     const chipT = "నాడి 0/8";
     ctx.font = `600 28px ${TXT}`;
@@ -723,24 +697,13 @@ async function makeImage(d) {
     rr(ctx, x0, y, cw, 52, 26);
     ctx.fillStyle = "#FCEBC4"; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = "#E9C77A"; ctx.stroke();
     ctx.fillStyle = "#6B3A00"; ctx.fillText(chipT, cx, y + 27);
-    y += 52 + (pi ? 10 : 0);
-  }
-  if (pi) {
-    // One line per dosha + the total while the tiles stay >= 72px tall; else the one-line
-    // summary (the footer points to the site for the reasons).
-    const LH = 38, fits = y + (pi.items.length + 1) * LH + 16 <= 1162 - 3 * 10 - 4 * 72;
-    const lines = fits ? [...pi.items, pi.total] : [pi.short];
-    ctx.fillStyle = "#3F5A16";
-    lines.forEach((t, i) => {
-      const last = i === lines.length - 1;
-      fitText(ctx, t, 900, last ? 28 : 26, `${last ? 700 : 500} {s}px ${TXT}`);
-      ctx.fillText(t, cx, y + LH / 2 + i * LH);
-    });
-    y += lines.length * LH;
+    y += 52;
   }
 
   // 8 tiles, 2 columns, from just below the last row down to the footer (no empty band)
-  const top = y + 16, bottom = 1162, gx = 20, gy = 10, tw = 450, tx0 = (W - tw * 2 - gx) / 2;
+  // TTD exceptions: one quiet line above the footer (names only; the page has the reasons).
+  const ex = d.parihara.length ? `TTD పంచాంగం మినహాయింపు: ${d.parihara.map((p) => INFO[p.key].short).join(", ")}` : "";
+  const top = y + 16, bottom = ex ? 1122 : 1162, gx = 20, gy = 10, tw = 450, tx0 = (W - tw * 2 - gx) / 2;
   const th = Math.min(96, (bottom - top - 3 * gy) / 4);
   d.kootas.forEach((k, i) => {
     const x = tx0 + (i % 2) * (tw + gx), ty = top + Math.floor(i / 2) * (th + gy), c = scoreColor(k);
@@ -751,8 +714,8 @@ async function makeImage(d) {
     ctx.fillText(INFO[k.key].short, x + 24, ly);
     ctx.textAlign = "right"; ctx.fillStyle = c; ctx.font = `800 32px ${NUM}`;
     ctx.fillText(`${fmt(k.score)}/${k.max}`, x + tw - 24, ly);
-    // A koota restored by a parihara says so on its own card.
-    if (k.parihara) { ctx.fillStyle = "#4D6B1F"; ctx.font = `600 24px ${TXT}`; ctx.fillText("పరిహారం ఉంది", x + tw - 24, dy); }
+    // A koota with a TTD exception says so on its own card.
+    if (k.parihara) { ctx.fillStyle = "#5E4B3C"; ctx.font = `600 24px ${TXT}`; ctx.fillText("TTD మినహాయింపు", x + tw - 24, dy); }
     for (let j = 0; j < k.max; j++) {
       const dx = x + 32 + j * 24;
       ctx.beginPath(); ctx.arc(dx, dy, 8, 0, Math.PI * 2);
@@ -764,8 +727,9 @@ async function makeImage(d) {
 
   // footer: kept clear of the tiles and of the corner ornaments (x < 110 / > 970)
   ctx.textAlign = "center";
+  if (ex) { ctx.fillStyle = "#5E4B3C"; fitText(ctx, ex, 900, 26, `500 {s}px ${TXT}`); ctx.fillText(ex, cx, 1146); }
   ctx.fillStyle = "#8E1330";
-  const cta = pi ? "పరిహారాల వివరాలు matchmyjathakam.com లో చూడండి" : "మీ జోడీ పొంతన కూడా చూడండి — matchmyjathakam.com";
+  const cta = "మీ జోడీ పొంతన కూడా చూడండి — matchmyjathakam.com";
   fitText(ctx, cta, 780, 29, `700 {s}px ${TXT}`);
   ctx.fillText(cta, cx, 1204);
   ctx.fillStyle = "#5E4B3C";

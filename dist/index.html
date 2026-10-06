@@ -38,7 +38,7 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Telugu:wght@400;500;600;700;800&display=swap"></noscript>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap"></noscript>
-  <link rel="stylesheet" href="style.css?v=6">
+  <link rel="stylesheet" href="style.css?v=8">
   <style>
   /* ===== home (approved redesign): warm palette, Ramabhadra display type ===== */
   body.home{
@@ -191,11 +191,9 @@
   .pt-chips{margin:4px 0 0}
   .pt-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:#EEF3E2;border:1px solid #C9D8A8;font:600 .875rem/1.5 var(--h-text);color:#2F4A10}
   .pt-chip.is-nadi{background:#FCEBC4;border-color:#E9C77A;color:#6B3A00}
-  .pt-parihara{margin:2px 0 0;max-width:34rem;font:500 .875rem/1.5 var(--h-text);color:#3F5A16}
-  .pt-parihara ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:2px}
-  .pt-ph-total{margin:4px 0 0;font-weight:700}
   .pt-shanti{margin:2px 0 0;max-width:34rem;font:500 .875rem/1.5 var(--h-text);color:var(--h-ink)}
   .pt-shanti small{display:block;font:500 .875rem/1.5 var(--h-text);color:var(--h-muted)}
+  .pt-note{margin:10px auto 0;max-width:34rem;text-align:center;font:400 .875rem/1.6 var(--h-text);color:var(--h-muted)}
   .pt-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;width:100%;margin-top:8px}
   .pt-tile{display:flex;flex-direction:column;gap:2px;padding:8px 10px;background:#FFFDF8;border:1.5px solid #EFE4CF;border-radius:12px;text-align:left}
   .pt-tile-top{display:flex;align-items:baseline;justify-content:space-between;gap:6px}
@@ -204,7 +202,7 @@
   .pt-dots{display:flex;flex-wrap:wrap;gap:3px}
   .pt-dots i{width:8px;height:8px;border-radius:50%;border:1.3px solid #A8977A}
   .pt-dots i.on{border-color:transparent}
-  .pt-tile-ph{font:600 .875rem/1.5 var(--h-text);color:#4D6B1F}
+  .pt-tile-ph{font:600 .875rem/1.5 var(--h-text);color:var(--h-muted)}
   .pt-foot{margin:6px 0 0;font:500 .875rem/1.5 var(--h-text);color:var(--h-muted)}
   .k-ok{margin-right:6px;font-weight:800}
   .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -251,9 +249,7 @@
   .k-labels span{display:inline-flex;align-items:center;gap:6px}
   .k-labels i{width:8px;height:8px;border-radius:50%}
   .k-status{margin:4px 0 0;font:600 .875rem/1.5 var(--h-text)}
-  .k-parihara{margin:2px 0 0;font:600 .875rem/1.5 var(--h-text);color:#4D6B1F}
-  .r-nadi.is-parihara{background:#EEF3E2;border-color:#C9D8A8;color:#2A1A12}
-  .r-nadi.is-parihara b{color:#2F4A10}
+  .k-parihara{margin:2px 0 0;font:500 .875rem/1.5 var(--h-text);color:var(--h-muted)}
   .k-why{margin-top:6px}
   .k-why summary{display:inline-flex;align-items:center;min-height:44px;font:600 .9375rem/1.5 var(--h-text);color:#8E1330;cursor:pointer}
   .k-why-body{padding:10px 12px;background:var(--h-soft);border-radius:10px;font:400 .9375rem/1.6 var(--h-text);color:var(--h-ink)}
@@ -299,13 +295,14 @@
     /* the koota rows sit right beside the hero on desktop, so the 8 tiles would only repeat them */
     .pt-tiles{display:none}
     /* compact koota rows: name | bar | score on one line, values under the bar, "ఎందుకు?" at the right */
-    .k-row{position:relative;display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr) auto;grid-template-areas:"nm bar sc" "nm lb lb" "nm st st";column-gap:16px;row-gap:2px;align-items:center;padding:10px 92px 10px 0}
+    .k-row{position:relative;display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr) auto;grid-template-areas:"nm bar sc" "nm lb lb" "nm st st" "nm ph ph";column-gap:16px;row-gap:2px;align-items:center;padding:10px 92px 10px 0}
     .k-head{display:contents}
     .k-head > span:first-child{grid-area:nm;align-self:start}
     .k-score{grid-area:sc;justify-self:end}
     .k-bar{grid-area:bar;margin:0}
     .k-labels{grid-area:lb}
-    .k-status,.k-parihara{grid-area:st;margin:0}
+    .k-status{grid-area:st;margin:0}
+    .k-parihara{grid-area:ph;margin:0}
     .k-why{grid-column:1/-1;margin:0}
     .k-why summary{position:absolute;top:6px;right:0}
     .k-why[open] .k-why-body{margin-top:8px}
@@ -537,10 +534,10 @@
               <p id="pt-subline" class="pt-sub"></p>
               <p class="pt-src">మొత్తం గుణాలు: తిరుమల తిరుపతి దేవస్థానం పంచాంగం (2025-26) గుణమేళన చక్రం ప్రకారం</p>
               <p class="pt-chips" hidden><span id="pt-chip" class="pt-chip"></span></p>
-              <div id="pt-parihara" class="pt-parihara" hidden></div>
               <p id="pt-shanti" class="pt-shanti" hidden><small>నిర్ణయానికి ముందు మీ జ్యోతిష్యులను సంప్రదించడం మంచిది</small></p>
             </div>
             <div id="pt-tiles" class="pt-tiles"></div>
+            <div id="pt-note" class="pt-note" hidden></div>
             <p class="pt-foot">matchmyjathakam.com</p>
           </div>
         </section>
@@ -613,6 +610,14 @@
   </div>
 </main>
 <footer class="site-footer">
+  <section class="share-site" aria-labelledby="share-site-h">
+    <h2 id="share-site-h">మా వెబ్‌సైట్‌ను మీ స్నేహితులు, కుటుంబ సభ్యులతో షేర్ చేయండి</h2>
+    <p>పెళ్లి సంబంధాలు చూస్తున్న వారికి ఉపయోగపడుతుంది — ఉచితం, సులభం.</p>
+    <div class="share-site-btns" aria-live="polite">
+      <a class="btn btn-primary" href="https://wa.me/?text=%E0%B0%A8%E0%B0%AE%E0%B0%B8%E0%B1%8D%E0%B0%95%E0%B0%BE%E0%B0%B0%E0%B0%82%20%F0%9F%99%8F%0A%E0%B0%A4%E0%B0%BF%E0%B0%B0%E0%B1%81%E0%B0%AE%E0%B0%B2%20%E0%B0%A4%E0%B0%BF%E0%B0%B0%E0%B1%81%E0%B0%AA%E0%B0%A4%E0%B0%BF%20%E0%B0%A6%E0%B1%87%E0%B0%B5%E0%B0%B8%E0%B1%8D%E0%B0%A5%E0%B0%BE%E0%B0%A8%E0%B0%82%20%28TTD%29%20%E0%B0%AA%E0%B0%82%E0%B0%9A%E0%B0%BE%E0%B0%82%E0%B0%97%E0%B0%82%20%E0%B0%AA%E0%B1%8D%E0%B0%B0%E0%B0%95%E0%B0%BE%E0%B0%B0%E0%B0%82%20%E0%B0%B5%E0%B0%BF%E0%B0%B5%E0%B0%BE%E0%B0%B9%20%E0%B0%AA%E0%B1%8A%E0%B0%82%E0%B0%A4%E0%B0%A8%20%E2%80%94%20%E0%B0%87%E0%B0%AA%E0%B1%8D%E0%B0%AA%E0%B1%81%E0%B0%A1%E0%B1%81%20%E0%B0%86%E0%B0%A8%E0%B1%8D%E2%80%8C%E0%B0%B2%E0%B1%88%E0%B0%A8%E0%B1%8D%E2%80%8C%E0%B0%B2%E0%B1%8B%2C%20%E0%B0%AA%E0%B1%82%E0%B0%B0%E0%B1%8D%E0%B0%A4%E0%B0%BF%E0%B0%97%E0%B0%BE%20%E0%B0%89%E0%B0%9A%E0%B0%BF%E0%B0%A4%E0%B0%82%E0%B0%97%E0%B0%BE.%0A%0A%E2%9C%85%20%E0%B0%B5%E0%B0%A7%E0%B1%82%E0%B0%B5%E0%B0%B0%E0%B1%81%E0%B0%B2%20%E0%B0%A8%E0%B0%95%E0%B1%8D%E0%B0%B7%E0%B0%A4%E0%B1%8D%E0%B0%B0%E0%B0%82%20%E0%B0%A4%E0%B1%86%E0%B0%B2%E0%B0%BF%E0%B0%B8%E0%B1%8D%E0%B0%A4%E0%B1%87%20%E0%B0%9A%E0%B0%BE%E0%B0%B2%E0%B1%81%20%E2%80%94%20%E0%B0%A4%E0%B1%86%E0%B0%B2%E0%B0%BF%E0%B0%AF%E0%B0%95%E0%B0%AA%E0%B1%8B%E0%B0%A4%E0%B1%87%20%E0%B0%AA%E0%B1%81%E0%B0%9F%E0%B1%8D%E0%B0%9F%E0%B0%BF%E0%B0%A8%20%E0%B0%A4%E0%B1%87%E0%B0%A6%E0%B1%80%2C%20%E0%B0%B8%E0%B0%AE%E0%B0%AF%E0%B0%82%2C%20%E0%B0%8A%E0%B0%B0%E0%B1%81%20%E0%B0%87%E0%B0%B5%E0%B1%8D%E0%B0%B5%E0%B0%82%E0%B0%A1%E0%B0%BF%0A%E2%9C%85%2036%20%E0%B0%97%E0%B1%81%E0%B0%A3%E0%B0%BE%E0%B0%B2%E0%B1%81%2C%208%20%E0%B0%95%E0%B1%82%E0%B0%9F%E0%B0%AE%E0%B1%81%E0%B0%B2%20%E0%B0%AA%E0%B1%8A%E0%B0%82%E0%B0%A4%E0%B0%A8%20%E0%B0%A4%E0%B1%86%E0%B0%B2%E0%B1%81%E0%B0%97%E0%B1%81%E0%B0%B2%E0%B1%8B%2C%20%E0%B0%AA%E0%B1%8D%E0%B0%B0%E0%B0%A4%E0%B0%BF%20%E0%B0%95%E0%B1%82%E0%B0%9F%E0%B0%AE%E0%B0%BF%E0%B0%95%E0%B0%BF%20%E0%B0%B5%E0%B0%BF%E0%B0%B5%E0%B0%B0%E0%B0%A3%E0%B0%A4%E0%B1%8B%0A%E2%9C%85%20%E0%B0%A8%E0%B0%BE%E0%B0%A1%E0%B0%BF%2C%20%E0%B0%B0%E0%B0%BE%E0%B0%B6%E0%B0%BF%2C%20%E0%B0%97%E0%B0%A3%20%E0%B0%A6%E0%B1%8B%E0%B0%B7%E0%B0%BE%E0%B0%B2%E0%B1%81%20%E0%B0%89%E0%B0%A8%E0%B1%8D%E0%B0%A8%E0%B0%BE%E0%B0%AF%E0%B1%8B%20%E0%B0%B2%E0%B1%87%E0%B0%A6%E0%B1%8B%20TTD%20%E0%B0%AA%E0%B0%82%E0%B0%9A%E0%B0%BE%E0%B0%82%E0%B0%97%E0%B0%82%20%E0%B0%AA%E0%B1%8D%E0%B0%B0%E0%B0%95%E0%B0%BE%E0%B0%B0%E0%B0%82%0A%E2%9C%85%20%E0%B0%AB%E0%B0%B2%E0%B0%BF%E0%B0%A4%E0%B0%BE%E0%B0%A8%E0%B1%8D%E0%B0%A8%E0%B0%BF%20%E0%B0%B5%E0%B0%BE%E0%B0%9F%E0%B1%8D%E0%B0%B8%E0%B0%BE%E0%B0%AA%E0%B1%8D%E2%80%8C%E0%B0%B2%E0%B1%8B%20%E0%B0%AA%E0%B0%82%E0%B0%AA%E0%B1%81%E0%B0%95%E0%B1%8B%E0%B0%B5%E0%B0%9A%E0%B1%8D%E0%B0%9A%E0%B1%81%0A%E2%9C%85%20%E0%B0%B2%E0%B0%BE%E0%B0%97%E0%B0%BF%E0%B0%A8%E0%B1%8D%20%E0%B0%85%E0%B0%B5%E0%B0%B8%E0%B0%B0%E0%B0%82%20%E0%B0%B2%E0%B1%87%E0%B0%A6%E0%B1%81%2C%20%E0%B0%AE%E0%B1%80%20%E0%B0%B5%E0%B0%BF%E0%B0%B5%E0%B0%B0%E0%B0%BE%E0%B0%B2%E0%B1%81%20%E0%B0%8E%E0%B0%95%E0%B1%8D%E0%B0%95%E0%B0%A1%E0%B0%BE%20%E0%B0%B8%E0%B1%87%E0%B0%B5%E0%B1%8D%20%E0%B0%9A%E0%B1%87%E0%B0%AF%E0%B0%AC%E0%B0%A1%E0%B0%B5%E0%B1%81%0A%0A%F0%9F%91%89%20https%3A%2F%2Fmatchmyjathakam.com%2F" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 26 26" aria-hidden="true" focusable="false"><path d="M13 3 C7.5 3 3 7 3 12 C3 14.2 3.8 16.2 5.2 17.8 L4.2 22.2 L8.8 20.6 C10.1 21.2 11.5 21.5 13 21.5 C18.5 21.5 23 17.5 23 12.2 C23 7 18.5 3 13 3 Z" stroke="#E7C170" stroke-width="2" fill="none" stroke-linejoin="round"/><path d="M9.5 9.6 C9.5 12.8 12.4 15.8 15.8 15.9 L17.2 14.4 L15.3 13.3 L14.4 14 C13.2 13.5 12.2 12.5 11.7 11.3 L12.4 10.4 L11.3 8.5 Z" fill="#E7C170"/></svg><span>వాట్సాప్‌లో పంపండి</span></a>
+      <button type="button" class="btn btn-secondary" id="share-site-more" hidden><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="15" cy="4.5" r="2.5" fill="currentColor"/><circle cx="5" cy="10" r="2.5" fill="currentColor"/><circle cx="15" cy="15.5" r="2.5" fill="currentColor"/><path d="M7.2 8.8 L12.8 5.7 M7.2 11.2 L12.8 14.3" stroke="currentColor" stroke-width="1.6"/></svg><span>ఇతర యాప్‌లు</span></button>
+    </div>
+  </section>
   <nav class="site-footer-links" aria-label="విషయాలు">
     <a href="/">పొంతన</a>
     <a href="/best-matches">ఉత్తమ జోడీలు</a>
@@ -637,6 +642,8 @@
 <script defer src="decor.js?v=9"></script>
 <script defer src="/koota.js?v=8"></script>
 <script defer src="rashi.js?v=10"></script>
-<script defer src="app.js?v=26"></script>
+<script defer src="app.js?v=27"></script>
+<script type="module" src="/fx.js?v=1"></script>
+<script defer src="/share.js?v=2"></script>
 </body>
 </html>
